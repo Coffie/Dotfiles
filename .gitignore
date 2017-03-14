@@ -1,0 +1,4 @@
+# Ignore Vim bundle for increased speed
+/Vim/.vim/bundle/*
+/Vim/.vim/.netrwhist
+/Vim/.vim/view

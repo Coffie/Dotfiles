@@ -1,0 +1,51 @@
+# automatically renumber tmux windows
+set -g renumber-windows on
+
+# Unbind default meta key and set to Ctrl+a
+unbind C-b
+set-option -g prefix C-a
+
+# make window/pane index start with 1
+set -g base-index 1
+setw -g pane-base-index 1
+
+# Change statusbar colors
+set-option -g status-bg black
+set-option -g status-fg green
+
+# Display on statusbar
+set -g status-left '#[fg=red]#H'
+
+# Enable mouse navigation
+set -g mouse on
+
+# Disable auto-renaming of windows
+set-option -g allow-rename off
+
+######################
+#### Key Bindings ####
+######################
+
+# Source tmux.conf
+unbind r
+bind r source-file ~/.tmux.conf \; display "Config Reloaded!"
+
+# Bindings for splitting window
+unbind %
+bind | split-window -h
+bind - split-window -v
+
+# tile all windows
+bind + select-layout tiled
+
+# pane movement shortcuts
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
+# Resize pane shortcuts
+bind -r H resize-pane -L 10
+bind -r J resize-pane -D 10
+bind -r K resize-pane -U 10
+bind -r L resize-pane -R 10

@@ -87,7 +87,7 @@ map <leader>ev :e! ~/.vimrc<cr> " edit ~/.vimrc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " NERDTree settings
 " close NERDTree after a file is opened
-let g:NERDTreeQuitOnOpen=0
+let g:NERDTreeQuitOnOpen=1
 
 " show hidden files in NERDTree
 let NERDTreeShowHidden=1

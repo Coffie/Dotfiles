@@ -79,7 +79,7 @@ COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="dd.mm.yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -126,13 +126,6 @@ alias szsh="source ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias cass="mosh chrisnys@login.samfundet.no"
 alias sv="source venv/bin/activate"
-alias bimbear='mosh coffie@146.185.129.107'
 alias house='mosh coffie@146.185.150.114'
-
-# Functions
-sprint() {
-    for i in {1..$3}
-    do
-        lp -d $1 -h printhost.samfundet.no $2
-    done
-}
+alias ydl='youtube-dl  --extract-audio --audio-quality 320k --audio-format mp3'
+alias mush='ncmpcpp -h 192.168.35.133'

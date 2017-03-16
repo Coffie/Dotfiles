@@ -29,6 +29,7 @@ if [ "$(uname)" == "Linux" ]; then
 	else
 		echo -e "\n\nZsh is already standard shell"
 	fi
+fi
 
 
 

@@ -124,8 +124,8 @@ fi
 alias zshconfig="vim ~/.zshrc"
 alias szsh="source ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
-alias cass="mosh chrisnys@login.samfundet.no"
+alias cass="mosh cass"
 alias sv="source venv/bin/activate"
-alias house='mosh coffie@146.185.150.114'
+alias house='mosh house"
 alias ydl='youtube-dl  --extract-audio --audio-quality 320k --audio-format mp3'
 alias mush='ncmpcpp -h 192.168.35.133'

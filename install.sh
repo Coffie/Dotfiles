@@ -31,6 +31,11 @@ if [ "$(uname)" == "Linux" ]; then
 	fi
 fi
 
+echo -e "\n\nSetting up vim plugins"
+echo  "=================================="
+source install/vimplugin.sh
+
+
 
 
 echo "Done."

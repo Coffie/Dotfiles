@@ -1,0 +1,19 @@
+[user]
+	name = Christoffer Nysæther
+	email = christoffer.nysaether@gmail.com
+[github]
+	user = Coffie
+[core]
+	editor = vim
+	excludefile = ~/.gitignore_global
+[alias]
+	co = checkout
+	cob = checkout -b
+	s = status -short
+	ss = status
+[branch]
+	# set up 'git pull' to rebase instead of merge
+	autosetuprebase = always
+[push]
+	# push will only do the current branch, not all branches
+	default = current

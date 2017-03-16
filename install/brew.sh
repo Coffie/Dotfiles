@@ -54,10 +54,10 @@ brew cask install google-chrome
 brew cask install torbrowser
 
 # productivity
-brew cask install amethyst
 brew cask install alfred
 brew cask install caffeine
 brew cask install iterm2
+brew cask install sizeup
 brew cask install the-unarchiver
 
 # development
@@ -66,6 +66,8 @@ brew cask install realm-browser
 brew cask install pycharm
 
 # other
+brew cask install keyboard-cleaner
+brew cask install virtualbox
 brew cask install slack
 brew cask install dropbox
 brew cask install java

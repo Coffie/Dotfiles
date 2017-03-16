@@ -35,8 +35,9 @@ echo -e "\n\nSetting up vim plugins"
 echo  "=================================="
 source install/vimplugin.sh
 
-
-
+echo -e "\n\nSetting up oh-my-zsh"
+echo  "=================================="
+source install/zsh.sh
 
 echo "Done."
 

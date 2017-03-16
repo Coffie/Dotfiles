@@ -4,4 +4,4 @@
 /Vim/.vim/view
 
 # Leave oh-my-zsh out of repo
-/Zsh/.oh-my-zsh
+/Zsh/.oh-my-zsh/

@@ -126,6 +126,6 @@ alias szsh="source ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 alias cass="mosh cass"
 alias sv="source venv/bin/activate"
-alias house='mosh house"
+alias house='mosh house'
 alias ydl='youtube-dl  --extract-audio --audio-quality 320k --audio-format mp3'
 alias mush='ncmpcpp -h 192.168.35.133'

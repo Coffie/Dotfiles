@@ -23,4 +23,4 @@ alias lsl="ls -lhFA | less"
 alias histg="history | grep"
 
 # Functions
-alias scpf="scp_fundtion"
+alias scpf="scp_function"

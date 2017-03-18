@@ -119,13 +119,7 @@ fi
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-alias zshconfig="vim ~/.zshrc"
-alias szsh="source ~/.zshrc"
-alias ohmyzsh="vim ~/.oh-my-zsh"
-alias cass="mosh cass"
-alias sv="source venv/bin/activate"
-alias house='mosh house'
-alias ydl='youtube-dl  --extract-audio --audio-quality 320k --audio-format mp3'
-alias mush='ncmpcpp -h 192.168.35.133'
+source "$HOME/.dotfiles/Zsh/.aliases"
+
+# Functions
+source "$HOME/.dotfiles/Zsh/.functions"

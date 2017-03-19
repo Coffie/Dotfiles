@@ -30,9 +30,10 @@ if [ "$(uname)" == "Linux" ]; then
 	fi
 fi
 
-echo -e "\n\nSetting up vim plugins"
+echo -e "\n\nSetting up plugins"
 echo  "=================================="
 source install/vimplugin.sh
+source install/tmux.sh
 
 echo -e "\n\nSetting up oh-my-zsh"
 echo  "=================================="

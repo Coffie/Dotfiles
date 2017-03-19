@@ -7,7 +7,8 @@ SYNTASTIC="vim-syntastic/syntastic"
 SOLARIZED="altercation/vim-colors-solarized"
 COMMENT="tpope/vim-commentary"
 COMPLETE="Valloric/YouCompleteMe"
-BUNDLES=($VUNDLE $NERDTREE $SYNTASTIC $SOLARIZED $COMMENT $COMPLETE)
+TMUX="keith/tmux.vim"
+BUNDLES=($VUNDLE $NERDTREE $SYNTASTIC $SOLARIZED $COMMENT $COMPLETE $TMUX)
 
 if [ ! -d "$DIRECTORY" ]; then
 	echo -e "\nCreating bundle directory" 

@@ -7,7 +7,7 @@ SYNTASTIC="vim-syntastic/syntastic"
 SOLARIZED="altercation/vim-colors-solarized"
 COMMENT="tpope/vim-commentary"
 COMPLETE="Valloric/YouCompleteMe"
-TMUX="keith/tmux.vim"
+TMUX="tmux-plugins/vim-tmux"
 BUNDLES=($VUNDLE $NERDTREE $SYNTASTIC $SOLARIZED $COMMENT $COMPLETE $TMUX)
 
 if [ ! -d "$DIRECTORY" ]; then

@@ -49,3 +49,19 @@ for file in "${ZSHFILES[@]}" ; do
         ln -s ${VALUE} ${KEY}
     fi
 done
+
+echo -e "\n\nCreating tmux symlinks"
+echo "=============================="
+ZSHFILES=( "$HOME/.tmux.conf:$DOTFILES/tmux/.tmux.conf"
+        "$HOME/.tmux:$DOTFILES/tmux/.tmux" )
+
+for file in "${ZSHFILES[@]}" ; do
+    KEY=${file%%:*}
+    VALUE=${file#*:}
+    if [ -e ${KEY} ]; then
+        echo "${KEY} already exists... skipping"
+    else
+        echo "Creating symlink for $KEY"
+        ln -s ${VALUE} ${KEY}
+    fi
+done

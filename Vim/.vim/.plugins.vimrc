@@ -14,6 +14,7 @@ Plugin 'tpope/vim-commentary' " Comment with gcc or gc
 
 " Colors
 Plugin 'altercation/vim-colors-solarized' " Solarized colors for vim
+Plugin 'tmux-plugins/vim-tmux' " tmux.conf plugin
 
 " All plugins must be added before the followin lines
 call vundle#end()

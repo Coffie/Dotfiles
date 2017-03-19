@@ -15,3 +15,6 @@ Icon
 
 # Project-specific vim config
 .vimrc.local
+
+# Ignore .swp files 
+*.swp

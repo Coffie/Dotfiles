@@ -1,13 +1,17 @@
 # Scp function
 function scp_function() {
-	local TRANSFER
+	local FILE
 	case "$1" in
-		cass*)	TRANSFER="chrisnys@login.samfundet.no:"
-				scp "$TRANSFER$3" "$2"	;;
-		house*) TRANSFER="coffie@192.168.35.133:"
-				scp "$TRANSFER$3" "$2"	;;
+		fcass*)		FILE="chrisnys@login.samfundet.no:"
+					scp "$FILE$3" "$2"	;;
+		fhouse*)	FILE="coffie@192.168.35.133:"
+					scp "$FILE$3" "$2"	;;
+		tcass*)		FILE="chrisnys@login.samfundet.no:"
+					scp "$2" "$FILE$3"	;; 
+		thouse*)	FILE="coffie@192.168.35.133:"
+					scp "$2" "$FILE$3"	;; 
 		*)
-			scp "$1" "$2"	;;
+					scp "$1" "$2"	;;
 	esac
 }	
 

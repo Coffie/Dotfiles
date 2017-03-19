@@ -2,6 +2,7 @@
 /Vim/.vim/bundle/*
 /Vim/.vim/.netrwhist
 /Vim/.vim/view
+*.swp
 
 # Leave oh-my-zsh out of repo
 /Zsh/.oh-my-zsh/

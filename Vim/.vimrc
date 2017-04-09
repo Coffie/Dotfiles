@@ -27,6 +27,11 @@ set foldmethod=syntax " fold based on indent
 set foldnestmax=10 " deepest fold is 10 levels
 set nofoldenable " don't fold by default
 
+set visualbell " don't beep
+set noerrorbells " don't beep
+
+set title " change the terminal's title
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => User Interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -42,6 +47,8 @@ set incsearch " Perform search while entering text
 " Shows matching bracket or paranthesis when hovering one
 set showmatch
 
+set wildmenu " Enable a graphical menu for cycling trough filenames
+
 set ignorecase " case insensitive searching
 set smartcase " case-sensitive if expression contains a capital letter
 
@@ -49,6 +56,7 @@ set nolazyredraw " don't redraw while executing macros
 
 " Set history length
 set history=1000
+set undolevels=1000
 
 " Looks
 set bg=dark " Use dark solarized
@@ -70,6 +78,11 @@ au BufNewFile,BufRead mutt* set tw=77 ai nocindent spell " Shorter for mutt
 set number
 
 set laststatus=2 " always show statusbar
+
+" When a line is longer than textwidth, show the part longer than textwidth on
+" the nex line
+set wrap
+set formatoptions=qrn1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Mappings
@@ -107,3 +120,20 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" Rainbow Parentheses
+" auto enable RP
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+" YouCompleteMe
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_comments = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+
+nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1

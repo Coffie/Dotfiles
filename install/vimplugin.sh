@@ -8,7 +8,15 @@ SOLARIZED="altercation/vim-colors-solarized"
 COMMENT="tpope/vim-commentary"
 COMPLETE="Valloric/YouCompleteMe"
 TMUX="tmux-plugins/vim-tmux"
-BUNDLES=($VUNDLE $NERDTREE $SYNTASTIC $SOLARIZED $COMMENT $COMPLETE $TMUX)
+RP="kien/rainbow_parentheses.vim"
+VS="tpope/vim-surround"
+VEM="easymotion/vim-easymotion"
+VGG="airblade/vim-gitgutter"
+TARGET="wellle/targets.vim"
+FZF="junegunn/fzf"
+FZFV="junegunn/fzf.vim"
+BUNDLES=($VUNDLE $NERDTREE $SYNTASTIC $SOLARIZED $COMMENT $COMPLETE $TMUX $RP
+$VS $VEM $VGG $TARGET $FZF $FZFV)
 
 if [ ! -d "$DIRECTORY" ]; then
 	echo -e "\nCreating bundle directory" 

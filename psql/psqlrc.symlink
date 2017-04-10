@@ -1,0 +1,31 @@
+-- Alway rollback on error
+\set ON_ERROR_ROLLBACK on
+
+\encoding UNICODE
+
+-- Show how much time it takes to execute a query
+\timing
+
+\set PROMPT1 '%n@Mm %/%R%x%# '
+\set PROMPT2 '%n@Mm %/%R%x%# '
+
+-- NULL is displayed as an empty space by default, so make it easier to
+-- distingiush by explicitly defining how it is shown.
+\pset null '[NULL]'
+
+-- Always autocomplete keywords to the uppercase version
+\set COMP_KEYWORD_CASE upper
+
+-- Show the table header on the top by default, and switch to expanded table
+-- format when there is a lot of data.
+\x auto
+
+-- If a command is run more than once in a row, only store it once in the
+-- history.
+\set HISTCONTROL ignoredups
+
+-- Give more verbose error reports.
+\set VERBOSITY verbose
+\unset QUIET
+
+\pset pager always

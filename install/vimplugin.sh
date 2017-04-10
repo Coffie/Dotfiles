@@ -1,5 +1,5 @@
 #!/bin/bash
-DIRECTORY="$HOME/.dotfiles/Vim/.vim/bundle"
+DIRECTORY="$HOME/.dotfiles/vim/.vim/bundle"
 declare -a BUNDLES
 VUNDLE="VundleVim/Vundle.vim"
 NERDTREE="scrooloose/nerdtree"

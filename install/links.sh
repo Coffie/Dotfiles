@@ -20,8 +20,8 @@ done
 
 echo -e "\n\nCreating vim symlinks"
 echo "=============================="
-VIMFILES=( "$HOME/.vim:$DOTFILES/Vim/.vim"
-        "$HOME/.vimrc:$DOTFILES/Vim/.vimrc" )
+VIMFILES=( "$HOME/.vim:$DOTFILES/vim/.vim"
+        "$HOME/.vimrc:$DOTFILES/vim/.vimrc" )
 
 for file in "${VIMFILES[@]}" ; do
     KEY=${file%%:*}
@@ -36,8 +36,8 @@ done
 
 echo -e "\n\nCreating zsh symlinks"
 echo "=============================="
-ZSHFILES=( "$HOME/.zshrc:$DOTFILES/Zsh/.zshrc"
-        "$HOME/.oh-my-zsh:$DOTFILES/Zsh/.oh-my-zsh" )
+ZSHFILES=( "$HOME/.zshrc:$DOTFILES/zsh/.zshrc"
+        "$HOME/.oh-my-zsh:$DOTFILES/zsh/.oh-my-zsh" )
 
 for file in "${ZSHFILES[@]}" ; do
     KEY=${file%%:*}

@@ -1,5 +1,5 @@
 #!/bin/bash
-DIRECTORY="$HOME/.dotfiles/Zsh/.oh-my-zsh"
+DIRECTORY="$HOME/.dotfiles/zsh/.oh-my-zsh"
 OHMY="https://github.com/robbyrussell/oh-my-zsh.git"
 THEME="https://github.com/bhilburn/powerlevel9k.git"
 DEST="/custom/themes/powerlevel9k"

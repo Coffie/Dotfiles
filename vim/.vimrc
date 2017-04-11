@@ -2,7 +2,7 @@
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load plugins from separate file
-source ~/.dotfiles/Vim/.vim/.plugins.vimrc
+source ~/.dotfiles/vim/.vim/plugins.vimrc
 
 set nocompatible " not compatible with vi
 

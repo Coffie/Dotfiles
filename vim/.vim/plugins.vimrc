@@ -1,5 +1,5 @@
 filetype off " Required by vundle
-set rtp+=~/.dotfiles/Vim/.vim/bundle/Vundle.vim
+set rtp+=~/.dotfiles/vim/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " Let Vundle manage Vundle
@@ -26,4 +26,3 @@ Plugin 'tmux-plugins/vim-tmux' " tmux.conf plugin
 " All plugins must be added before the followin lines
 call vundle#end()
 filetype plugin indent on
-

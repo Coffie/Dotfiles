@@ -89,6 +89,20 @@ set formatoptions=qrn1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <leader>ev :e! ~/.vimrc<cr> " edit ~/.vimrc 
 
+" Easily save a file as root
+cmap w!! w !sudo tee > /dev/null %
+
+" use jk to enter command mode
+imap jk <Esc>
+
+" Pasting toggle
+set pastetoggle=<F2>
+
+" make it possible to go to a other split by using ctrl+hjkl
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Functions
@@ -98,6 +112,15 @@ map <leader>ev :e! ~/.vimrc<cr> " edit ~/.vimrc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nmap <Leader>f :Files<CR>
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>h :History<CR>
+nmap <Leader>p :GFiles<CR>
+nmap <Leader>a :Commands<CR>
+
+let g:fzf_layout = { 'down': '~15%' }
+
 " NERDTree settings
 " close NERDTree after a file is opened
 let g:NERDTreeQuitOnOpen=1

@@ -3,10 +3,15 @@ export TERM="xterm-256color"
 export ZSH=$HOME/.dotfiles/Zsh/.oh-my-zsh
 
 # Source external zsh files
-source "$HOME/.dotfiles/zsh/exports.zsh"
-source "$HOME/.dotfiles/zsh/theme.zsh"
-source "$HOME/.dotfiles/zsh/aliases.zsh"
-source "$HOME/.dotfiles/zsh/functions.zsh"
+ZSH_ROOT="$HOME/.dotfiles/zsh"
+
+for ZSH_FILE in aliases functions exports theme; do
+	filename=$ZSH_ROOT/includes/$ZSH_FILE.zsh
+
+	if [[ -s $filename ]]; then
+		source $filename
+	fi
+done
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

@@ -1,6 +1,6 @@
 [core]
 	editor = vim
-	excludefile = ~/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	mergetool = vim
 
 [user]

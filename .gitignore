@@ -1,11 +1,9 @@
 # Ignore Vim bundle for increased speed
-/Vim/.vim/bundle/*
-/Vim/.vim/.netrwhist
-/Vim/.vim/view
-*.swp
+/vim/.vim/bundle/*
+/vim/.vim/view
 
 # Leave oh-my-zsh out of repo
-/Zsh/.oh-my-zsh/
+/zsh/.oh-my-zsh/
 
 # Ignore tmux plugins
 /tmux/.tmux/plugins/*

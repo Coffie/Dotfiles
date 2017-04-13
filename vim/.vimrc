@@ -47,6 +47,16 @@ set incsearch " Perform search while entering text
 " Shows matching bracket or paranthesis when hovering one
 set showmatch
 
+" Statusline
+set statusline=%<%F%h%m%r%=\[%B\]\ %l,%c%V\ %P
+hi StatusLine ctermbg=white ctermfg=234
+hi TabLine ctermfg=black ctermbg=234
+hi TabLineFill term=bold cterm=bold ctermbg=234
+
+" Highlight the current line.
+set cursorline
+hi CursorLine term=bold cterm=bold guibg=Grey40
+
 set wildmenu " Enable a graphical menu for cycling trough filenames
 
 set ignorecase " case insensitive searching
@@ -77,12 +87,20 @@ au BufNewFile,BufRead mutt* set tw=77 ai nocindent spell " Shorter for mutt
 " Show line numbers
 set number
 
+" Always show the statusline
 set laststatus=2 " always show statusbar
 
 " When a line is longer than textwidth, show the part longer than textwidth on
 " the nex line
 set wrap
 set formatoptions=qrn1
+
+" Show line numbers relative to the current line when in command mode.
+if v:version < 703
+        finish
+    endif
+        autocmd InsertEnter * :set number
+        autocmd InsertLeave * :set relativenumber
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Mappings
@@ -97,6 +115,14 @@ imap jk <Esc>
 
 " Pasting toggle
 set pastetoggle=<F2>
+
+" Don't jump over wrapped lines.
+nnoremap j gj
+nnoremap k gk
+
+" Split vim with tmux like keybindings
+map <leader>- :sp<CR>
+map <leader>. :vsp<CR>
 
 " make it possible to go to a other split by using ctrl+hjkl
 nmap <silent> <c-k> :wincmd k<CR>
@@ -120,6 +146,13 @@ nmap <Leader>p :GFiles<CR>
 nmap <Leader>a :Commands<CR>
 
 let g:fzf_layout = { 'down': '~15%' }
+
+" NERDCommenter settings
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
 
 " NERDTree settings
 " close NERDTree after a file is opened

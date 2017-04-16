@@ -32,3 +32,5 @@ alias histg="history | grep" # Search through history
 alias szsh="source $HOME/.zshrc" # Source .zshrc
 alias zshc"vim $HOME/.zshc"
 alias vime="vim $HOME/.vimrc"
+alias dsd="find . -name '*.DS_Store' -type f -delete"
+alias cpwd="pwd | tr -d '\n' | pbcopy"

@@ -1,6 +1,6 @@
 export TERM="xterm-256color"
 # Path to your oh-my-zsh installation.
-export ZSH=$HOME/.dotfiles/Zsh/.oh-my-zsh
+export ZSH=$HOME/.dotfiles/zsh/.oh-my-zsh
 
 # Source external zsh files
 ZSH_ROOT="$HOME/.dotfiles/zsh"

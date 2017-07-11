@@ -5,7 +5,7 @@ DEFAULT_USER="coffie"
 # Powerlevel 9k configuration
 # Set left and right prompt
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status battery ram ip)
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv context dir vcs)
 
 # Battery configuration
 POWERLEVEL9K_BATTERY_LOW_BACKGROUND="black"

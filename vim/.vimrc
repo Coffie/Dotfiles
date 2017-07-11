@@ -32,8 +32,6 @@ set noerrorbells " don't beep
 
 set title " change the terminal's title
 
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags " Turn on autocomplete of html tags
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => User Interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -132,9 +130,6 @@ nmap <silent> <c-j> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
-" <// for auto closing tags
-iab <// </<C-X><C-o>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -198,3 +193,7 @@ nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
+
+" Vim-closetag
+" filenames like *.xml, *.html, *.xhtml, ...
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'

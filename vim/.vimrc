@@ -32,6 +32,8 @@ set noerrorbells " don't beep
 
 set title " change the terminal's title
 
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags " Turn on autocomplete of html tags
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => User Interface
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -129,6 +131,9 @@ nmap <silent> <c-k> :wincmd k<CR>
 nmap <silent> <c-j> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
+
+" <// for auto closing tags
+iab <// </<C-X><C-o>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Functions

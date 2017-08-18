@@ -194,6 +194,8 @@ nnoremap <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 
+let g:ycm_python_binary_path = '/usr/bin/python3'
+
 " Vim-closetag
 " filenames like *.xml, *.html, *.xhtml, ...
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml'

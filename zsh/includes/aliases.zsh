@@ -4,6 +4,7 @@
 alias house="mosh house"
 alias cass="mosh cass"
 alias pop="mosh pop"
+alias dnb="mosh dnb"
 
 # ----------------------------------------------------------------------
 # Media

@@ -5,6 +5,7 @@ alias house="mosh house"
 alias cass="mosh cass"
 alias pop="mosh pop"
 alias senv="source venv/bin/activate"
+alias dnb="mosh dnb"
 
 # ----------------------------------------------------------------------
 # Media

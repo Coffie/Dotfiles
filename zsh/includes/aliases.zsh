@@ -6,6 +6,8 @@ alias cass="mosh cass"
 alias pop="mosh pop"
 alias senv="source venv/bin/activate"
 alias dnb="mosh dnb"
+alias disco="mosh disco"
+alias rock="ssh rock"
 
 # ----------------------------------------------------------------------
 # Media

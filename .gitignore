@@ -7,3 +7,6 @@
 
 # Ignore tmux plugins
 /tmux/.tmux/plugins/*
+
+# Ignore sensitive exports
+*.ignore.*

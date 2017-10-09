@@ -1,13 +1,7 @@
 # ----------------------------------------------------------------------
 # Connections
 # ----------------------------------------------------------------------
-alias house="mosh house"
-alias cass="mosh cass"
-alias pop="mosh pop"
 alias senv="source venv/bin/activate"
-alias dnb="mosh dnb"
-alias disco="mosh disco"
-alias rock="ssh rock"
 
 # ----------------------------------------------------------------------
 # Media
@@ -37,5 +31,15 @@ alias histg="history | grep" # Search through history
 alias szsh="source $HOME/.zshrc" # Source .zshrc
 alias zshc"vim $HOME/.zshc"
 alias vime="vim $HOME/.vimrc"
-alias dsd="find . -name '*.DS_Store' -type f -delete"
-alias cpwd="pwd | tr -d '\n' | pbcopy"
+
+# ----------------------------------------------------------------------
+# Source os-specific files
+# ----------------------------------------------------------------------
+$OSFILES="$HOME/.dotfiles/zsh/includes-os-specific"
+if [ "$(uname)" == "Darwin" ];
+then
+	source $OSFILES/aliases.macos.zsh
+elif [ "$(uname)" == "Linux" ];
+then
+	source $OSFILES/aliases.linux.zsh
+fi

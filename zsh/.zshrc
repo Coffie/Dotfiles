@@ -1,4 +1,4 @@
-export TERM="xterm-256color"
+[[ $TMUX = "" ]] && export TERM="xterm-256color"
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.dotfiles/zsh/.oh-my-zsh
 
@@ -52,16 +52,13 @@ HIST_STAMPS="yyyy-mm-dd"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git pip python brew osx wd tmux debian react-native)
+plugins=(git pip python brew osx wd tmux debian react-native zsh-syntax-highlighting)
 
 # User configuration
 
 # export PATH="/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
-
-export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
 
 source $ZSH/oh-my-zsh.sh
 

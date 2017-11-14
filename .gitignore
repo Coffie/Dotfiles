@@ -7,6 +7,7 @@
 
 # Ignore tmux plugins
 /tmux/.tmux/plugins/*
+/tmux/.tmux/resurrect
 
 # Ignore sensitive exports
 *.ignore.*

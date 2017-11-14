@@ -20,6 +20,7 @@ Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'tmux-plugins/vim-tmux' " tmux.conf plugin
 Plugin 'alvan/vim-closetag'
+Plugin 'dhruvasagar/vim-table-mode'
 
 " Colors
 Plugin 'altercation/vim-colors-solarized' " Solarized colors for vim

@@ -52,13 +52,8 @@ done
 
 echo -e "\n\nCreating tmux symlinks"
 echo "=============================="
-if [ "$(uname)" == "Darwin" ]; then
-	TMUXFILES=( "$HOME/.tmux.conf:$DOTFILES/tmux/.tmux.conf.mac"
-		"$HOME/.tmux:$DOTFILES/tmux/.tmux" )
-else
-	TMUXFILES=( "$HOME/.tmux.conf:$DOTFILES/tmux/.tmux.conf"
-		"$HOME/.tmux:$DOTFILES/tmux/.tmux" )
-fi
+TMUXFILES=( "$HOME/.tmux.conf:$DOTFILES/tmux/.tmux.conf"
+	"$HOME/.tmux:$DOTFILES/tmux/.tmux" )
 
 
 for file in "${TMUXFILES[@]}" ; do

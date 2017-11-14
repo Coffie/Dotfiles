@@ -3,6 +3,8 @@ DIRECTORY="$HOME/.dotfiles/zsh/.oh-my-zsh"
 OHMY="https://github.com/robbyrussell/oh-my-zsh.git"
 THEME="https://github.com/bhilburn/powerlevel9k.git"
 DEST="/custom/themes/powerlevel9k"
+ZSHHIGH="https://github.com/zsh-users/zsh-syntax-highlighting.git" 
+ZSHHIGHDEST="$HOME/.dotfiles/zsh/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
 
 if [ ! -d $DIRECTORY ]; then
 	echo -e "\n\nOh-my-zsh not installed"
@@ -25,4 +27,11 @@ else
 	fi
 fi
 
-
+if [ ! -d $ZSHHIGHDEST ];
+then
+	echo -e "\n\nInstalling custom plugins"
+	echo -e  "===============================\n\n"
+	git clone $ZSHHIGH $ZSHHIGHDEST
+else
+	echo -e "\n\nAll plugins installed"
+fi

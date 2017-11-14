@@ -29,17 +29,17 @@ alias tmuxls="tmux list-sessions"
 # ----------------------------------------------------------------------
 alias histg="history | grep" # Search through history
 alias szsh="source $HOME/.zshrc" # Source .zshrc
-alias zshc"vim $HOME/.zshc"
+alias zshc="vim $HOME/.zshrc"
 alias vime="vim $HOME/.vimrc"
 
 # ----------------------------------------------------------------------
 # Source os-specific files
 # ----------------------------------------------------------------------
-$OSFILES="$HOME/.dotfiles/zsh/includes-os-specific"
-if [ "$(uname)" == "Darwin" ];
+OSSPEC=$HOME/.dotfiles/zsh/includes
+if [[ "$(uname)" == "Darwin" ]]; 
 then
-	source $OSFILES/aliases.macos.zsh
-elif [ "$(uname)" == "Linux" ];
+	source $OSSPEC/aliases.macos.zsh
+elif [[ "$(uname)" == "Linux" ]];
 then
-	source $OSFILES/aliases.linux.zsh
+	source $OSSPEC/aliases.linux.zsh
 fi

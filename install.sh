@@ -21,7 +21,7 @@ fi
 if [ "$(uname)" == "Linux" ]; then
 	echo -e "\n\nRunning on Linux distro"
 
-	if [ $SHELL != /usr/bin/zsh ]; then
+	if [ $SHELL != /bin/zsh ]; then
 		echo -e "\n\nSetting zsh as standard shell"
 		echo  "=================================="
 		chsh -s $(which zsh)

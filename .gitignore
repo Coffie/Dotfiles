@@ -11,3 +11,7 @@
 
 # Ignore sensitive exports
 *.ignore.*
+
+# Ignore mutt local files
+/mutt/.mutt/aliases/.alias_include
+/mutt/.muttrc.local

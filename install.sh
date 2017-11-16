@@ -39,6 +39,10 @@ echo -e "\n\nSetting up oh-my-zsh"
 echo  "=================================="
 source install/zsh.sh
 
+echo -e "\n\nSetting up mutt"
+echo  "=================================="
+source install/mutt.sh
+
 echo -e "\n\nCreating symlinks"
 echo  "=================================="
 source install/links.sh

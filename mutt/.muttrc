@@ -1,0 +1,115 @@
+# ----------------------------------------------------------------------  
+# General Settings
+# ----------------------------------------------------------------------  
+set autoedit							# Goes straight to edit when new email is created
+set edit_headers						# Makes you able to edit headers
+set header_cache="~/.mutt_headercache"	# Makes it faster when opening big mailboxes
+set nomark_old							# Don't differentiate between old and new mails
+set use_from							# Allow editing of the from field when writing mail
+
+# Load more specific details from local file
+source ~/.dotfiles/mutt/.muttrc.local
+
+set sort_alias=alias					# Sort aliases by alias name
+set reverse_alias=yes					# Display personal name of aliases
+
+unset markers							# Makes it easier to cut and paste as the + from wrapped lines are removed
+set include=yes							# Always quote mail
+set read_inc=1000						# Speed up opening of large mboxes
+set write_inc=1000
+set sleep_time=0						# Default behaviour is to wait 1s when changing mailbox...
+set sort=threads						# Sort by threads
+
+# Automatic viewing of html mail, but always prefer text/plain:
+set implicit_autoview
+alternative_order text/plain text/html
+
+# Ignore all headers and unignore the ones we care about:
+ignore *
+
+unignore From To Subject Delivery-date
+unignore Resent-To X-Spam-Score X-Spam-Report X-Spam-Folder 
+
+# Common settings we want to change:
+set mbox_type=maildir           # Maildir
+set mbox='~/Mail/'
+#set record='~/Mail/.sent/'
+set record="=.Sent/"
+set abort_unmodified            # Ignore unsaved messages
+set arrow_cursor=no             # Use whole line as marker
+set autoedit                    # Jump straight to editing message
+set bounce_delivered=no         # Don't remove delivered-to when bouncing
+set charset=utf-8               # utf-8 ftw :-)
+set check_new=yes
+set copy=yes                    # Save outgoing mail.
+set delete=ask-yes              # Ask before deleting mail
+set edit_headers                # Allow me to change headers 
+set edit_headers                # Edit headers when writing emails
+set followup_to=no              # Don't set followup-to headers 
+set indent_string="> "  # Change this at your own peril
+set mail_check = 1             # How often to check for mail
+set pager_index_lines=6        # Number of index lines to show while reading mail
+set pager_stop=yes              # Don't skip to next when we get to end of a message
+set postpone=ask-yes            # Ask when aborting writing.
+set print=ask-no                # Ask before printing. Usually not what you want, anyway
+set reverse_name                # Try to guess which address we should use for From: by using alternates
+set send_charset=utf-8          # utf-8 ftw :-)
+set sort_aux=last-date-received # Then by time
+set status_on_top               # Move status bar to top
+set strict_threads = "yes"      # Only group real threads, not stuff with same subject.
+
+
+# ----------------------------------------------------------------------  
+# Visual
+# ----------------------------------------------------------------------  
+# Appereance of folder-index
+set folder_format="%t%N  %2C %-40f %8s %d "
+
+# Lines in message index
+# set hdr_format="%4C %Z %{%b %d} %-15.15n (%4l) %s"
+
+# Apperances of mailboxes and top status line
+set status_format="-%r- %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]----%>-(%P)---"
+set index_format="%4C %Z %[%b %d %R]  %-25.25F %-2.2M %s"
+
+# Top line when reading mails
+set pager_format="%S [%T] %n / %s"
+
+
+set editor="vim -c 'set tw=72'"
+
+# ----------------------------------------------------------------------  
+# Keybindings
+# ----------------------------------------------------------------------  
+# Make tab go to unread messages, not just new ones:
+bind index   \t          next-unread		# Tab to next unread message
+bind pager   \t          next-unread
+bind index  ,\t      previous-unread		# ,Tab to previous unread
+bind pager  ,\t      previous-unread
+bind index  -        collapse-thread		# - to collapse current thread
+bind index	_			collapse-all		# _ to collapse all threads
+
+# Macros
+macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"		# Bind c to change folder
+macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"		# Bind c to change folder
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"		# Copy message
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"		# Move message
+macro index \e i
+macro pager \e i
+
+
+mailboxes `\
+echo -n "+ "; \
+for file in ~/Mail/.*; do \
+	box=$(basename $file); \
+	if [ ! $box = '.' -a ! $box = '..' -a ! $box = '.customflags' -a ! $box = '.subscriptions' -a ! $box = '.INBOX' ]; then \
+		echo -n "+$box "; \
+	fi; \
+done`
+
+
+#folder-hook .itk-(intern|billig|handel|sosialt|uka|alle) 'bind index r list-reply; bind pager r list-reply; bind index L reply; bind pager L reply'
+#folder-hook .*klst.* 'bind index r list-reply; bind pager r list-reply; bind index L reply; bind pager L reply'
+
+
+folder-hook . 'set record="^"'

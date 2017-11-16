@@ -66,3 +66,20 @@ for file in "${TMUXFILES[@]}" ; do
         ln -s ${VALUE} ${KEY}
     fi
 done
+
+echo -e "\n\nCreating mutt symlinks"
+echo "=============================="
+MUTTFILES=( "$HOME/.muttrc:$DOTFILES/mutt/.muttrc"
+	"$HOME/.mutt:$DOTFILES/mutt/.mutt" )
+
+
+for file in "${MUTTFILES[@]}" ; do
+    KEY=${file%%:*}
+    VALUE=${file#*:}
+    if [ -e ${KEY} ]; then
+        echo "${KEY} already exists... skipping"
+    else
+        echo "Creating symlink for $KEY"
+        ln -s ${VALUE} ${KEY}
+    fi
+done

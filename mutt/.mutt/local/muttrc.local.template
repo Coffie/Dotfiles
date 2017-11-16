@@ -1,0 +1,49 @@
+# ----------------------------------------------------------------------  
+# Server specific settings
+# ----------------------------------------------------------------------  
+
+set from=''								# Default from (insert standard From: mail)
+set realname='Christoffer Nysæther'		# Real name
+
+# Set default signarture
+set signature="~/.dotfiles/mutt/.mutt/signatures/.signature_default"
+
+# Set colors
+source ~/.dotfiles/mutt/.mutt/colors/mutt-colors.muttrc
+ 
+# Alias file set up
+set alias_file=~/.dotfiles/mutt/.mutt/aliases/.alias_include
+source $alias_file
+
+# ----------------------------------------------------------------------  
+# Color references (not in use)
+# ----------------------------------------------------------------------  
+# Override default colors so we get correct background:
+#color normal     white             default
+#color attachment brightyellow      default 
+#color hdrdefault cyan              default
+#color indicator default blue
+#color markers    brightred         default
+#color quoted     green             default
+#color signature  brightblue        default
+# color status	 white       red
+#color tilde      blue              default
+#color tree       red               default
+#color quoted  	 green	           default
+
+
+#color header green default "From: "
+#color header red default "To: "
+#color header red default "Cc: "
+#color header yellow default "Subject: "
+#color header magenta default "Delivery-date: "
+#
+## Colored smileys:
+#color body yellow default "[;:=]-?[)/(|]"
+#
+## Colored index:
+#color index yellow   default  ~N  # New
+#color index yellow   default  ~O  # Old, unread
+#color index magenta  default  ~F  # Flaged
+#color index blue     default  ~T  # Taged
+#color index red      default  ~D  # Deleted

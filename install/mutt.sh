@@ -13,7 +13,7 @@ fi
 
 if [ ! -f $MUTTRC ]; then
 	echo -e "Creating local muttrc file, edit $MUTTRC to local settings\n"
-	cp ~/.dotfiles/mutt/.muttrc.local $MUTTRC
+	cp ~/.dotfiles/mutt/muttrc.local.template $MUTTRC
 else
 	echo -e "Local muttrc already exists... Skipping\n"
 fi

@@ -8,7 +8,7 @@ set nomark_old							# Don't differentiate between old and new mails
 set use_from							# Allow editing of the from field when writing mail
 
 # Load more specific details from local file
-source ~/.dotfiles/mutt/.muttrc.local
+source ~/.dotfiles/mutt/.mutt/local/.muttrc.local
 
 set sort_alias=alias					# Sort aliases by alias name
 set reverse_alias=yes					# Display personal name of aliases

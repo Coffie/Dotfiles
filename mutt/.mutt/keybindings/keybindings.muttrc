@@ -1,0 +1,27 @@
+# ----------------------------------------------------------------------  
+# Keybindings
+# ----------------------------------------------------------------------  
+# Make tab go to unread messages, not just new ones:
+bind index,pager	\t          next-unread		# Tab to next unread message
+bind index,pager	,\t      previous-unread		# ,Tab to previous unread
+bind index  -        collapse-thread		# - to collapse current thread
+bind index	_			collapse-all		# _ to collapse all threads
+
+# Macros
+macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"		# Bind c to change folder
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"		# Copy message
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"		# Move message
+macro index \e i
+macro pager \e i
+
+# Reload muttrc
+macro generic,index,pager,editor ,<Space> ":source ~/.muttrc\n" "Reload muttrc config"
+
+# Standard keybindings, change if necessary
+# bind index,pager g group-reply
+# bind index,pager L list-reply
+# bind index,pager f forward-message
+# bind index,pager b bounce-message
+# bind index,pager w set-flag
+# bind index,pager W clear-flag
+# 

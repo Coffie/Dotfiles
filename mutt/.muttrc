@@ -10,6 +10,9 @@ set use_from							# Allow editing of the from field when writing mail
 # Load more specific details from local file
 source ~/.dotfiles/mutt/.mutt/local/.muttrc.local
 
+# Load keybindings
+source ~/.dotfiles/mutt/.mutt/keybindings/keybindings.muttrc
+
 set sort_alias=alias					# Sort aliases by alias name
 set reverse_alias=yes					# Display personal name of aliases
 
@@ -78,24 +81,6 @@ set pager_format="%S [%T] %n / %s"
 
 set editor="vim -c 'set tw=72'"
 
-# ----------------------------------------------------------------------  
-# Keybindings
-# ----------------------------------------------------------------------  
-# Make tab go to unread messages, not just new ones:
-bind index   \t          next-unread		# Tab to next unread message
-bind pager   \t          next-unread
-bind index  ,\t      previous-unread		# ,Tab to previous unread
-bind pager  ,\t      previous-unread
-bind index  -        collapse-thread		# - to collapse current thread
-bind index	_			collapse-all		# _ to collapse all threads
-
-# Macros
-macro index c "<change-folder>?<toggle-mailboxes>" "open a different folder"		# Bind c to change folder
-macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"		# Bind c to change folder
-macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"		# Copy message
-macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"		# Move message
-macro index \e i
-macro pager \e i
 
 
 mailboxes `\

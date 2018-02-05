@@ -23,7 +23,8 @@ Plugin 'alvan/vim-closetag'
 Plugin 'dhruvasagar/vim-table-mode'
 
 " Colors
-Plugin 'altercation/vim-colors-solarized' " Solarized colors for vim
+" Plugin 'altercation/vim-colors-solarized' " Solarized colors for vim
+Plugin 'google/vim-colorscheme-primary'
 
 " All plugins must be added before the followin lines
 call vundle#end()

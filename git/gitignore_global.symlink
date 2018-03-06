@@ -163,3 +163,7 @@ Session.vim
 *~
 # auto-generated tag files
 tags
+
+# IDE files
+# PyCharm
+.idea/

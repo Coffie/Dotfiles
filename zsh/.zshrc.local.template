@@ -1,0 +1,15 @@
+# Aliases
+source $HOME/.dotfiles/zsh/includes/aliases.macos.zsh
+source $HOME/.dotfiles/zsh/includes/aliases.linux.zsh
+
+# Set path
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
+# Load plugins, zsh-syntax-highlighting must be last plugin if in use
+plugins=(git pip python wd tmux zsh-autosuggestions zsh-syntax-highlighting)
+
+# Source oh-my-zsh, must happen after plugins are declared
+source $ZSH/oh-my-zsh.sh
+
+# ssh
+export SSH_KEY_PATH="~/.ssh/id_rsa"

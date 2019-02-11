@@ -4,8 +4,8 @@
 	mergetool = vim
 
 [user]
-	name = Christoffer Nysæther
-	email = christoffer.nysaether@gmail.com
+	name = Nysæther, Christoffer B.
+	email = Christoffer.B.Nysather@dnb.no
 
 [color]
 	diff = auto

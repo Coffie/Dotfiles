@@ -9,7 +9,8 @@ Plugin 'VundleVim/Vundle.vim'
 " List of plugins used
 Plugin 'scrooloose/nerdtree' " Fileexplorer for vim
 Plugin 'vim-syntastic/syntastic' " Syntax checker / linter
-Plugin 'Valloric/YouCompleteMe' " Autocomplete for many languages
+" Plugin 'Valloric/YouCompleteMe' " Autocomplete for many languages
+Plugin 'zxqfl/tabnine-vim'
 Plugin 'tpope/vim-commentary' " Comment with gcc or gc
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'tpope/vim-surround'

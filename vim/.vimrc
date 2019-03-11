@@ -15,7 +15,7 @@ let mapleader = ','
 set ttyfast
 
 " Tab control
-set noexpandtab " use tabs
+set expandtab " use tabs
 set smarttab " tab respects 'tabstop', 'shiftwidth' and 'softtabstop'
 set tabstop=4 " visible width of tabs
 set shiftwidth=4 " number of spaces to use for indent and unindent

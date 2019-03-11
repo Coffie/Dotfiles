@@ -73,7 +73,7 @@ set bg=dark " Use dark solarized
 " let base16colorspace=256 " Access 256 colorspace
 set t_Co=256 " Tell Vim that the terminal supports 256 colors
 " colorscheme solarized " Activate colorscheme from pathogen
-colorscheme primary
+colorscheme badwolf
 
 set autoindent " automatically set indent at new line
 set smartindent

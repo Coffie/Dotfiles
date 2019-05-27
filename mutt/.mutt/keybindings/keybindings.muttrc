@@ -13,6 +13,7 @@ macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"	
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"		# Move message
 macro index \e i
 macro pager \e i
+macro index A "<tag-pattern>~O<enter><tag-prefix><clear-flag>O<untag-pattern>.<enter>" "Mark all old messages as read"
 
 # Reload muttrc
 macro generic,index,pager,editor ,<Space> ":source ~/.muttrc\n" "Reload muttrc config"

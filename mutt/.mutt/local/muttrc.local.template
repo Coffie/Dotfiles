@@ -5,7 +5,7 @@
 set from=''								# Default from (insert standard From: mail)
 set realname='Christoffer Nysæther'		# Real name
 
-# Set default signarture
+# Set default signature
 set signature="~/.dotfiles/mutt/.mutt/signatures/.signature_default"
 
 # Set colors

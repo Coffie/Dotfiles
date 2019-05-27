@@ -13,5 +13,6 @@ alias rock="ssh rock"
 # ----------------------------------------------------------------------
 alias dsd="find . -name '*.DS_Store' -type f -delete"
 alias cpwd="pwd | tr -d '\n' | pbcopy"
+alias tx="tmuxinator"
 
 alias sshgen="ssh-keygen -t ed25519 -C "$(whoami)@$(hostname)-$(date "+%Y-%m-%d")""

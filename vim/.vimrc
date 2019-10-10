@@ -43,6 +43,9 @@ if !exists("autocommands_loaded")
     au Syntax * RainbowParenthesesLoadRound
     au Syntax * RainbowParenthesesLoadSquare
     au Syntax * RainbowParenthesesLoadBraces
+    " add yaml support
+    au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
     " Set length for mutt
     au BufNewFile,BufRead mutt* set tw=77 ai nocindent spell " Shorter for mutt
     " Autoclose Vim if NERDTree is the only window running

@@ -8,6 +8,9 @@ export ZSH=$HOME/.dotfiles/zsh/.oh-my-zsh
 export TERM="xterm-256color"
 # [[ $TMUX = "" ]] 
 
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # Make history log correctly
 HIST_STAMPS="yyyy-mm-dd"
 
@@ -37,3 +40,9 @@ fi
 if [ -f $HOME/.zshrc.local ]; then
 	source $HOME/.zshrc.local
 fi
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh

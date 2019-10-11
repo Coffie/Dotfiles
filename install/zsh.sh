@@ -22,7 +22,7 @@ if [ ! -d $DIRECTORY ]; then
 	git clone $THEM10KE $DIRECTORY$THEMEBASEDEST$DEST10K
 	echo -e "\n\nDone."
 else
-	if [ ! -d $DIRECTORY$DEST ]; then
+	if [ ! -d $DIRECTORY$THEMEBASEDEST$DEST10K ]; then
 		echo -e "Cloning custom theme"
 		echo -e  "===============================\n\n"
 	git clone $THEM10KE $DIRECTORY$THEMEBASEDEST$DEST10K

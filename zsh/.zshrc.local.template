@@ -1,9 +1,10 @@
-# Aliases
-source $HOME/.dotfiles/zsh/includes/aliases.macos.zsh
-source $HOME/.dotfiles/zsh/includes/aliases.linux.zsh
-
 # Set path
-export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# export PATH="/usr/X11R6/bin:$PATH"
+# export PATH=$HOME/go/bin:$PATH
 
 # Load plugins, zsh-syntax-highlighting must be last plugin if in use
 plugins=(git pip python wd tmux zsh-autosuggestions zsh-syntax-highlighting)
@@ -13,3 +14,15 @@ source $ZSH/oh-my-zsh.sh
 
 # ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
+# Flags
+export LDFLAGS="-L/usr/local/opt/readline/lib:-L/usr/local/opt/libxml2/lib"
+export CPPFLAGS="-I/usr/local/opt/readline/include:-L/usr/local/opt/libxml2/include"
+
+# Fix fork() issue
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+eval "$(rbenv init -)"
+if command -v pyenv 1>/dev/null 2>&1; then
+	eval "$(pyenv init -)"
+fi
+

@@ -6,8 +6,8 @@ export ZSH=$HOME/.dotfiles/zsh/.oh-my-zsh
 
 # Set terminal to use 256 colors
 export TERM="xterm-256color"
-# [[ $TMUX = "" ]] 
 
+# Set lang to US
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 

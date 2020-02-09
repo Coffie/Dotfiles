@@ -1,3 +1,9 @@
+if [[ "$(uname)" == "Darwin" ]];
+then
+    source $HOME/.dotfiles/zsh/includes/aliases.macos.zsh
+else
+    source ./aliases.linux.zsh
+fi
 # ----------------------------------------------------------------------
 # Connections
 # ----------------------------------------------------------------------
@@ -29,3 +35,11 @@ alias histg="history | grep" # Search through history
 alias szsh="source $HOME/.zshrc" # Source .zshrc
 alias zshc="vim $HOME/.zshrc"
 alias vime="vim $HOME/.vimrc"
+alias please='sudo'
+
+# ----------------------------------------------------------------------
+# Websites
+# ----------------------------------------------------------------------
+alias wth='curl wttr.in'
+alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
+# alias rr='curl -s -L http://bit.ly/10hA8iC | bash'

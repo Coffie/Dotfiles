@@ -3,7 +3,6 @@ DIRECTORY="$HOME/.dotfiles/zsh/.oh-my-zsh"
 OHMY="https://github.com/robbyrussell/oh-my-zsh.git"
 THEME9K="https://github.com/bhilburn/powerlevel9k.git"
 THEME10K="https://github.com/romkatv/powerlevel10k.git"
-THEMEBASEDEST="/custom/themes/"
 DEST9K="powerlevel9k"
 DEST10K="powerlevel10k"
 ZSHHIGH="https://github.com/zsh-users/zsh-syntax-highlighting.git" 
@@ -19,13 +18,13 @@ if [ ! -d $DIRECTORY ]; then
 	echo -e "\n\nOh-my-zsh has been installed"
 	echo -e "Cloning custom theme"
 	echo -e  "===============================\n\n"
-	git clone $THEM10KE $DIRECTORY$THEMEBASEDEST$DEST10K
+	git clone $THEME10K $ZSH_CUSTOM/themes/$DEST10K
 	echo -e "\n\nDone."
 else
-	if [ ! -d $DIRECTORY$THEMEBASEDEST$DEST10K ]; then
+	if [ ! -d $ZSH_CUSTOM/themes/$DEST10K ]; then
 		echo -e "Cloning custom theme"
 		echo -e  "===============================\n\n"
-	git clone $THEM10KE $DIRECTORY$THEMEBASEDEST$DEST10K
+        git clone $THEME10K "$ZSH_CUSTOM/themes/$DEST10K"
 		echo -e "\n\nDone."
 	else
 		echo -e "\n\nEverything is already installed"

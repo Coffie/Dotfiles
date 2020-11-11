@@ -2,32 +2,34 @@ if [[ "$(uname)" == "Darwin" ]];
 then
     source $HOME/.dotfiles/zsh/includes/aliases.macos.zsh
 else
-    source ./aliases.linux.zsh
+    source $HOME/.dotfiles/zsh/includes/aliases.linux.zsh
 fi
-# ----------------------------------------------------------------------
-# Connections
-# ----------------------------------------------------------------------
-alias senv="source venv/bin/activate"
-
-# ----------------------------------------------------------------------
-# Media
-# ----------------------------------------------------------------------
-alias ydl="youtube-dl --extract-audio --aoudio-quality 320k --audio-format mp3"
-alias mus="ncmpcpp -h itk-musikk"
 
 
 # ----------------------------------------------------------------------
 # Directory navigation/information
 # ----------------------------------------------------------------------
-alias lsl="ls -lhFA | less"
+alias l='ls -lah'
+alias la='ls -lAh'
+alias ll='ls -lh'
+alias ls='ls -G'
+alias lsl='ls -lhFA | less'
 
 # ----------------------------------------------------------------------
 # Tmux
 # ----------------------------------------------------------------------
-alias tmuxk="tmux kill-session -t"
-alias tmuxa="tmux attach-session -t"
-alias tmuxls="tmux list-sessions"
+alias ta='tmux attach -t'
+alias tad='tmux attach -d -t'
+alias ts='tmux new-session -s'
+alias tl='tmux list-sessions'
+alias tksv='tmux kill-server'
+alias tkss='tmux kill-session -t'
 
+#tmuxinator 
+alias txs='tmuxinator start'
+alias txo='tmuxinator open'
+alias txn='tmuxinator new'
+alias txl='tmuxinator list'
 # ----------------------------------------------------------------------
 # Etc.
 # ----------------------------------------------------------------------

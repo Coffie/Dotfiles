@@ -35,6 +35,8 @@
 	# set up 'git pull' to rebase instead of merge
 	autosetuprebase = always
 
+[diff]
+    tool = vimdiff
 [merge]
 	tool = vim
 

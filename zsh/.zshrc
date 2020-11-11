@@ -1,27 +1,38 @@
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f%b"
+fi
+
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+### End of Zinit's installer chunk
+
+# Plugins
+zinit wait lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma/fast-syntax-highlighting \
+ blockf \
+    zsh-users/zsh-completions \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
+
+zinit ice depth=1; zplugin light romkatv/powerlevel10k
+zinit light zinit-zsh/z-a-man
+
 # Source external zsh files
+
 ZSH_ROOT="$HOME/.dotfiles/zsh"
 
-# Set path to oh-my-zsh installation
-export ZSH=$HOME/.dotfiles/zsh/.oh-my-zsh
-
-# Set terminal to use 256 colors
-export TERM="xterm-256color"
-
-# Set lang to US
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
-# Make history log correctly
-HIST_STAMPS="yyyy-mm-dd"
-
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 # Source external files 
-for ZSH_FILE in aliases functions theme; do
+for ZSH_FILE in aliases functions exports; do
 	filename=$ZSH_ROOT/includes/$ZSH_FILE.zsh
 
 	if [[ -s $filename ]]; then
@@ -36,15 +47,6 @@ else
   export EDITOR='vim'
 fi
 
-# Give less colors
-export LESS_TERMCAP_mb=$'\e[1;32m'
-export LESS_TERMCAP_md=$'\e[1;32m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[01;33m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[1;4;31m'
-
 # Source local zshrc if it exists
 if [ -f $HOME/.zshrc.local ]; then
 	source $HOME/.zshrc.local
@@ -52,6 +54,3 @@ fi
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh

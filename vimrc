@@ -51,6 +51,9 @@ if !exists("autocommands_loaded")
     au BufNewFile,BufRead mutt* set tw=77 ai nocindent spell " Shorter for mutt
     " Autoclose Vim if NERDTree is the only window running
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+    " open NERDTree automatically if no file is opened
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 0 && !exists("s:std_iin") | NERDTree | endif
 
     " Show line numbers relative to the current line when in command mode.
     if v:version < 703
@@ -195,6 +198,7 @@ let g:NERDTreeQuitOnOpen=1
 
 " show hidden files in NERDTree
 let NERDTreeShowHidden=1
+
 
 " Toggle NERDTree
 nmap <silent> <leader>k :NERDTreeToggle<cr>

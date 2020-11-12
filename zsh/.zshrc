@@ -26,7 +26,7 @@ zinit light zinit-zsh/z-a-man
 
 # Source external zsh files
 
-ZSH_ROOT="$HOME/.dotfiles/zsh"
+ZSH_ROOT="$HOME/.dotfiles/shell"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh

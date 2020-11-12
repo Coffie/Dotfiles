@@ -1,3 +1,53 @@
+# mkdir and cd into it
+mcd() {
+    mkdir "${1}" && cd "${1}"
+}
+
+# Execute a command in a specific directory
+xin() {
+    (
+        cd "${1}" && shift && "${@}"
+    )
+}
+
+# Update dotfiles
+dfu() {
+    (
+        cd ~/.dotfiles && git pull --ff-only && ./install -q
+    )
+}
+
+path_remove() {
+    PATH=$(echo -n "$PATH" | awk -v RS=: -v ORS=: "\$0 != \"$1\"" | sed 's/:$//')
+}
+
+path_append() {
+    path_remove "$1"
+    PATH="${PATH:+"$PATH:"}$1"
+}
+
+path_prepend() {
+    path_remove "$1"
+    PATH="$1${PATH:+":$PATH"}"
+}
+
+here() {
+    local loc
+    if [ "$#" -eq 1 ]; then
+        loc=$(realpath "$1")
+    else
+        loc=$(realpath ".")
+    fi
+    ln -sfn "${loc}" "$HOME/.shell.here"
+    echo "here -> $(readlink $HOME/.shell.here)"
+}
+
+there="$HOME/.shell.here"
+
+there() {
+    cd "$(readlink "${there}")"
+}
+
 # -------------------------------------------------------------------
 #  Get my current IP address(es)
 # -------------------------------------------------------------------

@@ -26,19 +26,15 @@ zinit light zinit-zsh/z-a-man
 
 # Source external zsh files
 
-ZSH_ROOT="$HOME/.dotfiles/shell"
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
 # Source external files 
-for ZSH_FILE in aliases functions exports; do
-	filename=$ZSH_ROOT/includes/$ZSH_FILE.zsh
+source "$HOME/.shell/aliases.zsh"
 
-	if [[ -s $filename ]]; then
-		source $filename
-	fi
-done
+source "$HOME/.shell/functions.zsh"
+
+source "$HOME/.shell/exports.zsh"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then

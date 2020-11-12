@@ -1,8 +1,8 @@
 if [[ "$(uname)" == "Darwin" ]];
 then
-    source $HOME/.dotfiles/zsh/includes/aliases.macos.zsh
+    source $HOME/.dotfiles/shell/aliases.macos.zsh
 else
-    source $HOME/.dotfiles/zsh/includes/aliases.linux.zsh
+    source $HOME/.dotfiles/shell/aliases.linux.zsh
 fi
 
 
@@ -25,11 +25,6 @@ alias tl='tmux list-sessions'
 alias tksv='tmux kill-server'
 alias tkss='tmux kill-session -t'
 
-#tmuxinator 
-alias txs='tmuxinator start'
-alias txo='tmuxinator open'
-alias txn='tmuxinator new'
-alias txl='tmuxinator list'
 # ----------------------------------------------------------------------
 # Etc.
 # ----------------------------------------------------------------------

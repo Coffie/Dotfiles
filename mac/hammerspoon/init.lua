@@ -34,6 +34,7 @@ require("keyboard")
 require("auto-audio")
 require("autoreload")
 require("multidisplay-black")
+require("caffeine")
 
 -- require_if_exists("keyboard")
 -- require_if_exists("autoreload")

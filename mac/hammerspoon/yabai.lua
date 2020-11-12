@@ -23,7 +23,6 @@ bindCmd({"shift", "cmd"}, "k", "/usr/local/bin/yabai -m window --warp north")
 bindCmd({"shift", "cmd"}, "l", "/usr/local/bin/yabai -m window --warp east")
 
 -- balance size of windows
-bindCmd({"shift", "alt"}, "0", "/usr/local/bin/yabai -m space --balance")
 bindCmd({"alt"}, "b", "/usr/local/bin/yabai -m space --balance")
 
 -- make floating window fill screen
@@ -36,40 +35,42 @@ bindCmd({"alt"}, "b", "/usr/local/bin/yabai -m space --balance")
 -- bindCmd({ "shift", "alt" - ri}, " ", "/usr/local/bin/yabai -m window --grid 1:2:1:0:1:1")
 
 
+-- todo: check SIP possibilities
 -- fast focus
-bindCmd({"cmd", "alt"}, "x", "/usr/local/bin/yabai -m space --focus recent")
-bindCmd({"cmd", "alt"}, "z", "/usr/local/bin/yabai -m space --focus prev")
+-- bindCmd({"cmd", "alt"}, "x", "/usr/local/bin/yabai -m space --focus recent")
+-- bindCmd({"cmd", "alt"}, "z", "/usr/local/bin/yabai -m space --focus prev")
 -- bindCmd({ "cmd", "alt"}, "c", "/usr/local/bin/yabai -m space --focus next")
-bindCmd({"cmd", "alt"}, "1", "/usr/local/bin/yabai -m space --focus 1")
-bindCmd({"cmd", "alt"}, "2", "/usr/local/bin/yabai -m space --focus 2")
-bindCmd({"cmd", "alt"}, "3", "/usr/local/bin/yabai -m space --focus 3")
-bindCmd({"cmd", "alt"}, "4", "/usr/local/bin/yabai -m space --focus 4")
-bindCmd({"cmd", "alt"}, "5", "/usr/local/bin/yabai -m space --focus 5")
-bindCmd({"cmd", "alt"}, "6", "/usr/local/bin/yabai -m space --focus 6")
-bindCmd({"cmd", "alt"}, "7", "/usr/local/bin/yabai -m space --focus 7")
-bindCmd({"cmd", "alt"}, "8", "/usr/local/bin/yabai -m space --focus 8")
-bindCmd({"cmd", "alt"}, "9", "/usr/local/bin/yabai -m space --focus 9")
-bindCmd({"cmd", "alt"}, "0", "/usr/local/bin/yabai -m space --focus 10")
+-- bindCmd({"cmd", "alt"}, "1", "/usr/local/bin/yabai -m space --focus 1")
+-- bindCmd({"cmd", "alt"}, "2", "/usr/local/bin/yabai -m space --focus 2")
+-- bindCmd({"cmd", "alt"}, "3", "/usr/local/bin/yabai -m space --focus 3")
+-- bindCmd({"cmd", "alt"}, "4", "/usr/local/bin/yabai -m space --focus 4")
+-- bindCmd({"cmd", "alt"}, "5", "/usr/local/bin/yabai -m space --focus 5")
+-- bindCmd({"cmd", "alt"}, "6", "/usr/local/bin/yabai -m space --focus 6")
+-- bindCmd({"cmd", "alt"}, "7", "/usr/local/bin/yabai -m space --focus 7")
+-- bindCmd({"cmd", "alt"}, "8", "/usr/local/bin/yabai -m space --focus 8")
+-- bindCmd({"cmd", "alt"}, "9", "/usr/local/bin/yabai -m space --focus 9")
+-- bindCmd({"cmd", "alt"}, "0", "/usr/local/bin/yabai -m space --focus 10")
 
 -- send window to desktop and follow focus
-bindCmd({"shift", "cmd"}, "x", "/usr/local/bin/yabai -m window --space recent; /usr/local/bin/yabai -m space --focus recent")
--- bindCmd({ "shift", "cmd"}, "z", "/usr/local/bin/yabai -m window --space prev; /usr/local/bin/yabai -m space --focus prev")
+-- bindCmd({"shift", "cmd"}, "x", "/usr/local/bin/yabai -m window --space recent; /usr/local/bin/yabai -m space --focus recent")
+bindCmd({ "shift", "cmd"}, "z", "/usr/local/bin/yabai -m window --space prev; /usr/local/bin/yabai -m space --focus prev")
 bindCmd({"shift", "cmd"}, "c", "/usr/local/bin/yabai -m window --space next; /usr/local/bin/yabai -m space --focus next")
-bindCmd({"shift", "cmd"}, "1", "/usr/local/bin/yabai -m window --space  1; /usr/local/bin/yabai -m space --focus 1")
-bindCmd({"shift", "cmd"}, "2", "/usr/local/bin/yabai -m window --space  2; /usr/local/bin/yabai -m space --focus 2")
+-- bindCmd({"shift", "cmd"}, "1", "/usr/local/bin/yabai -m window --space  1; /usr/local/bin/yabai -m space --focus 1")
+-- bindCmd({"shift", "cmd"}, "2", "/usr/local/bin/yabai -m window --space  2; /usr/local/bin/yabai -m space --focus 2")
 -- bindCmd({ "shift", "cmd"}, "3", "/usr/local/bin/yabai -m window --space  3; /usr/local/bin/yabai -m space --focus 3")
 -- bindCmd({ "shift", "cmd"}, "4", "/usr/local/bin/yabai -m window --space  4; /usr/local/bin/yabai -m space --focus 4")
-bindCmd({"shift", "cmd"}, "5", "/usr/local/bin/yabai -m window --space  5; /usr/local/bin/yabai -m space --focus 5")
-bindCmd({"shift", "cmd"}, "6", "/usr/local/bin/yabai -m window --space  6; /usr/local/bin/yabai -m space --focus 6")
-bindCmd({"shift", "cmd"}, "7", "/usr/local/bin/yabai -m window --space  7; /usr/local/bin/yabai -m space --focus 7")
-bindCmd({"shift", "cmd"}, "8", "/usr/local/bin/yabai -m window --space  8; /usr/local/bin/yabai -m space --focus 8")
-bindCmd({"shift", "cmd"}, "9", "/usr/local/bin/yabai -m window --space  9; /usr/local/bin/yabai -m space --focus 9")
-bindCmd({"shift", "cmd"}, "0", "/usr/local/bin/yabai -m window --space 10; /usr/local/bin/yabai -m space --focus 10")
+-- bindCmd({"shift", "cmd"}, "5", "/usr/local/bin/yabai -m window --space  5; /usr/local/bin/yabai -m space --focus 5")
+-- bindCmd({"shift", "cmd"}, "6", "/usr/local/bin/yabai -m window --space  6; /usr/local/bin/yabai -m space --focus 6")
+-- bindCmd({"shift", "cmd"}, "7", "/usr/local/bin/yabai -m window --space  7; /usr/local/bin/yabai -m space --focus 7")
+-- bindCmd({"shift", "cmd"}, "8", "/usr/local/bin/yabai -m window --space  8; /usr/local/bin/yabai -m space --focus 8")
+-- bindCmd({"shift", "cmd"}, "9", "/usr/local/bin/yabai -m window --space  9; /usr/local/bin/yabai -m space --focus 9")
+-- bindCmd({"shift", "cmd"}, "0", "/usr/local/bin/yabai -m window --space 10; /usr/local/bin/yabai -m space --focus 10")
 
+-- todo: make monitor switching work
 -- focus monitor
 bindCmd({"ctrl", "alt" }, "x", "/usr/local/bin/yabai -m display --focus recent")
-bindCmd({"ctrl", "alt" }, "z", "/usr/local/bin/yabai -m display --focus prev")
-bindCmd({"ctrl", "alt" }, "c", "/usr/local/bin/yabai -m display --focus next")
+bindCmd({"ctrl", "alt" }, "z", "/usr/local/bin/yabai -m display --focus prev || /usr/local/bin/yabai -m space --focus first")
+bindCmd({"ctrl", "alt" }, "c", "/usr/local/bin/yabai -m display --focus next|| /usr/local/bin/yabai -m space --focus last")
 bindCmd({"ctrl", "alt" }, "1", "/usr/local/bin/yabai -m display --focus 1")
 bindCmd({"ctrl", "alt" }, "2", "/usr/local/bin/yabai -m display --focus 2")
 bindCmd({"ctrl", "alt" }, "3", "/usr/local/bin/yabai -m display --focus 3")
@@ -82,6 +83,7 @@ bindCmd({"ctrl", "cmd" }, "1", "/usr/local/bin/yabai -m window --display 1; /usr
 bindCmd({"ctrl", "cmd" }, "2", "/usr/local/bin/yabai -m window --display 2; /usr/local/bin/yabai -m display --focus 2")
 bindCmd({"ctrl", "cmd" }, "3", "/usr/local/bin/yabai -m window --display 3; /usr/local/bin/yabai -m display --focus 3")
 
+-- todo: evaluate
 -- move window
 bindCmd({"shift", "ctrl"}, "a", "/usr/local/bin/yabai -m window --move rel:-20:0")
 bindCmd({"shift", "ctrl"}, "s", "/usr/local/bin/yabai -m window --move rel:0:20")
@@ -95,8 +97,8 @@ bindCmd({"shift", "alt"}, "w", "/usr/local/bin/yabai -m window --resize top:0:-2
 bindCmd({"shift", "alt"}, "d", "/usr/local/bin/yabai -m window --resize right:20:0")
 
 -- decrease window size
--- bindCmd({ "shift", "cmd"}, "a", "/usr/local/bin/yabai -m window --resize left:20:0")
--- bindCmd({ "shift", "cmd"}, "s", "/usr/local/bin/yabai -m window --resize bottom:0:-20")
+bindCmd({ "shift", "cmd"}, "a", "/usr/local/bin/yabai -m window --resize left:20:0")
+bindCmd({ "shift", "cmd"}, "s", "/usr/local/bin/yabai -m window --resize bottom:0:-20")
 bindCmd({"shift", "cmd"}, "w", "/usr/local/bin/yabai -m window --resize top:0:20")
 bindCmd({"shift", "cmd"}, "d", "/usr/local/bin/yabai -m window --resize right:-20:0")
 
@@ -133,28 +135,28 @@ bindCmd({"shift", "alt"}, "b", "/usr/local/bin/yabai -m window --toggle border")
 -- toggle window split type
 bindCmd({ "alt"}, "w", "/usr/local/bin/yabai -m window --toggle split")
 
--- float / unfloat window and center on screen
-bindCmd({"alt"}, "t", "/usr/local/bin/yabai -m window --toggle float;\
-          /usr/local/bin/yabai -m window --grid 4:4:1:1:2:2")
+-- -- float / unfloat window and center on screen
+-- bindCmd({"alt"}, "t", "/usr/local/bin/yabai -m window --toggle float;\
+--           /usr/local/bin/yabai -m window --grid 4:4:1:1:2:2")
 
--- toggle sticky
-bindCmd({"alt"}, "s", "/usr/local/bin/yabai -m window --toggle sticky")
+-- -- toggle sticky
+-- bindCmd({"alt"}, "s", "/usr/local/bin/yabai -m window --toggle sticky")
 
--- toggle sticky, float and resize to picture-in-picture size
-bindCmd({"alt"}, "p", "/usr/local/bin/yabai -m window --toggle sticky;\
-          /usr/local/bin/yabai -m window --grid 5:5:4:0:1:1")
+-- -- toggle sticky, float and resize to picture-in-picture size
+-- bindCmd({"alt"}, "p", "/usr/local/bin/yabai -m window --toggle sticky;\
+--           /usr/local/bin/yabai -m window --grid 5:5:4:0:1:1")
 
 -- change layout of desktop
 bindCmd({"ctrl", "alt"}, "a", "/usr/local/bin/yabai -m space --layout bsp")
 bindCmd({"ctrl", "alt"}, "d", "/usr/local/bin/yabai -m space --layout float")
 
--- create desktop and follow focus - uses jq for parsing json (brew install jq)
-bindCmd({"cmd", "alt"}, "n", '/usr/local/bin/yabai -m space --create && \
-index="$(/usr/local/bin/yabai -m query --spaces --display | /usr/local/bin/jq \'map(select(."native-fullscreen" == 0))[-1].index\')" && \
-/usr/local/bin/yabai -m space --focus "${index}"')
+-- -- create desktop and follow focus - uses jq for parsing json (brew install jq)
+-- bindCmd({"cmd", "alt"}, "n", '/usr/local/bin/yabai -m space --create && \
+-- index="$(/usr/local/bin/yabai -m query --spaces --display | /usr/local/bin/jq \'map(select(."native-fullscreen" == 0))[-1].index\')" && \
+-- /usr/local/bin/yabai -m space --focus "${index}"')
 
--- create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
-bindCmd({"ctrl", "cmd"}, "n", '/usr/local/bin/yabai -m space --create && \
-index=$(/usr/local/bin/yabai -m query --spaces --display | /usr/local/bin/jq \'map(select(."native-fullscreen" == 0))[-1].index\') && \
-/usr/local/bin/yabai -m window --space "${index}" && \
-/usr/local/bin/yabai -m space --focus "${index}"')
+-- -- create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
+-- bindCmd({"ctrl", "cmd"}, "n", '/usr/local/bin/yabai -m space --create && \
+-- index=$(/usr/local/bin/yabai -m query --spaces --display | /usr/local/bin/jq \'map(select(."native-fullscreen" == 0))[-1].index\') && \
+-- /usr/local/bin/yabai -m window --space "${index}" && \
+-- /usr/local/bin/yabai -m space --focus "${index}"')

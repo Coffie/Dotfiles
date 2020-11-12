@@ -9,6 +9,12 @@ alias disco="mosh disco"
 alias rock="ssh rock"
  
 # ----------------------------------------------------------------------
+# Brew
+# ----------------------------------------------------------------------
+alias buu="brew update && brew upgrade"
+alias bl="brew list --formulae"
+alias bll="brew list --formulae | less"
+# ----------------------------------------------------------------------
 # Etc.
 # ----------------------------------------------------------------------
 alias dsd="find . -name '*.DS_Store' -type f -delete"

@@ -1,4 +1,4 @@
-i-- Automatically choose the preferred audio using Hyper+apostrophe or whenever a
+-- Automatically choose the preferred audio using Hyper+apostrophe or whenever a
 -- audio line changed
 
 function chooseAudio()
@@ -21,6 +21,7 @@ function chooseAudio()
     end
 
     outOrder = {"Arcticts Pro Wireless Game", "Arcticts Pro Wireless Chat", "WH-1000XM3", "External Headphones", "MacBook Pro Speakers"}
+    outOrder = {"WH-1000XM3", "RC-BT", "External Headphones", "DELL U3219Q", "DELL U2717D", "DELL U2518D", "MacBook Pro Speakers"}
 
     for i = 1, #outOrder do
         if contains(outOrder[i]) then

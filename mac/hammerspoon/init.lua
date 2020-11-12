@@ -30,14 +30,19 @@ function require_if_exists(file)
     end
 end
 
-require_if_exists("autoreload")
+require("keyboard")
+require("auto-audio")
+require("autoreload")
+require("multidisplay-black")
+
+-- require_if_exists("keyboard")
+-- require_if_exists("autoreload")
 -- hs.loadSpoon("ReloadConfiguration")
 -- spoon.ReloadConfiguration:start()
 
-require_if_exists("keyboard")
 -- require_if_exists("yabai")
-require_if_exists("auto-audio")
+-- require_if_exists("auto-audio")
 -- require_if_exists("cpm-backup")
 -- require_if_exists("cpm-backup2")
 -- require_if_exists("zoom-mute")
-require_if_exists("multidisplay-black")
+-- require_if_exists("multidisplay-black")

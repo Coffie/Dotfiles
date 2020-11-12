@@ -22,7 +22,7 @@
 hs.hotkey.bind({"cmd", "alt"}, "return", openTerminal)
 
 -- ⌘ + ⇧ + ⏎ Opens New Browser Window
-hs.hotkey.bind({"cmd","shift"}, "return", openBrowser
+hs.hotkey.bind({"cmd","shift"}, "return", openBrowser)
 -- Hyper+V types contents of clipboard
 hs.hotkey.bind(hyper, "V", function() hs.eventtap.keyStrokes(hs.pasteboard.getContents()) end)
 

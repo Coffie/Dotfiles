@@ -23,6 +23,7 @@
     ~/.psqlrc: psqlrc
     ~/.hammerspoon: mac/hammerspoon/
     ~/.p10k.zsh: p10k.zsh
+    ~/.yabairc: mac/yabairc
 
 - create:
   - ~/dev

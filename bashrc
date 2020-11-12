@@ -5,4 +5,6 @@ source "$HOME/.shell/functions.zsh"
 
 source "$HOME/.shell/exports.zsh"
 
-source "$HOME/.dotfiles/bash/prompt.bash"
+source "$HOME/.bash/prompt.bash"
+
+source "$HOME/.bash/settings.bash"

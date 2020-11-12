@@ -1,0 +1,45 @@
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore_global
+	mergetool = vim
+
+[user]
+	name = Nysæther, Christoffer B.
+	email = Christoffer.B.Nysather@dnb.no
+
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	ui = true
+
+[github]
+	user = Coffie
+
+[alias]
+	co = checkout
+	cob = checkout -b
+	s = status --short
+	ss = status
+	lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+	cl = clone
+	ci = commit
+	cp = cherry-pick
+	wdiff = diff --word-diff
+	dc = diff --cached
+
+[branch]
+	# set up 'git pull' to rebase instead of merge
+	autosetuprebase = always
+
+[diff]
+    tool = vimdiff
+[merge]
+	tool = vim
+
+[push]
+	# push will only do the current branch, not all branches
+	default = simple

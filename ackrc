@@ -1,0 +1,7 @@
+# General settings
+--sort-files
+--color
+
+# Markdown search
+--type-set=markdown:ext:md,mkd,markdown
+

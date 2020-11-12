@@ -1,17 +1,15 @@
 # Ignore Vim bundle for increased speed
-/vim/.vim/bundle/*
-/vim/.vim/view
-
-# Leave oh-my-zsh out of repo
-/zsh/.oh-my-zsh/
+vim/plugged/*
+vim/view
+vim/undo-history
 
 # Ignore tmux plugins
-/tmux/.tmux/plugins/*
-/tmux/.tmux/resurrect
+tmux/plugins/*
+tmux/resurrect
 
 # Ignore sensitive exports
 *.ignore.*
 
 # Ignore mutt local files
-/mutt/.mutt/aliases/.alias_include
-/mutt/.mutt/local/.muttrc.local
+mutt/.mutt/aliases/.alias_include
+mutt/.mutt/local/.muttrc.local

@@ -15,8 +15,8 @@ autoload -Uz _zinit
 
 # Source external zsh files
 # Local customization before
-if [[ -f "$HOME/.zsh/zshrc_local_before" ]]; then
-    source "$HOME/.zsh/zsh_local_before"
+if [[ -f "$HOME/.zshrc_local_before" ]]; then
+    source "$HOME/.zsh_local_before"
 fi
 
 # Plugins initialized before
@@ -41,8 +41,8 @@ source "$HOME/.zsh/prompt.zsh"
 source "$HOME/.zsh/plugins_before.zsh"
 
 # Local customization after
-if [[ -f "$HOME/.zsh/zshrc_local_after" ]]; then
-    source "$HOME/.zsh/zsh_local_after"
+if [[ -f "$HOME/.zshrc_local_after" ]]; then
+    source "$HOME/.zsh_local_after"
 fi
 
 

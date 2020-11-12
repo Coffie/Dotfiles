@@ -21,6 +21,7 @@
     ~/.shell: shell/
     ~/.zsh: zsh/
     ~/.psqlrc: psqlrc
+    ~/.hammerspoon: mac/hammerspoon/
 
 - create:
   - ~/dev

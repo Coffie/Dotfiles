@@ -1,0 +1,28 @@
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean: ['~', '~/.config']
+
+- link:
+    ~/.bash_profile: bash/.bash_profile
+    ~/.bashrc: bash/.bashrc
+    ~/.gitconfig: git/gitconfig.symlink
+    ~/.gitignore_global: git/gitignore_global.symlink
+    ~/.ackrc: ack/ackrc.symlink
+    ~/.p10k.zsh: zsh/p10k.zsh.symlink
+    ~/.vim: vim/.vim/
+    ~/.vimrc: vim/.vimrc
+    ~/.tmux: tmux/.tmux/
+    ~/.tmux.conf: tmux/.tmux.conf
+    ~/.zshrc: zsh/.zshrc
+
+- create:
+  - ~/dev
+  - ~/.vim/plugged
+  - ~/.vim/undo-history
+
+- shell:
+  - [git submodule sync --recursive, Syncinc submodules]
+  - [chsh -s $(which zsh), Making zsh the default shell]

@@ -115,7 +115,7 @@ function code-review () {
         # alternate screen
         echo -ne "\e[?1049h"
         if [ -z $selectfile ]; then
-        else
+        # else
           git difftool --no-prompt $merge_base $target_branch -- $selectfile
         fi
         ;;

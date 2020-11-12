@@ -1,5 +1,5 @@
 call plug#begin('~/.vim/plugged')
-Plug 'scrooloose/nerdtree' ", { 'on': 'NERDtreeToggle' }
+Plug 'preservim/nerdtree' ", { 'on': 'NERDtreeToggle' }
 Plug 'vim-syntastic/syntastic' " Syntax checker / linter
 Plug 'maralla/completor.vim'
 Plug 'tpope/vim-commentary' " Comment with gcc or gc

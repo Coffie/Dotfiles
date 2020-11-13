@@ -35,6 +35,8 @@ set title " change the terminal's title
 
 set encoding=utf8
 
+set updatetime=100
+
 " Autocommands
 if !exists("autocommands_loaded")
     let autocommands_loaded = 1
@@ -44,11 +46,16 @@ if !exists("autocommands_loaded")
     au Syntax * RainbowParenthesesLoadRound
     au Syntax * RainbowParenthesesLoadSquare
     au Syntax * RainbowParenthesesLoadBraces
+
+    " Filetype config
     " add yaml support
     au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
-    autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+    autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab
+
     " Set length for mutt
     au BufNewFile,BufRead mutt* set tw=77 ai nocindent spell " Shorter for mutt
+
+    " NERDTree 
     " Autoclose Vim if NERDTree is the only window running
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
     " open NERDTree automatically if no file is opened
@@ -113,12 +120,10 @@ set history=1000
 set undolevels=1000
 
 " Looks
-set bg=dark " Use dark solarized
+" set bg=dark " Use dark solarized
 " let base16colorspace=256 " Access 256 colorspace
 set t_Co=256 " Tell Vim that the terminal supports 256 colors
-" colorscheme solarized " Activate colorscheme from pathogen
 colorscheme badwolf
-" colorscheme primary
 
 set autoindent " automatically set indent at new line
 set smartindent
@@ -154,68 +159,53 @@ imap jk <Esc>
 " Pasting toggle
 set pastetoggle=<F2>
 
+" toggle hlsearch!
+nnoremap <F3> :set hlsearch!<CR>
+
 " Don't jump over wrapped lines.
 nnoremap j gj
 nnoremap k gk
 
 " Split vim with tmux like keybindings
 map <leader>- :sp<CR>
-map <leader>. :vsp<CR>
+map <leader><Bslash> :vsp<CR>
 
-" make it possible to go to a other split by using ctrl+hjkl
-" nmap <silent> <c-k> :wincmd k<CR>
-" nmap <silent> <c-j> :wincmd j<CR>
-" nmap <silent> <c-h> :wincmd h<CR>
-" nmap <silent> <c-l> :wincmd l<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Functions
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugin settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-nmap <Leader>f :Files<CR>
-nmap <Leader>b :Buffers<CR>
-nmap <Leader>h :History<CR>
-nmap <Leader>p :GFiles<CR>
-nmap <Leader>a :Commands<CR>
-
-let g:fzf_layout = { 'down': '~15%' }
-
-" NERDCommenter settings
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-
-" NERDTree settings
-" close NERDTree after a file is opened
-let g:NERDTreeQuitOnOpen=1
-
-" show hidden files in NERDTree
-let NERDTreeShowHidden=1
-
+" autoclose brackets, quotes etc
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
 
 " Toggle NERDTree
 nmap <silent> <leader>k :NERDTreeToggle<cr>
 " expand to the path of the file in the current buffer
 nmap <silent> <leader>y :NERDTreeFind<cr>
 
-" Syntastic settings
-" Initial settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" fzf search
+nmap <Leader>f :Files<CR>
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>h :History<CR>
+nmap <Leader>p :GFiles<CR>
+nmap <Leader>a :Commands<CR>
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" Gitgutter hunk movement
+nmap ]h <Plug>(GitGutterNextHunk)]
+nmap [h <Plug>(GitGutterPrevHunk)]
+" Used for Completor and Tab_Or_Complete function
+" Use `tab` key to select completions.  Default is arrow keys.
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+" Use tab to trigger auto completion.  Default suggests completions as you type.
+let g:completor_auto_trigger = 0
+inoremap <expr> <Tab> Tab_Or_Complete()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use TAB to complete when typing words, else inserts TABs as usual.  Uses
 " dictionary, source files, and completor to find matching words to complete.
 
@@ -237,13 +227,40 @@ function! Tab_Or_Complete() abort
   endif
 endfunction
 
-" Use `tab` key to select completions.  Default is arrow keys.
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" Use tab to trigger auto completion.  Default suggests completions as you type.
-let g:completor_auto_trigger = 0
-inoremap <expr> <Tab> Tab_Or_Complete()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugin settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" gitgutter settings
+" fzf settings
+let g:fzf_layout = { 'down': '~15%' }
+
+" NERDCommenter settings
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" NERDTree settings
+" close NERDTree after a file is opened
+let g:NERDTreeQuitOnOpen=1
+
+" show hidden files in NERDTree
+let NERDTreeShowHidden=1
+
+" Syntastic settings
+" Initial settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " devicons
 let g:airline_powerline_fonts = 1

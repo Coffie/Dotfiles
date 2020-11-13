@@ -16,7 +16,7 @@ autoload -Uz _zinit
 # Source external zsh files
 # Local customization before
 if [[ -f "$HOME/.zshrc_local_before" ]]; then
-    source "$HOME/.zsh_local_before"
+    source "$HOME/.zshrc_local_before"
 fi
 
 # Plugins initialized before
@@ -42,9 +42,9 @@ source "$HOME/.zsh/plugins_before.zsh"
 
 # Local customization after
 if [[ -f "$HOME/.zshrc_local_after" ]]; then
-    source "$HOME/.zsh_local_after"
+    source "$HOME/.zshrc_local_after"
 fi
 
 
+# todo: put in local after
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-

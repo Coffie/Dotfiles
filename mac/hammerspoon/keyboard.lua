@@ -18,6 +18,17 @@
      app:selectMenuItem("New Window")
  end
 
+ function changeKeyboardLayout()
+     current = hs.keycodes.currentLayout()
+     if current == "Norwegian" then
+         hs.keycodes.setLayout("U.S.")
+     else
+         hs.keycodes.setLayout("Norwegian")
+     end
+ end
+
+ -- ⌘ + ⇧ + p changes keyboard layout
+hs.hotkey.bind({"cmd", "alt", "ctrl"}, "Space", changeKeyboardLayout)
  -- ⌘ + ⏎ Opens New Terminal
 hs.hotkey.bind({"cmd", "alt"}, "return", openTerminal)
 

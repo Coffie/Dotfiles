@@ -9,8 +9,8 @@ Plug 'easymotion/vim-easymotion'
 Plug 'airblade/vim-gitgutter'
 Plug 'wellle/targets.vim'
 " todo: Check install of fzf 
-" Plug 'junegunn/fzf'
-" Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'tmux-plugins/vim-tmux' " tmux.conf plugin
 Plug 'alvan/vim-closetag' " auto close html tags
 Plug 'dhruvasagar/vim-table-mode' " auto formating of tables

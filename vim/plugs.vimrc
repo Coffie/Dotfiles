@@ -21,7 +21,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Colors
-" Plug 'google/vim-colorscheme-primary'
 Plug 'sjl/badwolf'
 
 Plug 'ryanoasis/vim-devicons'

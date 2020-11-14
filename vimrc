@@ -37,6 +37,8 @@ set encoding=utf8
 
 set updatetime=100
 
+set termguicolors
+
 " Autocommands
 if !exists("autocommands_loaded")
     let autocommands_loaded = 1
@@ -124,6 +126,7 @@ set undolevels=1000
 " let base16colorspace=256 " Access 256 colorspace
 set t_Co=256 " Tell Vim that the terminal supports 256 colors
 colorscheme badwolf
+"
 
 set autoindent " automatically set indent at new line
 set smartindent

@@ -21,13 +21,18 @@
     ~/.shell: shell/
     ~/.zsh: zsh/
     ~/.psqlrc: psqlrc
-    ~/.hammerspoon: mac/hammerspoon/
+    ~/.hammerspoon: 
+      if: '[ `uname` = Darwin ]'
+      path: mac/hammerspoon/
     ~/.p10k.zsh: p10k.zsh
     ~/.yabairc: mac/yabairc
+    ~/.ideavimrc: ideavimrc
+      
 
 - create:
   - ~/dev
   - ~/.vim/undo-history
+  - ~/Screenshots
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

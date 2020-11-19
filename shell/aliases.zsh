@@ -14,6 +14,21 @@ alias la='ls -lAh'
 alias ll='ls -lh'
 alias ls='ls -G'
 alias lsl='ls -lhFA | less'
+# alias '-'="cd -"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ......="cd ../../../../.."
+alias 1='cd -'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias 5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'
 
 # ----------------------------------------------------------------------
 # Tmux
@@ -33,6 +48,9 @@ alias szsh="source $HOME/.zshrc" # Source .zshrc
 alias zshc="vim $HOME/.zshrc"
 alias vime="vim $HOME/.vimrc"
 alias please='sudo'
+alias man='nocorrect man'
+alias md='mkdir -p'
+alias mv='nocorrect mv'
 
 # ----------------------------------------------------------------------
 # Websites

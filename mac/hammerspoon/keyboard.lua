@@ -51,7 +51,7 @@ hs.hotkey.bind({}, "f12", function()
 end)
 
  -- ⌘ + ⏎ Opens New Terminal
-hs.hotkey.bind({"cmd", "alt"}, "return", openTerminal)
+hs.hotkey.bind({"cmd", "alt"}, "T", openTerminal)
 
 -- ⌘ + ⇧ + ⏎ Opens New Browser Window
 hs.hotkey.bind({"cmd","shift"}, "return", openBrowser)

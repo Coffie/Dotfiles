@@ -70,7 +70,7 @@ bindCmd({"shift", "cmd"}, "c", "/usr/local/bin/yabai -m window --space next; /us
 -- focus monitor
 bindCmd({"ctrl", "alt" }, "x", "/usr/local/bin/yabai -m display --focus recent")
 bindCmd({"ctrl", "alt" }, "z", "/usr/local/bin/yabai -m display --focus prev || /usr/local/bin/yabai -m space --focus first")
-bindCmd({"ctrl", "alt" }, "c", "/usr/local/bin/yabai -m display --focus next|| /usr/local/bin/yabai -m space --focus last")
+bindCmd({"ctrl", "alt" }, "c", "/usr/local/bin/yabai -m display --focus next || /usr/local/bin/yabai -m space --focus last")
 bindCmd({"ctrl", "alt" }, "1", "/usr/local/bin/yabai -m display --focus 1")
 bindCmd({"ctrl", "alt" }, "2", "/usr/local/bin/yabai -m display --focus 2")
 bindCmd({"ctrl", "alt" }, "3", "/usr/local/bin/yabai -m display --focus 3")

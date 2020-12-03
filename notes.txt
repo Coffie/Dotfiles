@@ -1,0 +1,21 @@
+Mac
+ - F1,F2.. standard
+ - F11 shortcut til skrivebord
+ - caps-lock->ctrl (alle tastatur)
+ - toppbar
+    - language/keyboard
+    - Lydikon toppbar
+    - bluetooth
+
+
+brew:
+brew tap homebrew/cask-fonts
+TODO: decide on font and install
+    yabai:
+    brew install koekeishiya/formulae/yabai
+    sudo yabai --install-sa
+
+tmux:
+submodule or dotbot clone?
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm 
+(check if exists, clone if not)

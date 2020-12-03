@@ -1,3 +1,0 @@
-# Cask formulaes for most common programs
-brew cask install google-chrome
-brew cask install iterm

@@ -48,10 +48,6 @@ there() {
     cd "$(readlink "${there}")"
 }
 
-sort_ins() {
-    echo "$1" | sort -o $2 -m - $2
-}
-
 # -------------------------------------------------------------------
 #  Get my current IP address(es)
 # -------------------------------------------------------------------
@@ -194,6 +190,35 @@ function init_ssh_agent {
     fi
 }
 
+# Pyenv lazyloading
+__pyenv_started=0
+
+__pyenv_init() {
+  test $__pyenv_started = 0 && {
+    eval "$(command pyenv init -)"
+    __pyenv_started=1
+  }
+}
+
+pyenv() {
+  __pyenv_init
+  command pyenv "$@"
+}
+
+python() {
+  __pyenv_init
+  command python "$@"
+}
+
+pip() {
+  __pyenv_init
+  command pip "$@"
+}
+
+pipenv() {
+  __pyenv_init
+  command pipenv "$@"
+}
 # -------------------------------------------------------------------
 # Function for searching running processes 
 # -------------------------------------------------------------------

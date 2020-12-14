@@ -18,3 +18,5 @@ export TERM="xterm-256color"
 # Set lang to US
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
+export SSH_ENV="$HOME/.ssh/environment"

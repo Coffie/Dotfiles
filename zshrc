@@ -31,6 +31,9 @@ source "$HOME/.shell/exports.sh"
 # Source external files 
 source "$HOME/.shell/aliases.sh"
 
+# Source external files 
+source "$HOME/.shell/paths.sh"
+#
 # Zsh settings
 source "$HOME/.zsh/settings.zsh"
 

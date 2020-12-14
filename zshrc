@@ -23,13 +23,13 @@ fi
 source "$HOME/.zsh/plugins_before.zsh"
 
 # Shell functions
-source "$HOME/.shell/functions.zsh"
+source "$HOME/.shell/functions.sh"
 
 # Default environment variables (override with local after)
-source "$HOME/.shell/exports.zsh"
+source "$HOME/.shell/exports.sh"
 
 # Source external files 
-source "$HOME/.shell/aliases.zsh"
+source "$HOME/.shell/aliases.sh"
 
 # Zsh settings
 source "$HOME/.zsh/settings.zsh"

@@ -4,8 +4,9 @@ vim/view
 vim/undo-history
 
 # Ignore tmux plugins
-tmux/plugins/*
+tmux/plugins
 tmux/resurrect
+!tmux/plugins/tpm
 
 # Ignore sensitive exports
 *.ignore.*

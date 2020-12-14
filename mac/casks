@@ -1,45 +1,3 @@
-Work file
-# Brew 
-zsh
-tmux
-vim
-coreutils
-binutils
-diffutils
-ed
-findutils
-gawk
-gnu-indent
-gnu-sed
-gnu-which
-gnutls
-grep
-gzip
-screen
-watch
-wdiff
-wget
-iprout2mac
-bash
-emacs
-gpatch
-less
-m4
-make
-nano
-gdb
-file-formula
-git
-openssh
-perl
-rsync
-svn
-unzip
-
-# Brew dependencies
-
-
-# Casks
 alfred
 anki
 devdocs
@@ -70,4 +28,3 @@ spotify
 the-unarchiver
 virtualbox
 virtualbox-extension-pack
-vlc

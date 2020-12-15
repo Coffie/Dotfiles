@@ -8,7 +8,7 @@ Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
 Plug 'airblade/vim-gitgutter'
 Plug 'wellle/targets.vim'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tmux-plugins/vim-tmux' " tmux.conf plugin
 Plug 'alvan/vim-closetag' " auto close html tags

@@ -12,8 +12,11 @@ alias rock="ssh rock"
 # Brew
 # ----------------------------------------------------------------------
 alias buu="brew update && brew upgrade"
-alias bl="brew list --formulae"
-alias bll="brew list --formulae | less"
+alias bl="brew list --formula"
+alias bll="brew list --formula | less"
+alias blc="brew list --cask"
+alias bi="brew install"
+alias bic="brew install --cask"
 # ----------------------------------------------------------------------
 # Etc.
 # ----------------------------------------------------------------------

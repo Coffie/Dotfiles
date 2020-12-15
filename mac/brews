@@ -17,6 +17,7 @@ gpatch
 grep
 gzip
 iproute2mac
+jq
 koekeishiya/formulae/yabai
 less
 m4
@@ -30,6 +31,7 @@ rsync
 screen
 svn
 tmux
+tree
 unzip
 vim
 watch

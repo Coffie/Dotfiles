@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # Load Zinit first
 ### Added by Zinit's installer
 if [[ ! -f "$HOME/.zinit/bin/zinit.zsh" ]]; then
@@ -51,3 +52,5 @@ fi
 
 # todo: put in local after
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

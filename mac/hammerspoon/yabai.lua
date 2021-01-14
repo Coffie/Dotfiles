@@ -5,13 +5,13 @@ function bindCmd(mods, key, cmd)
 end
 
 -- focus window
-bindCmd({"alt"}, "x", "/usr/local/bin/yabai -m window --focus recent")
+-- bindCmd({"alt"}, "x", "/usr/local/bin/yabai -m window --focus recent")
 bindCmd({"alt"}, "h", "/usr/local/bin/yabai -m window --focus west")
 bindCmd({"alt"}, "j", "/usr/local/bin/yabai -m window --focus south")
 bindCmd({"alt"}, "k", "/usr/local/bin/yabai -m window --focus north")
 bindCmd({"alt"}, "l", "/usr/local/bin/yabai -m window --focus east")
-bindCmd({"alt"}, "z", "/usr/local/bin/yabai -m window --focus stack.prev")
-bindCmd({"alt"}, "c", "/usr/local/bin/yabai -m window --focus stack.next")
+-- bindCmd({"alt"}, "z", "/usr/local/bin/yabai -m window --focus stack.prev")
+-- bindCmd({"alt"}, "c", "/usr/local/bin/yabai -m window --focus stack.next")
 
 -- swap window
 bindCmd({"shift", "alt"}, "x", "/usr/local/bin/yabai -m window --swap recent")
@@ -31,12 +31,12 @@ bindCmd({"shift", "alt"}, "0", "/usr/local/bin/yabai -m space --balance")
 
 -- send window to desktop and follow focus
 bindCmd({"shift", "cmd"}, "x", "/usr/local/bin/yabai -m window --space recent; /usr/local/bin/yabai -m space --focus recent")
-bindCmd({ "shift", "cmd"}, "z", "/usr/local/bin/yabai -m window --space prev; /usr/local/bin/yabai -m space --focus prev")
+bindCmd({"shift", "cmd"}, "z", "/usr/local/bin/yabai -m window --space prev; /usr/local/bin/yabai -m space --focus prev")
 bindCmd({"shift", "cmd"}, "c", "/usr/local/bin/yabai -m window --space next; /usr/local/bin/yabai -m space --focus next")
 bindCmd({"shift", "cmd"}, "1", "/usr/local/bin/yabai -m window --space  1; /usr/local/bin/yabai -m space --focus 1")
 bindCmd({"shift", "cmd"}, "2", "/usr/local/bin/yabai -m window --space  2; /usr/local/bin/yabai -m space --focus 2")
-bindCmd({ "shift", "cmd"}, "3", "/usr/local/bin/yabai -m window --space  3; /usr/local/bin/yabai -m space --focus 3")
-bindCmd({ "shift", "cmd"}, "4", "/usr/local/bin/yabai -m window --space  4; /usr/local/bin/yabai -m space --focus 4")
+bindCmd({"shift", "cmd"}, "3", "/usr/local/bin/yabai -m window --space  3; /usr/local/bin/yabai -m space --focus 3")
+bindCmd({"shift", "cmd"}, "4", "/usr/local/bin/yabai -m window --space  4; /usr/local/bin/yabai -m space --focus 4")
 bindCmd({"shift", "cmd"}, "5", "/usr/local/bin/yabai -m window --space  5; /usr/local/bin/yabai -m space --focus 5")
 bindCmd({"shift", "cmd"}, "6", "/usr/local/bin/yabai -m window --space  6; /usr/local/bin/yabai -m space --focus 6")
 bindCmd({"shift", "cmd"}, "7", "/usr/local/bin/yabai -m window --space  7; /usr/local/bin/yabai -m space --focus 7")
@@ -57,8 +57,8 @@ bindCmd({"shift", "alt"}, "w", "/usr/local/bin/yabai -m window --resize top:0:-2
 bindCmd({"shift", "alt"}, "d", "/usr/local/bin/yabai -m window --resize right:20:0")
 
 -- decrease window size
-bindCmd({ "shift", "cmd"}, "a", "/usr/local/bin/yabai -m window --resize left:20:0")
-bindCmd({ "shift", "cmd"}, "s", "/usr/local/bin/yabai -m window --resize bottom:0:-20")
+bindCmd({"shift", "cmd"}, "a", "/usr/local/bin/yabai -m window --resize left:20:0")
+bindCmd({"shift", "cmd"}, "s", "/usr/local/bin/yabai -m window --resize bottom:0:-20")
 bindCmd({"shift", "cmd"}, "w", "/usr/local/bin/yabai -m window --resize top:0:20")
 bindCmd({"shift", "cmd"}, "d", "/usr/local/bin/yabai -m window --resize right:-20:0")
 
@@ -93,14 +93,14 @@ bindCmd({"shift", "alt"}, "f", "/usr/local/bin/yabai -m window --toggle native-f
 bindCmd({"shift", "alt"}, "b", "/usr/local/bin/yabai -m window --toggle border")
 
 -- toggle window split type
-bindCmd({ "alt"}, "e", "/usr/local/bin/yabai -m window --toggle split")
+bindCmd({"alt"}, "e", "/usr/local/bin/yabai -m window --toggle split")
 
 -- -- float / unfloat window and center on screen
 bindCmd({"alt"}, "t", "/usr/local/bin/yabai -m window --toggle float;\
           /usr/local/bin/yabai -m window --grid 4:4:1:1:2:2")
 
 -- toggle topmost (keep above other windows)
-bindCmd({ "alt"}, "o", "/usr/local/bin/yabai -m window --toggle topmost")
+bindCmd({"alt"}, "o", "/usr/local/bin/yabai -m window --toggle topmost")
 
 -- change layout of desktop
 bindCmd({"ctrl", "alt"}, "a", "/usr/local/bin/yabai -m space --layout bsp")

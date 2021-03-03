@@ -64,14 +64,11 @@ hs.hotkey.bind(hyper, "`", function() hs.openConsole() end)
 -- Launch or Focus Activity Monitor
 hs.hotkey.bind(hyper, "M", function() hs.application.launchOrFocus("Activity Monitor") end)
 
--- Launch or Focus Activity Monitor
+-- Launch or Focus Spotify
 hs.hotkey.bind(hyper, "S", function() hs.application.launchOrFocus("Spotify") end)
 
 -- Provides a keyboard based window switcher (instead of app switcher)
 hs.hotkey.bind({"cmd", "alt"}, "tab", function() hs.hints.windowHints() end)
-
--- Hyper+F makes toggles app zoom
-hs.hotkey.bind(hyper, "F", function() hs.window.focusedWindow():toggleZoom() end)
 
 -- Ctrl+Cmd + Escape -- Sleeps the Computer
 hs.hotkey.bind({"ctrl", "cmd"}, "escape", function() hs.caffeinate.systemSleep() end)

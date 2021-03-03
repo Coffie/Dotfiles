@@ -27,6 +27,7 @@
     ~/.p10k.zsh: p10k.zsh
     ~/.yabairc: mac/yabairc
     ~/.ideavimrc: ideavimrc
+    ~/.config: config/
       
 
 - create:

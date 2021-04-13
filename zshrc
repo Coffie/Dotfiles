@@ -54,3 +54,7 @@ fi
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# autocompletion
+autoload bashcompinit && bashcompinit
+complete -C '/usr/local/bin/aws_completer' aws

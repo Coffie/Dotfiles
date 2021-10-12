@@ -42,18 +42,6 @@ set termguicolors
 " Autocommands
 if !exists("autocommands_loaded")
     let autocommands_loaded = 1
-    " Rainbow Parentheses
-    " auto enable RP
-    au VimEnter * RainbowParenthesesToggle
-    au Syntax * RainbowParenthesesLoadRound
-    au Syntax * RainbowParenthesesLoadSquare
-    au Syntax * RainbowParenthesesLoadBraces
-
-    " Filetype config
-    " add yaml support
-    au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
-    autocmd FileType yaml,yml setlocal ts=2 sts=2 sw=2 expandtab
-
     " Set length for mutt
     au BufNewFile,BufRead mutt* set tw=77 ai nocindent spell " Shorter for mutt
 
@@ -122,8 +110,6 @@ set history=1000
 set undolevels=1000
 
 " Looks
-" set bg=dark " Use dark solarized
-" let base16colorspace=256 " Access 256 colorspace
 set t_Co=256 " Tell Vim that the terminal supports 256 colors
 colorscheme badwolf
 "
@@ -172,15 +158,6 @@ nnoremap k gk
 " Split vim with tmux like keybindings
 map <leader>- :sp<CR>
 map <leader><Bslash> :vsp<CR>
-
-" autoclose brackets, quotes etc
-" inoremap " ""<left>
-" inoremap ' ''<left>
-" inoremap ( ()<left>
-" inoremap [ []<left>
-" inoremap { {}<left>
-" inoremap {<CR> {<CR>}<ESC>O
-" inoremap {;<CR> {<CR>};<ESC>O
 
 " Toggle NERDTree
 nmap <silent> <leader>k :NERDTreeToggle<cr>
@@ -234,8 +211,6 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugin settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
 " gitgutter settings
 " fzf settings
 let g:fzf_layout = { 'down': '~15%' }
@@ -271,3 +246,9 @@ let g:airline_powerline_fonts = 1
 " Vim-closetag
 " filenames like *.xml, *.html, *.xhtml, ...
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+
+" vim-twiggy
+let g:twiggy_group_locals_by_slash = 0
+let g:twiggy_local_branch_sort = 'mru'
+let g:twiggy_remote_branch_sort = 'date'
+

@@ -1,28 +1,38 @@
 call plug#begin('~/.vim/plugged')
+" Navigation
 Plug 'preservim/nerdtree' ", { 'on': 'NERDtreeToggle' }
-Plug 'vim-syntastic/syntastic' " Syntax checker / linter
-Plug 'maralla/completor.vim'
-Plug 'tpope/vim-commentary' " Comment with gcc or gc
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'tpope/vim-surround'
-Plug 'easymotion/vim-easymotion'
-Plug 'airblade/vim-gitgutter'
-Plug 'wellle/targets.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'tmux-plugins/vim-tmux' " tmux.conf plugin
+
+" Syntax, completion etc.
+Plug 'sheerun/vim-polyglot'
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py' }
+Plug 'vim-syntastic/syntastic' " Syntax checker / linter
+
+"Language specific plugins
+Plug 'fatih/vim-go', { 'for': 'go', 'do': ':GoUpdateBinaries' }
 Plug 'alvan/vim-closetag' " auto close html tags
-" Plug 'dhruvasagar/vim-table-mode' " auto formating of tables
-Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'nsf/gocode', { 'for': 'go' }
-Plug 'vim-airline/vim-airline'
+
+" Git plugins
+Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-Plug 'christoomey/vim-tmux-navigator'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'sodapopcan/vim-twiggy'
 
-" Colors
+" Tmux integrations
+Plug 'tmux-plugins/vim-tmux' " K jumps to exact place in man tmux
+Plug 'christoomey/vim-tmux-navigator'
+
+" Tools
+Plug 'tpope/vim-commentary' " Comment with gcc or gc
+Plug 'tpope/vim-surround'
+Plug 'easymotion/vim-easymotion'
+Plug 'wellle/targets.vim'
+" Plug 'dhruvasagar/vim-table-mode' " auto formating of tables
+
+" Visual
 Plug 'sjl/badwolf'
-
 Plug 'ryanoasis/vim-devicons'
+Plug 'vim-airline/vim-airline'
 
 call plug#end()

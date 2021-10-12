@@ -1,5 +1,4 @@
  -- Convenient Keyboard shortcut actions
- 
  function openTerminal()
      -- iterm
      app = hs.application.find("iTerm2")
@@ -11,44 +10,12 @@
  end
 
  function openBrowser()
-     app = hs.application.find("Google Chrome")
+     app = hs.application.find("Firefox Developer Edition")
      if app == nil then
-         hs.application.launchOrFocus("Google Chrome")
+         hs.application.launchOrFocus("Firefox Developer Edition")
      end
      app:selectMenuItem("New Window")
  end
-
-
- hs.hotkey.bind({}, "f8", function()
-     hs.spotify.playpause()
- end)
- hs.hotkey.bind({}, "f9", function()
-     hs.spotify.next()
- end)
- hs.hotkey.bind({}, "f7", function()
-     hs.spotify.previous()
- end)
- hs.hotkey.bind({}, "f11", function()
-  playing = hs.spotify.isPlaying()
-
-  if playing then
-    hs.spotify.volumeDown()
-  else
-    output = hs.audiodevice.defaultOutputDevice()
-    output:setVolume(output:volume() - 10)
-  end
-end)
-
-hs.hotkey.bind({}, "f12", function()
-  playing = hs.spotify.isPlaying()
-
-  if playing then
-    hs.spotify.volumeUp()
-  else
-    output = hs.audiodevice.defaultOutputDevice()
-    output:setVolume(output:volume() + 10)
-  end
-end)
 
  -- ⌘ + ⏎ Opens New Terminal
 hs.hotkey.bind({"cmd", "alt"}, "return", openTerminal)
@@ -65,7 +32,7 @@ hs.hotkey.bind(hyper, "`", function() hs.openConsole() end)
 hs.hotkey.bind(hyper, "M", function() hs.application.launchOrFocus("Activity Monitor") end)
 
 -- Launch or Focus Spotify
-hs.hotkey.bind(hyper, "S", function() hs.application.launchOrFocus("Spotify") end)
+-- hs.hotkey.bind(hyper, "S", function() hs.application.launchOrFocus("Spotify") end)
 
 -- Provides a keyboard based window switcher (instead of app switcher)
 hs.hotkey.bind({"cmd", "alt"}, "tab", function() hs.hints.windowHints() end)

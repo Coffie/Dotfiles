@@ -90,7 +90,8 @@ bindCmd({"alt"}, "f", "/usr/local/bin/yabai -m window --toggle zoom-fullscreen")
 bindCmd({"shift", "alt"}, "f", "/usr/local/bin/yabai -m window --toggle native-fullscreen")
 
 -- toggle window border
-bindCmd({"shift", "alt"}, "b", "/usr/local/bin/yabai -m window --toggle border")
+-- not supported in monterey?
+-- bindCmd({"shift", "alt"}, "b", "/usr/local/bin/yabai -m window --toggle border")
 
 -- toggle window split type
 bindCmd({"alt"}, "e", "/usr/local/bin/yabai -m window --toggle split")

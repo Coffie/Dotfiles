@@ -1,11 +1,13 @@
+[include]
+    path = ~/.gitconfig_local
+
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
 	mergetool = vim
-
-[user]
-	name = Nysæther, Christoffer B.
-	email = Christoffer.B.Nysather@dnb.no
+    ignorecase = false
+    autocrlf = false
+    eol = lf
 
 [color]
 	diff = auto
@@ -43,3 +45,6 @@
 [push]
 	# push will only do the current branch, not all branches
 	default = simple
+
+[init]
+    defaultBranch = development

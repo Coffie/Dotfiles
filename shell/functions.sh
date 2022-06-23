@@ -52,6 +52,12 @@ there() {
     cd "$(readlink "${there}")"
 }
 
+kz() {
+    for pid in $(ps axo pid=,stat= | awk '$2~/^Z/ { print $1 }') ; do
+        kill -9  $pid
+    done
+}
+
 # -------------------------------------------------------------------
 #  Get my current IP address(es)
 # -------------------------------------------------------------------

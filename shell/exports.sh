@@ -20,3 +20,8 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 export SSH_ENV="$HOME/.ssh/environment"
+
+# Mac specific
+if [[ "$(uname)" == "Darwin" ]]; then
+    export LSCOLORS=ExFxBxDxCxegedabagacad
+fi

@@ -28,6 +28,8 @@ Plug 'tpope/vim-commentary' " Comment with gcc or gc
 Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
 Plug 'wellle/targets.vim'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
 " Plug 'dhruvasagar/vim-table-mode' " auto formating of tables
 
 " Visual

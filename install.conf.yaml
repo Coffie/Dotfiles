@@ -27,13 +27,13 @@
     ~/.p10k.zsh: p10k.zsh
     ~/.yabairc: mac/yabairc
     ~/.ideavimrc: ideavimrc
-    ~/.config: config/
-      
+    ~/.config/:
+      glob: true
+      path: config/*
 
 - create:
   - ~/dev
   - ~/.vim/undo-history
-  - ~/Screenshots
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

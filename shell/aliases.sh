@@ -14,6 +14,7 @@ alias la='ls -lAh'
 alias ll='ls -lh'
 alias ls='ls -G'
 alias lsl='ls -lhFA | less'
+alias lz="ps axo pid=,stat= | awk '\$2~/^Z/ { print \$1 }'"
 # alias '-'="cd -"
 alias ..="cd .."
 alias ...="cd ../.."

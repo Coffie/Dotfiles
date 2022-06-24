@@ -10,9 +10,10 @@
  end
 
  function openBrowser()
-     app = hs.application.find("Firefox Developer Edition")
+     -- app = hs.application.find("Firefox Developer Edition")
+     app = hs.application.find("Firefox")
      if app == nil then
-         hs.application.launchOrFocus("Firefox Developer Edition")
+         hs.application.launchOrFocus("Firefox")
      end
      app:selectMenuItem("New Window")
  end

@@ -3,6 +3,9 @@ vim/plugged/*
 vim/view
 vim/undo-history
 
+# Ignore nvim
+config/nvim/plugged/*
+
 # Ignore tmux plugins
 tmux/plugins/*
 tmux/resurrect

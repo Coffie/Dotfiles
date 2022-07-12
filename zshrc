@@ -62,8 +62,18 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+
+  autoload -Uz compinit
+  compinit
+fi
 
 # autocompletion
 autoload bashcompinit && bashcompinit
 complete -C '/usr/local/bin/aws_completer' aws
 
+alias vim='nvim'
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+. ~/.asdf/plugins/java/set-java-home.zsh

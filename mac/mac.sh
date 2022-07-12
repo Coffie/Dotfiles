@@ -1,9 +1,11 @@
 #! /usr/bin/env bash
 
 # Todo: set this somewhere else
-COMPUTER_NAME="pop"
+# COMPUTER_NAME="house"
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
+# get current user for some configurations
+_user=`who | grep console | awk '{ print $1 }'`
 osascript -e 'tell application "System Preferences" to quit'
 
 # Ask for the administrator password upfront
@@ -16,19 +18,21 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ###############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
-sudo scutil --set ComputerName "$COMPUTER_NAME"
-sudo scutil --set HostName "$COMPUTER_NAME"
-sudo scutil --set LocalHostName "$COMPUTER_NAME"
-sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
+# sudo scutil --set ComputerName "$COMPUTER_NAME"
+# sudo scutil --set HostName "$COMPUTER_NAME"
+# sudo scutil --set LocalHostName "$COMPUTER_NAME"
+# sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
 
 # Set language and text formats
 defaults write NSGlobalDomain AppleLanguages -array "en" "nb"
-defaults write NSGlobalDomain AppleLocale -string "en_US@@currency=NOK"
+defaults write NSGlobalDomain AppleLocale -string "en_NO@@currency=NOK"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
+defaults write NSGlobalDomain AppleTemperatureUnit -string "Celsius"
 
+# TODO: fails, is this needed
 # Set the timezone; see `sudo systemsetup -listtimezones` for other values
-sudo systemsetup -settimezone "Europe/Oslo" > /dev/null
+#sudo systemsetup -settimezone "Europe/Oslo" > /dev/null
 
 # Set standby delay to 24 hours (default is 1 hour)
 sudo pmset -a standbydelay 86400
@@ -43,8 +47,18 @@ defaults write com.apple.sound.beep.feedback -bool false
 sudo nvram SystemAudioVolume=" "
 
 # Menu bar: show battery percentage
-# TODO: find solution for battery
-# defaults write com.apple.menuextra.battery ShowPercent YES
+defaults write /Users/$_user/Library/Preferences/ByHost/com.apple.controlcenter.plist BatteryShowPercentage -bool true
+
+# Show audio menu in menubar
+defaults write com.apple.controlcenter NSStatusItem\ Visible\ Sound -bool true
+defaults write /Users/$_user/Library/Preferences/ByHost/com.apple.controlcenter.plist Sound -int 18
+
+# Show bluetooth in menubar
+defaults write com.apple.controlcenter NSStatusItem\ Visible\ Bluetooth -bool true
+defaults write /Users/$_user/Library/Preferences/ByHost/com.apple.controlcenter.plist Bluetooth -int 2
+
+# Set menu bare date format
+defaults write com.apple.menuextra.clock "DateFormat" -string "EEE d MMM HH:mm:ss"
 
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
@@ -69,8 +83,9 @@ defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
 # Disable the crash reporter
 defaults write com.apple.CrashReporter DialogType -string "none"
 
+# TODO: fails, is this needed
 # Restart automatically if the computer freezes
-sudo systemsetup -setrestartfreeze on
+#sudo systemsetup -setrestartfreeze on
 
 # Disable Notification Center and remove the menu bar icon
 launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist 2> /dev/null
@@ -147,8 +162,9 @@ sudo pmset -c sleep 0
 # Set machine sleep to 15 minutes on battery
 sudo pmset -b sleep 15
 
+# TODO: fails, is this needed
 # Never go into computer sleep mode
-sudo systemsetup -setcomputersleep Off > /dev/null
+#sudo systemsetup -setcomputersleep Off > /dev/null
 
 # Hibernation mode
 # 0: Disable hibernation (speeds up entering sleep mode)
@@ -240,11 +256,6 @@ defaults write com.apple.frameworks.diskimages skip-verify -bool true
 defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
 defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
 
-# Automatically open a new Finder window when a volume is mounted
-defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
-defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
-defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
-
 # Use list view in all Finder windows by default
 # Four-letter codes for the other view modes: `icnv`, `clmv`, `glyv`
 defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
@@ -255,11 +266,8 @@ defaults write com.apple.finder WarnOnEmptyTrash -bool false
 # Enable AirDrop over Ethernet and on unsupported Macs running Lion
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
-# Show the ~/Library folder
-chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
-
-# Show the /Volumes folder
-sudo chflags nohidden /Volumes
+# TODO: show Library folder and home folder in finder
+# TODO: maybe show the Volumes folder
 
 # Remove Dropbox’s green checkmark icons in Finder
 #file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns

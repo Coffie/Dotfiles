@@ -11,3 +11,4 @@ KEYTIMEOUT=1 # corresponds to 10ms
 
 # Use vim as the editor
 export EDITOR=vim
+bindkey -e

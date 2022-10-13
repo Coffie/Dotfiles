@@ -1,0 +1,57 @@
+# Reload yabai, skhd and sketchybar
+lalt + ctrl + shift - r : brew services restart yabai && brew services restart skhd && brew services restart sketchybar
+
+# Focus windows
+lalt - h : yabai -m window --focus west
+lalt - j : yabai -m window --focus south
+lalt - k : yabai -m window --focus north
+lalt - l : yabai -m window --focus east
+
+# Move windows
+lalt + shift - h : yabai -m window --warp west
+lalt + shift - j : yabai -m window --warp south
+lalt + shift - k : yabai -m window --warp north
+lalt + shift - l : yabai -m window --warp east
+
+# Swap windows
+cmd + shift - h : yabai -m window --swap west
+cmd + shift - j : yabai -m window --swap south
+cmd + shift - k : yabai -m window --swap north
+cmd + shift - l : yabai -m window --swap east
+
+# Send to spaces
+shift + lalt - p : yabai -m window --space prev; skhd -k "ctrl - 0x7B"
+shift + lalt - n : yabai -m window --space next; skhd -k "ctrl - 0x7C"
+shift + lalt - 1 : yabai -m window --space 1; skhd -k "ctrl - 1"
+shift + lalt - 2 : yabai -m window --space 2; skhd -k "ctrl - 2"
+shift + lalt - 3 : yabai -m window --space 3; skhd -k "ctrl - 3"
+shift + lalt - 4 : yabai -m window --space 4; skhd -k "ctrl - 4"
+shift + lalt - 5 : yabai -m window --space 5; skhd -k "ctrl - 5"
+shift + lalt - 6 : yabai -m window --space 6; skhd -k "ctrl - 6"
+
+# Focus spaces
+lalt - 2 : osascript -e 'tell application "System Events" to key code 19 using control down'
+lalt - 3 : osascript -e 'tell application "System Events" to key code 20 using control down'
+lalt - 4 : osascript -e 'tell application "System Events" to key code 21 using control down'
+lalt - 5 : osascript -e 'tell application "System Events" to key code 22 using control down'
+lalt - 6 : osascript -e 'tell application "System Events" to key code 23 using control down'
+
+# Window manipulation
+lalt + ctrl - d : yabai -m window --toggle zoom-parent
+lalt + ctrl - f : yabai -m window --toggle zoom-fullscreen
+lalt + shift + ctrl - f : yabai -m window --toggle native-fullscreen
+lalt + shift - t : yabai -m window --toggle float; \
+                    yabai -m window --grid 4:4:1:1:2:2
+
+# Space manipulation
+lalt + ctrl - x : yabai -m space --mirror x-axis
+lalt + ctrl - y : yabai -m space --mirror y-axis
+lalt - r : yabai -m space --rotate 90
+lalt - e : yabai -m window --toggle split
+lalt + ctrl - e : yabai -m space --balance
+
+# Arrow keys on hjkl when holding fn
+fn - h : skhd -k "left"
+fn - j : skhd -k "down"
+fn - k : skhd -k "up"
+fn - l : skhd -k "right"

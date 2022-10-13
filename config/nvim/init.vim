@@ -9,6 +9,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'scrooloose/nerdtree'
 Plug 'sjl/badwolf'
 Plug 'ryanoasis/vim-devicons'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-airline/vim-airline'
 Plug 'airblade/vim-gitgutter'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -96,6 +97,9 @@ nnoremap k gk
 " Split vim with tmux like keybindings
 map <leader>- :sp<CR>
 map <leader><Bslash> :vsp<CR>
+
+" Disable mouse
+set mouse=
 lua <<EOF
 -- Setup nvim-cmp.
   local cmp = require'cmp'

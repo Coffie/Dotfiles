@@ -1,10 +1,15 @@
+# Ignore IntelliJ files
+*.iml
 # Ignore Vim bundle for increased speed
 vim/plugged/*
 vim/view
 vim/undo-history
 
-# Ignore nvim
+# Ignore nvim plugins
 config/nvim/plugged/*
+
+# Ignore karabiner backups
+config/karabiner/automatic_backups
 
 # Ignore tmux plugins
 tmux/plugins/*

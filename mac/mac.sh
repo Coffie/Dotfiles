@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 # Todo: set this somewhere else
-# COMPUTER_NAME="house"
+COMPUTER_NAME="house"
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
 # get current user for some configurations
@@ -24,8 +24,9 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
 
 # Set language and text formats
-defaults write NSGlobalDomain AppleLanguages -array "en" "nb"
-defaults write NSGlobalDomain AppleLocale -string "en_NO@@currency=NOK"
+defaults write NSGlobalDomain AppleLanguages -array "en-US" "nb-NO"
+defaults write NSGlobalDomain AppleLocale -string "en_NO"
+defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
 defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
 defaults write NSGlobalDomain AppleMetricUnits -bool true
 defaults write NSGlobalDomain AppleTemperatureUnit -string "Celsius"
@@ -41,24 +42,30 @@ sudo pmset -a standbydelay 86400
 sudo pmset -a sms 0
 
 # Disable audio feedback when volume is changed
-defaults write com.apple.sound.beep.feedback -bool false
+defaults write NSGlobalDomain com.apple.sound.beep.feedback -bool false
 
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
 
 # Menu bar: show battery percentage
-defaults write /Users/$_user/Library/Preferences/ByHost/com.apple.controlcenter.plist BatteryShowPercentage -bool true
+defaults -currentHost write com.apple.controlcenter Battery -int 2
+defaults -currentHost write com.apple.controlcenter BatteryShowPercentage -bool true
 
 # Show audio menu in menubar
-defaults write com.apple.controlcenter NSStatusItem\ Visible\ Sound -bool true
-defaults write /Users/$_user/Library/Preferences/ByHost/com.apple.controlcenter.plist Sound -int 18
+defaults -currentHost write com.apple.controlcenter Sound -int 16
 
 # Show bluetooth in menubar
-defaults write com.apple.controlcenter NSStatusItem\ Visible\ Bluetooth -bool true
-defaults write /Users/$_user/Library/Preferences/ByHost/com.apple.controlcenter.plist Bluetooth -int 2
+defaults -currentHost write com.apple.controlcenter Bluetooth -int 2
+
+# Show FocusModes when active
+defaults -currentHost write com.apple.controlcenter FocusModes -int 2
 
 # Set menu bare date format
 defaults write com.apple.menuextra.clock "DateFormat" -string "EEE d MMM HH:mm:ss"
+defaults write com.apple.menuextra.clock Show24Hour -bool true
+defaults write com.apple.menuextra.clock ShowDate -bool true
+defaults write com.apple.menuextra.clock ShowDayOfWeek -bool true
+defaults write com.apple.menuextra.clock ShowSeconds -bool true
 
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true

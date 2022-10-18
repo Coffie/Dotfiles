@@ -73,7 +73,3 @@ fi
 # autocompletion
 autoload bashcompinit && bashcompinit
 complete -C '/usr/local/bin/aws_completer' aws
-
-alias vim='nvim'
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
-. ~/.asdf/plugins/java/set-java-home.zsh

@@ -5,8 +5,6 @@ source "$HOME/.shell/functions.sh"
 
 source "$HOME/.shell/exports.sh"
 
-source "$HOME/.shell/paths.sh"
-
 source "$HOME/.bash/prompt.bash"
 
 source "$HOME/.bash/settings.bash"

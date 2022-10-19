@@ -5,6 +5,8 @@ vim/plugged/*
 vim/view
 vim/undo-history
 
+# Ignore zsh plugins
+zsh/plugins/*
 # Ignore nvim plugins
 config/nvim/plugged/*
 

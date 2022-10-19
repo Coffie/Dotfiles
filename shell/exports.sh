@@ -8,7 +8,7 @@ export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 # Editor
-export EDITOR=nvim
+export EDITOR=vim
 # FZF
 export FZF_DEFAULT_OPTS="-d 35% --layout=reverse --border"
 export FZF_DEFAULT_COMMAND="fd --type f --hidden --follow --exclude .git"

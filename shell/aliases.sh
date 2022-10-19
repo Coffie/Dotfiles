@@ -5,6 +5,13 @@ else
     source $HOME/.dotfiles/shell/aliases.linux.sh
 fi
 
+# Use nvim if installed
+if type nvim &>/dev/null
+then
+    alias vim="nvim"
+    alias vimdiff="nvim -d"
+fi
+
 # ----------------------------------------------------------------------
 # Directory navigation/information
 # ----------------------------------------------------------------------

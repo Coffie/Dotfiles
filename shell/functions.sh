@@ -67,33 +67,6 @@ jdk() {
   java -version
 }
 
-function brew() {
-  command brew "$@"
-
-  if [[ $* =~ "upgrade" ]] || [[ $* =~ "update" ]] || [[ $* =~ "outdated" ]]; then
-      sketchybar --trigger brew_upgrade
-  fi
-}
-# -------------------------------------------------------------------
-#  Get my current IP address(es)
-# -------------------------------------------------------------------
-function myip() {
-	if [[ "$(uname)" == "Darwin" ]];
-	then
-		ifconfig lo0 | grep 'inet ' | sed -e 's/:/ /' | awk '{print "lo0       : " $2}'
-		ifconfig en0 | grep 'inet ' | sed -e 's/:/ /' | awk '{print "en0 (IPv4): " $2 " " $3 " " $4 " " $5 " " $6}'
-		ifconfig en0 | grep 'inet6 ' | sed -e 's/ / /' | awk '{print "en0 (IPv6): " $2 " " $3 " " $4 " " $5 " " $6}'
-		ifconfig en1 | grep 'inet ' | sed -e 's/:/ /' | awk '{print "en1 (IPv4): " $2 " " $3 " " $4 " " $5 " " $6}'
-		ifconfig en1 | grep 'inet6 ' | sed -e 's/ / /' | awk '{print "en1 (IPv6): " $2 " " $3 " " $4 " " $5 " " $6}'
-	else
-  		ip addr show dev lo | grep 'inet ' | sed -e 's/:/ /' | awk '{print "lo       : " $2}'
-  		ip addr show dev eth0 | grep 'inet ' | sed -e 's/:/ /' | awk '{print "eth0 (IPv4): " $2 " " $3 " " $4 " " $5 " " $6}'
-  		ip addr show dev eth0 | grep 'inet6 ' | sed -e 's/ / /' | awk '{print "eth0 (IPv6): " $2 " " $3 " " $4 " " $5 " " $6}'
-  		ip addr show dev wlan0 | grep 'inet6 ' | sed -e 's/ / /' | awk '{print "wlan0 (IPv6): " $2 " " $3 " " $4 " " $5 " " $6}'
-  		ip addr show dev wlan0 | grep 'inet ' | sed -e 's/:/ /' | awk '{print "wlan0 (IPv4): " $2 " " $3 " " $4 " " $5 " " $6}'
-	fi
-}
-
 # -------------------------------------------------------------------
 #  Code review TODO: use git repo?
 # -------------------------------------------------------------------
@@ -219,7 +192,6 @@ function init_ssh_agent {
 # -------------------------------------------------------------------
 # Function for searching running processes 
 # -------------------------------------------------------------------
-
 any() {
     emulate -L zsh
     unsetopt KSH_ARRAYS
@@ -250,7 +222,7 @@ vmi() {
     local versions=$(asdf list-all $lang | fzf --tac --no-sort --multi)
     if [[ $versions ]]; then
       for version in $(echo $versions);
-      do; asdf install $lang $version; done;
+      do asdf install $lang $version; done;
     fi
   fi
 }
@@ -270,40 +242,8 @@ vmc() {
     local versions=$(asdf list $lang | fzf -m)
     if [[ $versions ]]; then
       for version in $(echo $versions);
-      do; asdf uninstall $lang $version; done;
+      do asdf uninstall $lang $version; done;
     fi
-  fi
-}
-
-# Install (one or multiple) selected application(s)
-# using "brew search" as source input
-# mnemonic [B]rew [I]nstall [P]lugin
-bip() {
-  local inst=$(brew search | fzf -m)
-
-  if [[ $inst ]]; then
-    for prog in $(echo $inst);
-    do; brew install $prog; done;
-  fi
-}
-# Update (one or multiple) selected application(s)
-# mnemonic [B]rew [U]pdate [P]lugin
-bup() {
-  local upd=$(brew leaves | fzf -m)
-
-  if [[ $upd ]]; then
-    for prog in $(echo $upd);
-    do; brew upgrade $prog; done;
-  fi
-}
-# Delete (one or multiple) selected application(s)
-# mnemonic [B]rew [C]lean [P]lugin (e.g. uninstall)
-bcp() {
-  local uninst=$(brew leaves | fzf -m)
-
-  if [[ $uninst ]]; then
-    for prog in $(echo $uninst);
-    do; brew uninstall $prog; done;
   fi
 }
 

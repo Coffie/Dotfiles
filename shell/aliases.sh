@@ -5,7 +5,6 @@ else
     source $HOME/.dotfiles/shell/aliases.linux.sh
 fi
 
-
 # ----------------------------------------------------------------------
 # Directory navigation/information
 # ----------------------------------------------------------------------

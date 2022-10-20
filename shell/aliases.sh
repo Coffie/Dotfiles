@@ -38,6 +38,16 @@ alias 8='cd -8'
 alias 9='cd -9'
 
 # ----------------------------------------------------------------------
+# Docker/Docker Compose
+# ----------------------------------------------------------------------
+alias dcrun="docker-compose -f /docker/docker-compose.yml"
+alias dcps="docker-compose ps"
+alias dclogs="dcrun logs -tf --tail='50'"
+alias dcup="dcrun up -d --build --remove-orphans"
+alias dcdown="dcrun down --remove-orphans"
+alias dcrec="dcrun up -d --force-recreate"
+
+# ----------------------------------------------------------------------
 # Tmux
 # ----------------------------------------------------------------------
 alias ta='tmux attach -t'

@@ -57,8 +57,8 @@ source "$HOME/.shell/aliases.sh"
 source "$HOME/.zsh/settings.zsh"
 
 # Local customization after
-if [[ -f "$HOME/.zshrc_local_after" ]]; then
-    source "$HOME/.zshrc_local_after"
+if [[ -f "$HOME/.zshrc_local" ]]; then
+    source "$HOME/.zshrc_local"
 fi
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

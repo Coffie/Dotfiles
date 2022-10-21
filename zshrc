@@ -43,6 +43,12 @@ source $ZPLUGINDIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
 # source $ZPLUGINDIR/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source $ZPLUGINDIR/powerlevel10k/powerlevel10k.zsh-theme
 
+# Function to update plugins
+update_zsh() {
+    cd $HOME/.zsh/plugins
+    ls | xargs -P10 -I{} git -C {} pull
+    cd -
+}
 # Source external zsh files
 # Shell functions
 source "$HOME/.shell/functions.sh"

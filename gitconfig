@@ -28,6 +28,7 @@
 	cl = clone
 	ci = commit
 	cm = "commit -m"
+    cam = commit -a -m
 	cp = cherry-pick
 	wdiff = diff --word-diff
 	dc = diff --cached

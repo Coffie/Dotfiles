@@ -49,6 +49,7 @@ update_zsh() {
     ls | xargs -P10 -I{} git -C {} pull
     cd -
 }
+
 # Source external zsh files
 # Shell functions
 source "$HOME/.shell/functions.sh"

@@ -38,23 +38,24 @@ yabai -m config external_bar                 all:25:0
 yabai -m config top_paddign 32
 
 # Do not manage certain applications
-yabai -m rule --add label="Steam" app="^Steam$" manage=off
-yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
-yabai -m rule --add app="System Preferences" manage=off
-yabai -m rule --add label="System Preferences" app="^System Preferences$" manage=off
-yabai -m rule --add label="App Store" app="^App Store$" manage=off
-yabai -m rule --add label="Activity Monitor" app="^Activity Monitor$" manage=off
-yabai -m rule --add label="Calculator" app="^Calculator$" manage=off
-yabai -m rule --add label="Dictionary" app="^Dictionary$" manage=off
-yabai -m rule --add label="Software Update" title="Software Update" manage=off
-yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
-yabai -m rule --add label="Plex Media Player" app="^Plex Media Player$" manage=off
+yabai -m rule --add app="^Steam$" manage=off
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^App Store$" manage=off
+yabai -m rule --add app="^Activity Monitor$" manage=off
+yabai -m rule --add app="^Calculator$" manage=off
+yabai -m rule --add app="^Dictionary$" manage=off
+yabai -m rule --add app="System Information" manage=off
+yabai -m rule --add app="^Plex$" manage=off
+yabai -m rule --add app="^VLC$" manage=off
+# Don't manage certain windows in applications
+yabai -m rule --add app="^rekordbox$" title="Preferences" manage=off
+yabai -m rule --add app="^Finder$" title="(Co(py|nnect)|Move|Info|Finder Settings)" manage=off
 
 yabai -m space 1 --label code
 yabai -m space 2 --label web
 yabai -m space 3 --label comm
 yabai -m space 4 --label doc
-yabai -m space 4 --label doc
 
+# yabai -m query --windows | jq ".[] | { App: .app, Title: .title }"
 
 echo "yabai configuration loaded.."

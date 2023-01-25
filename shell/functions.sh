@@ -67,6 +67,16 @@ jdk() {
   java -version
 }
 
+# Convert files in folder using ffmpeg
+convert_audio() {
+    input=$1
+    output=$2
+    for f in *.$input; do
+        mkdir -p out
+        filename="out/${f%.$input}.$output"
+        ffmpeg -i "${f}" -write_id3v2 1 -c:v copy "${filename}"
+    done
+}
 # -------------------------------------------------------------------
 #  Code review TODO: use git repo?
 # -------------------------------------------------------------------
@@ -143,7 +153,7 @@ function code-review () {
   echo -ne "\e[?1049l"
 }
 # -------------------------------------------------------------------
-#  Convert magnet to torrent 
+#  Convert magnet to torrent
 # -------------------------------------------------------------------
 function magnet_to_torrent() {
     [[ "$1" =~ xt=urn:brih:([^\&/]+) ]] || return 1
@@ -190,7 +200,7 @@ function init_ssh_agent {
 }
 
 # -------------------------------------------------------------------
-# Function for searching running processes 
+# Function for searching running processes
 # -------------------------------------------------------------------
 any() {
     emulate -L zsh

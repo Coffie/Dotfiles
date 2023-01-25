@@ -10,6 +10,9 @@ alias bic="brew install --cask"
 # ----------------------------------------------------------------------
 # Etc.
 # ----------------------------------------------------------------------
+alias bei="beet import"
+alias beiv="beet -v import"
+alias blz="beet ls | fzf"
 alias dsd="find . -name '*.DS_Store' -type f -delete"
 alias cpwd="pwd | tr -d '\n' | pbcopy"
 

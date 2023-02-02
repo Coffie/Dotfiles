@@ -21,11 +21,7 @@
     ~/.shell: shell/
     ~/.zsh: zsh/
     ~/.psqlrc: psqlrc
-    ~/.hammerspoon: 
-      if: '[ `uname` = Darwin ]'
-      path: mac/hammerspoon/
     ~/.p10k.zsh: p10k.zsh
-    ~/.yabairc: mac/yabairc
     ~/.ideavimrc: ideavimrc
     ~/.config/:
       glob: true
@@ -33,7 +29,7 @@
 
 - create:
   - ~/dev
-  - ~/.vim/undo-history
+  - ~/.vim/undodir
   - ~/.zshrc_local
   - ~/.gitconfig_local
 

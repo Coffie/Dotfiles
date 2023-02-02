@@ -1,3 +1,5 @@
+# USE WITH CAUTION.
+# Some settings here can mess up some system defaults
 #! /usr/bin/env bash
 
 # Todo: set this somewhere else

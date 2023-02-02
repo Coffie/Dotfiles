@@ -63,7 +63,6 @@ alias tkss='tmux kill-session -t'
 alias histg="history | grep" # Search through history
 alias szsh="source $HOME/.zshrc" # Source .zshrc
 alias zshc="vim $HOME/.zshrc"
-alias vime="vim $HOME/.vimrc"
 alias please='sudo'
 alias man='nocorrect man'
 alias md='mkdir -p'

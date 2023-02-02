@@ -49,6 +49,7 @@ yabai -m rule --add app="^Plex$" manage=off
 yabai -m rule --add app="^VLC$" manage=off
 # Don't manage certain windows in applications
 yabai -m rule --add app="^rekordbox$" title="Preferences" manage=off
+yabai -m rule --add app="^Live$" title="Preferences" manage=off
 yabai -m rule --add app="^Finder$" title="(Co(py|nnect)|Move|Info|Finder Settings)" manage=off
 
 yabai -m space 1 --label code

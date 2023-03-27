@@ -3,6 +3,9 @@ local keymap = vim.keymap
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
 
+-- reload nvim config
+keymap.set("n", "<leader><leader>ss", ":source $MYVIMRC<CR>")
+
 -- clear search highlights
 keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 

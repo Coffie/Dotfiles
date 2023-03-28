@@ -12,7 +12,11 @@ lsp.ensure_installed({
   'kotlin_language_server',
   'pylsp',
   'sqlls',
-  'sumneko_lua',
+  'html',
+  'cssls',
+  'cssmodules_ls',
+  'docker_compose_language_service',
+  'gradle_ls',
 })
 
 local cmp = require('cmp')

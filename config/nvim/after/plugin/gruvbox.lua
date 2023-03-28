@@ -1,2 +1,8 @@
-vim.o.termguicolors = true
-vim.cmd [[ colorscheme gruvbox ]]
+require("gruvbox").setup({
+    italic = {
+        comments = false,
+        strings = false,
+        operators = false,
+    }
+})
+vim.cmd.colorscheme("gruvbox")

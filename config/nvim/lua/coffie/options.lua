@@ -7,6 +7,8 @@ opt.guicursor = ""
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)
+-- syntax on
+-- opt.syntax = enable
 
 -- tabs & indentation
 opt.tabstop = 4 -- 4 spaces for tabs (prettier default)
@@ -34,7 +36,6 @@ opt.incsearch = true
 opt.cursorline = true -- highlight the current cursor line
 
 -- appearance
-
 opt.laststatus = 2 -- last window will always have a status line
 opt.showcmd = true -- show (partial) command in the last line of the screen
 

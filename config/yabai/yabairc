@@ -51,7 +51,7 @@ yabai -m rule --add app="^VLC$" manage=off
 yabai -m rule --add app="^rekordbox$" title="Preferences" manage=off
 yabai -m rule --add app="^Live$" title="Preferences" manage=off
 yabai -m rule --add app="^Finder$" title="(Co(py|nnect)|Move|Info|Finder Settings)" manage=off
-yabai -m rule --add app="^IntelliJ IDEA$" title="Preferences" manage=off
+yabai -m rule --add app="^IntelliJ IDEA$" title="Preferences|Settings" manage=off
 
 yabai -m space 1 --label code
 yabai -m space 2 --label web

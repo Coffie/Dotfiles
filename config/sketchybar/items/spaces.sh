@@ -1,6 +1,6 @@
 #! /user/bin/env sh
 
-SPACE_ICONS=("$COMM_ICON" "$CODE_ICON" "$WEB_ICON" "4" "5" "6" "7" "8" "9" "10")
+SPACE_ICONS=("$COMM_ICON" "$WEB_ICON" "$CODE_ICON" "4" "5" "6" "7" "8" "9" "10")
 
 for i in "${!SPACE_ICONS[@]}"
 do

@@ -10,3 +10,4 @@ source "$HOME/.bash/prompt.bash"
 source "$HOME/.bash/settings.bash"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export PATH="$PATH:/Users/cbn/bin"

@@ -83,3 +83,4 @@ fi
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 # Source any custom bash scripts completions below
+export PATH="$PATH:/Users/cbn/bin"

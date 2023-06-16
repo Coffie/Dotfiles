@@ -1,6 +1,16 @@
 # Reload yabai, skhd and sketchybar
 lalt + ctrl + shift - r : brew services restart yabai && brew services restart skhd && brew services restart sketchybar
 
+# Change default browser
+fn - 1 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt firefoxdeveloperedition
+fn - 2 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt firefox
+fn - 3 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt dev
+fn - 4 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt safari
+fn - 5 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt edgemac
+
+# Toggle darkmode with fn - `
+fn - 0x32 : osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'
+
 # Focus windows
 lalt - h : yabai -m window --focus west
 lalt - j : yabai -m window --focus south

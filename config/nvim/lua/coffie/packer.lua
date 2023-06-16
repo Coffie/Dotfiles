@@ -23,6 +23,7 @@ return require('packer').startup(function(use)
   use "tpope/vim-commentary"
   use "tpope/vim-surround"
   use "airblade/vim-gitgutter"
+  use "f-person/auto-dark-mode.nvim"
   use("nvim-treesitter/nvim-treesitter", {run = ':TSUpdate'})
   use {
     "nvim-telescope/telescope.nvim",

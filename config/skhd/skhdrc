@@ -1,12 +1,12 @@
 # Reload yabai, skhd and sketchybar
-lalt + ctrl + shift - r : brew services restart yabai && brew services restart skhd && brew services restart sketchybar
+lalt + ctrl + shift - r : yabai --restart-service && skhd --restart-service && brew services restart sketchybar
 
 # Change default browser
-fn - 1 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt firefoxdeveloperedition
-fn - 2 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt firefox
+fn - 1 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt firefox
+fn - 2 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt edgemac
 fn - 3 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt dev
 fn - 4 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt safari
-fn - 5 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt edgemac
+fn - 5 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt firefoxdeveloperedition
 
 # Toggle darkmode with fn - `
 fn - 0x32 : osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'
@@ -30,21 +30,18 @@ cmd + shift - k : yabai -m window --swap north
 cmd + shift - l : yabai -m window --swap east
 
 # Send to spaces
-shift + lalt - p : yabai -m window --space prev; skhd -k "ctrl - 0x7B"
-shift + lalt - n : yabai -m window --space next; skhd -k "ctrl - 0x7C"
+shift + lalt - p : yabai -m window --space prev; skhd -k "ctrl - 0x7B"
+shift + lalt - n : yabai -m window --space next; skhd -k "ctrl - 0x7C"
 shift + lalt - 1 : yabai -m window --space 1; skhd -k "ctrl - 1"
 shift + lalt - 2 : yabai -m window --space 2; skhd -k "ctrl - 2"
 shift + lalt - 3 : yabai -m window --space 3; skhd -k "ctrl - 3"
 shift + lalt - 4 : yabai -m window --space 4; skhd -k "ctrl - 4"
 shift + lalt - 5 : yabai -m window --space 5; skhd -k "ctrl - 5"
 shift + lalt - 6 : yabai -m window --space 6; skhd -k "ctrl - 6"
-
-# Focus spaces
-lalt - 2 : osascript -e 'tell application "System Events" to key code 19 using control down'
-lalt - 3 : osascript -e 'tell application "System Events" to key code 20 using control down'
-lalt - 4 : osascript -e 'tell application "System Events" to key code 21 using control down'
-lalt - 5 : osascript -e 'tell application "System Events" to key code 22 using control down'
-lalt - 6 : osascript -e 'tell application "System Events" to key code 23 using control down'
+shift + lalt - 7 : yabai -m window --space 7; skhd -k "ctrl - 7"
+shift + lalt - 8 : yabai -m window --space 8; skhd -k "ctrl - 8"
+shift + lalt - 9 : yabai -m window --space 9; skhd -k "ctrl - 9"
+shift + lalt - 0 : yabai -m window --space 10; skhd -k "ctrl - 0"
 
 # Window manipulation
 lalt + ctrl - d : yabai -m window --toggle zoom-parent

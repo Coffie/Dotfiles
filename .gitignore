@@ -16,6 +16,9 @@ config/nvim/plugged/*
 # Ignore karabiner backups
 config/karabiner/automatic_backups
 
+# Ignore secrets in beets config
+config/beets/*.json
+
 # Ignore tmux plugins
 tmux/plugins/*
 tmux/resurrect

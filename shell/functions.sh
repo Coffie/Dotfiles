@@ -67,14 +67,26 @@ jdk() {
   java -version
 }
 
+test_flac() {
+    for f in *.flac; do
+        flac --test --warnings-as-errors $f
+    done
+}
 # Convert files in folder using ffmpeg
 convert_audio() {
     input=$1
     output=$2
+    folder_done="${1}-done"
+    folder_out="${2}s"
+    mkdir -p $folder_out 
+    mkdir -p $folder_done
     for f in *.$input; do
-        mkdir -p out
-        filename="out/${f%.$input}.$output"
+        if [[ $input -eq "flac" ]]; do
+            flac --test --warnings-as-errors $f
+        done
+        filename="$folder_out/${f%.$input}.$output"
         ffmpeg -i "${f}" -write_id3v2 1 -c:v copy "${filename}"
+        mv $f $folder_done
     done
 }
 

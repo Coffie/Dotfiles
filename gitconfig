@@ -2,9 +2,8 @@
     path = ~/.gitconfig_local
 
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = ~/.gitignore_global
-	mergetool = vim
     ignorecase = false
     autocrlf = false
     eol = lf
@@ -51,9 +50,10 @@
 	autosetuprebase = always
 
 [diff]
-    tool = vimdiff
+    tool = nvimdiff2
+
 [merge]
-	tool = vim
+	tool = nvim
 
 [push]
 	# push will only do the current branch, not all branches

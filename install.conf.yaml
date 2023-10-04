@@ -6,6 +6,7 @@
 - clean: ['~', '~/.config']
 
 - link:
+    ~/.asdfrc: asdfrc
     ~/.bash_profile: bash_profile
     ~/.bashrc: bashrc
     ~/.bash: bash
@@ -23,6 +24,9 @@
     ~/.psqlrc: psqlrc
     ~/.p10k.zsh: p10k.zsh
     ~/.ideavimrc: ideavimrc
+    ~/bin: 
+      glob: true
+      path: bin/*
     ~/.config/:
       glob: true
       path: config/*
@@ -30,8 +34,6 @@
 - create:
   - ~/dev
   - ~/.vim/undodir
-  - ~/.zshrc_local
-  - ~/.gitconfig_local
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

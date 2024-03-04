@@ -50,6 +50,9 @@ yabai -m rule --add app="^rekordbox$" title="Preferences" manage=off
 yabai -m rule --add app="^Live$" title="Preferences" manage=off
 yabai -m rule --add app="^Finder$" title="(Co(py|nnect)|Move|Info|Finder Settings)" manage=off
 yabai -m rule --add app="^IntelliJ IDEA$" title="Preferences|Settings" manage=off
+yabai -m rule --add app="^Microsoft Teams classic$" title="Microsoft Teams Notification" manage=off
+# Does not work on popup window when not focusing a meeting
+# yabai -m rule --add app="^Microsoft Teams classic$" title="^.+ \| Microsoft Teams$" manage=off
 
 yabai -m space 1 --label code
 yabai -m space 2 --label web
@@ -57,5 +60,7 @@ yabai -m space 3 --label comm
 yabai -m space 4 --label doc
 
 # yabai -m query --windows | jq ".[] | { App: .app, Title: .title }"
+yabai -m signal --add event=window_created action="sketchybar -m --trigger window_change &> /dev/null"
+yabai -m signal --add event=window_destroyed action="sketchybar -m --trigger window_change &> /dev/null"
 
 echo "yabai configuration loaded.."

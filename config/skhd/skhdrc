@@ -2,11 +2,11 @@
 lalt + ctrl + shift - r : yabai --restart-service && skhd --restart-service && brew services restart sketchybar
 
 # Change default browser
-fn - 1 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt firefox
+fn - 1 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt firefoxdeveloperedition
 fn - 2 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt edgemac
-fn - 3 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt dev
-fn - 4 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt safari
-fn - 5 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt firefoxdeveloperedition
+fn - 3 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt firefox
+fn - 4 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt dev
+fn - 5 : osascript ~/.dotfiles/bin/DefaultBrowserAcceptScript.scpt safari
 
 # Toggle darkmode with fn - `
 fn - 0x32 : osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'

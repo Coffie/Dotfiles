@@ -81,13 +81,28 @@ convert_audio() {
     mkdir -p $folder_out 
     mkdir -p $folder_done
     for f in *.$input; do
-        if [[ $input -eq "flac" ]]; do
+        if [[ "$input" == "flac" ]]; then
             flac --test --warnings-as-errors $f
-        done
+        fi
         filename="$folder_out/${f%.$input}.$output"
         ffmpeg -i "${f}" -write_id3v2 1 -c:v copy "${filename}"
         mv $f $folder_done
     done
+}
+
+convert_heic_to_jpeg() {
+    local heic_file="$1"
+    local base_name="${heic_file%.*}"
+    local extension="${heic_file##*.}"
+    local jpeg_file
+
+    if [[ -f "$heic_file" && "$extension" =~ [hH][eE][iI][cC] ]]; then
+        jpeg_file="${base_name}.jpeg"
+        sips -s format jpeg "$heic_file" --out "$jpeg_file"
+        echo "Converted: $heic_file to $jpeg_file"
+    else
+        echo "Skipped: $heic_file (not a .heic file)"
+    fi
 }
 
 # -------------------------------------------------------------------

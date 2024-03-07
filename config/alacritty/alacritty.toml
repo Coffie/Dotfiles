@@ -1,0 +1,12 @@
+[font]
+size = 18
+
+[font.normal]
+family = "Inconsolata Nerd Font Mono"
+
+[window]
+decorations = "none"
+
+[window.padding]
+x = 7
+y = 0

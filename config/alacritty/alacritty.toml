@@ -1,3 +1,7 @@
+import = [
+    "~/.config/alacritty/themes/themes/blood_moon.toml"
+]
+
 [font]
 size = 18
 
@@ -10,3 +14,4 @@ decorations = "none"
 [window.padding]
 x = 7
 y = 0
+

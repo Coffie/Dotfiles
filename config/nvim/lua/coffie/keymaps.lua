@@ -13,7 +13,7 @@ keymap.set('n', '<leader>h', ':nohlsearch<CR>')
 keymap.set('i', 'jk', '<ESC>')
 
 -- delete single character without copying into register
--- vim.keymap.set('n', 'x', '"_x')
+vim.keymap.set('n', "<leader>x", '"_x')
 
 -- increment/decrement numbers
 keymap.set("n", "<leader>+", "<C-a>") -- increment
@@ -48,25 +48,28 @@ keymap.set("n", "N", "Nzzzv")
 -- replace visual selection and keep yank register
 keymap.set("x", "<leader>p", "\"_dP")
 
--- yank to system clipboard
-keymap.set("n", "<leader>y", "\"+y")
-keymap.set("v", "<leader>y", "\"+y")
-keymap.set("n", "<leader>Y", "\"+Y")
-
 -- delete to void register
 keymap.set("n", "<leader>d", "\"_d")
 keymap.set("v", "<leader>d", "\"_d")
-
-keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-
--- quickfix navigation
-keymap.set("n", "<leader>j", "<cmd>cnext<CR>zz")
-keymap.set("n", "<leader>k", "<cmd>cprev<CR>zz")
-keymap.set("n", "<leader><leader>j", "<cmd>lnext<CR>zz")
-keymap.set("n", "<leader><leader>k", "<cmd>lprev<CR>zz")
 
 -- replace word under cursor with regex
 keymap.set("n", "<leader>c", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 
 -- make current file executable
-keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+keymap.set("n", "<leader>xx", "<cmd>!chmod +x %<CR>", { silent = true })
+
+-- todo: need script for this 
+-- keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+
+-- todo: not needed? auto yanks to clipboard
+-- yank to system clipboard
+-- keymap.set("n", "<leader>y", "\"+y")
+-- keymap.set("v", "<leader>y", "\"+y")
+-- keymap.set("n", "<leader>Y", "\"+Y")
+
+-- todo: check usability
+-- quickfix navigation
+-- keymap.set("n", "<leader>j", "<cmd>cnext<CR>zz")
+-- keymap.set("n", "<leader>k", "<cmd>cprev<CR>zz")
+-- keymap.set("n", "<leader><leader>j", "<cmd>lnext<CR>zz")
+-- keymap.set("n", "<leader><leader>k", "<cmd>lprev<CR>zz")

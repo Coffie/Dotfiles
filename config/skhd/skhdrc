@@ -62,3 +62,7 @@ fn - h : skhd -k "left"
 fn - j : skhd -k "down"
 fn - k : skhd -k "up"
 fn - l : skhd -k "right"
+
+.blacklist [
+    "modulaser"
+]

@@ -1,1 +1,2 @@
-require('coffie')
+require("coffie.config")
+require("coffie.lazy")

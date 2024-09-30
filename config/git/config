@@ -1,0 +1,63 @@
+[core]
+	editor = nvim
+	excludesfile = ~/.config/git/ignore
+    ignorecase = false
+    autocrlf = false
+    eol = lf
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	ui = true
+[checkout]
+    defaultRemote = origin
+[commit]
+    template = ~/.config/git/committemplate
+[alias]
+    la = "!git config -l | grep alias | cut -c 7-"
+	co = checkout
+	cob = checkout -b
+	s = status --short
+	st = status
+	rv = "remote -v"
+	cl = clone
+	ci = commit
+	cm = "commit -m"
+    cam = commit -a -m
+	cp = cherry-pick
+	wdiff = diff --word-diff
+	dc = diff --cached
+    conflicts = diff --name-only --diff-filter=U
+	local-branches = !git branch -vv | cut -c 3- | awk '$3 !~/\\[/ { print $1 }'
+	recent-branches = !git branch --sort=-committerdate | head
+	authors = !git log --format='%aN <%aE>' | grep -v 'users.noreply.github.com' | sort -u --ignore-case
+	# Log aliases
+	lg = "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+	ls = "log --pretty=format:'%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]' --decorate"
+	ll = "log --pretty=format:'%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]' --decorate --numstat"
+    lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+	lnc = "log --pretty=format:'%h\\ %s\\ [%cn]'"
+	last = "log -1 HEAD --stat"
+[diff]
+    algorithm = patience
+    tool = nvimdiff
+[difftool]
+    prompt = true
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
+[merge]
+    conflictStyle = diff3
+[push]
+	# push will only do the current branch, not all branches
+	default = simple
+[init]
+    defaultBranch = main
+[user]
+    email = "christoffer.nysaether@gmail.com"
+    name = "Christoffer Nysæther"
+[includeIf "gitdir:~/projects/gitlab.tech.dnb.no/"]
+    path = ~/.config/git/dnb
+
+[credential "https://dnb.ghe.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential

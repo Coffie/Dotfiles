@@ -6,10 +6,18 @@
 --   end,
 -- }
 return {
-  "zbirenbaum/copilot.lua",
-  opts = {
-    auth_provider_url = "https://dnb.ghe.com",
-    panel = { enabled = false },
-    suggestion = { enabled = false },
+  {
+    "zbirenbaum/copilot.lua",
+    -- enabled = vim.fn.getcwd():find("dnb.no") ~= nil,
+    opts = {
+      auth_provider_url = "https://dnb.ghe.com",
+      panel = { enabled = false },
+      suggestion = { enabled = false },
+    },
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    -- enabled = vim.fn.getcwd():find("dnb.no") ~= nil,
+    config = true,
   },
 }

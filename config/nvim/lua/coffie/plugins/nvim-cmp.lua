@@ -10,15 +10,13 @@ return {
     },
     "saadparwaiz1/cmp_luasnip",
     "rafamadriz/friendly-snippets",
-    "zbirenbaum/copilot-cmp",
+    -- "zbirenbaum/copilot-cmp",
+    "zbirenbaum/copilot.lua",
   },
   config = function()
     local cmp = require("cmp")
-
     local luasnip = require("luasnip")
-
     require("luasnip.loaders.from_vscode").lazy_load()
-
     cmp.setup({
       completion = {
         completeopt = "menu,menuone,preview,noselect",
@@ -38,8 +36,8 @@ return {
         ["<CR>"] = cmp.mapping.confirm({ select = false }),
       }),
       sources = cmp.config.sources({
+        { name = "copilot" },
         { name = "nvim_lsp" },
-        { name = "copilot-cmp" },
         { name = "luasnip" },
         { name = "buffer" },
         { name = "path" },

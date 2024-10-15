@@ -5,16 +5,16 @@ return {
   dependencies = {
     "windwp/nvim-ts-autotag",
   },
-  config = function ()
+  config = function()
     require("nvim-treesitter.configs").setup({
       -- A list of parser names or "all"
       indent = {
-          enable = true
+        enable = true,
       },
       highlight = {
-          enable = true,
+        enable = true,
       },
-      ensure_installed = { 
+      ensure_installed = {
         "lua",
         "python",
         "vim",
@@ -30,7 +30,7 @@ return {
         "html",
         "javascript",
         "dockerfile",
-        "gitignore"
+        "gitignore",
       },
       incremental_selection = {
         enable = true,
@@ -39,8 +39,8 @@ return {
           node_incremental = "<C-space>",
           scope_incremental = false,
           node_decremental = "<bs>",
-        }
-      }
+        },
+      },
     })
-  end
+  end,
 }

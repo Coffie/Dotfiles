@@ -105,7 +105,7 @@ alias tksv='tmux kill-server'
 alias tkss='tmux kill-session -t'
 
 alias histg="history | grep" # Search through history
-alias szsh="source :$HOME/.zshrc" # Source .zshrc
+alias szsh="source $HOME/.zshrc" # Source .zshrc
 alias zshc="vim $HOME/.zshrc"
 alias please='sudo'
 alias man='nocorrect man'

@@ -1,6 +1,23 @@
-# mkdir and cd into it
-mcd() {
-    mkdir "${1}" && cd "${1}"
+# extract function
+extract () {
+    if [ -f "$1" ] ; then
+        case "$1" in
+            *.tar.bz2)   tar xjf "$1" ;;
+            *.tar.gz)    tar xzf "$1" ;;
+            *.bz2)       bunzip2 "$1" ;;
+            *.rar)       unrar e "$1" ;;
+            *.gz)        gunzip "$1" ;;
+            *.tar)       tar xf "$1" ;;
+            *.tbz2)      tar xjf "$1" ;;
+            *.tgz)       tar xzf "$1" ;;
+            *.zip)       unzip "$1" ;;
+            *.Z)         uncompress "$1" ;;
+            *.7z)        7z e "$1" ;;
+            *)           echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
 }
 
 # Execute a command in a specific directory
@@ -35,41 +52,15 @@ path_prepend() {
     PATH="$1${PATH:+":$PATH"}"
 }
 
-here() {
-    local loc
-    if [ "$#" -eq 1 ]; then
-        loc=$(realpath "$1")
-    else
-        loc=$(realpath ".")
-    fi
-    ln -sfn "${loc}" "$HOME/.shell.here"
-    echo "here -> $(readlink $HOME/.shell.here)"
-}
-
-there="$HOME/.shell.here"
-
-there() {
-    cd "$(readlink "${there}")"
-}
-
 kz() {
     for pid in $(ps axo pid=,stat= | awk '$2~/^Z/ { print $1 }') ; do
-        kill -9  $pid
+        kill -9  "$pid"
     done
-}
-
-# Not in use, asdf manages java
-# Set JDK version
-jdk() {
-  version=$1
-  unset JAVA_HOME;
-  export JAVA_HOME=$(/usr/libexec/java_home -v"$version");
-  java -version
 }
 
 test_flac() {
     for f in *.flac; do
-        flac --test --warnings-as-errors $f
+        flac --test --warnings-as-errors "$f"
     done
 }
 # Convert files in folder using ffmpeg
@@ -78,15 +69,15 @@ convert_audio() {
     output=$2
     folder_done="${1}-done"
     folder_out="${2}s"
-    mkdir -p $folder_out 
-    mkdir -p $folder_done
-    for f in *.$input; do
+    mkdir -p "$folder_out" 
+    mkdir -p "$folder_done"
+    for f in *."$input"; do
         if [[ "$input" == "flac" ]]; then
-            flac --test --warnings-as-errors $f
+            flac --test --warnings-as-errors "$f"
         fi
-        filename="$folder_out/${f%.$input}.$output"
+        filename="$folder_out/${f%."$input"}.$output"
         ffmpeg -i "${f}" -write_id3v2 1 -c:v copy "${filename}"
-        mv $f $folder_done
+        mv "$f" "$folder_done"
     done
 }
 
@@ -185,7 +176,7 @@ vmi() {
     local versions=$(asdf list-all $lang | fzf --tac --no-sort --multi)
     if [[ $versions ]]; then
       for version in $(echo $versions);
-      do asdf install $lang $version; done;
+      do asdf install "$lang" "$version"; done;
     fi
   fi
 }

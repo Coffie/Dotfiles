@@ -115,13 +115,13 @@ alt-7 = "workspace 7"
 alt-8 = "workspace 8"
 alt-9 = "workspace 9"
 alt-0 = "workspace 0"
-alt-e = "workspace E"
-alt-i = "workspace I"
-alt-m = "workspace M"
+alt-e = "workspace E" # Microsoft Edge
 # alt-t = "workspace 􀪏"
-alt-t = "workspace T"
-alt-v = "workspace V"
-alt-w = "workspace W"
+alt-i = "workspace I" # Slack, Teams, Outlook
+alt-m = "workspace M" # Music (Spotify, Apple Music)
+alt-t = "workspace T" # Terminal (WezTerm)
+alt-v = "workspace V" # Codespace (IntelliJ, Xcode)
+alt-w = "workspace W" # Web personal (Firefox, Chrome, Safari)
 alt-x = "workspace X"
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace

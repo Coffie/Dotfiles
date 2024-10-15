@@ -32,6 +32,8 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
+export PATH="$PATH:$HOME/bin"
+
 # FZF
 export FZF_DEFAULT_OPTS="-d 35% --layout reverse --border top" # --tmux bottom,35%"
 export FZF_DEFAULT_COMMAND="fd --hidden --follow --strip-cwd-prefix --exclude .git"

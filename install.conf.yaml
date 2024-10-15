@@ -3,28 +3,27 @@
       create: true
       relink: true
 
-- clean: ['~', '~/.config']
+- clean: ["~", "~/.config"]
 
 - link:
     ~/.asdfrc: asdfrc
     ~/.bash_profile: bash_profile
     ~/.bashrc: bashrc
     ~/.bash: bash
-    ~/.gitconfig: gitconfig
-    ~/.gitignore_global: gitignore_global
-    ~/.dotfiles: ''
+    ~/.dotfiles: ""
     ~/.ackrc: ackrc
     ~/.vim: vim/
     ~/.vimrc: vimrc
     ~/.tmux: tmux/
     ~/.tmux.conf: tmux.conf
     ~/.zshrc: zshrc
+    ~/.zprofile: zprofile
     ~/.shell: shell/
     ~/.zsh: zsh/
     ~/.psqlrc: psqlrc
     ~/.p10k.zsh: p10k.zsh
     ~/.ideavimrc: ideavimrc
-    ~/bin: 
+    ~/bin:
       glob: true
       path: bin/*
     ~/.config/:
@@ -32,8 +31,8 @@
       path: config/*
 
 - create:
-  - ~/dev
-  - ~/.vim/undodir
+    - ~/projects
+    - ~/.vim/undodir
 
 - shell:
-  - [git submodule update --init --recursive, Installing submodules]
+    - [git submodule update --init --recursive, Installing submodules]

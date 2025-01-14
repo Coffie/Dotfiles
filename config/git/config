@@ -57,7 +57,9 @@
     name = "Christoffer Nysæther"
 [includeIf "gitdir:~/projects/gitlab.tech.dnb.no/"]
     path = ~/.config/git/dnb
-
 [credential "https://dnb.ghe.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.dnb.ghe.com"]
 	helper = 
 	helper = !/opt/homebrew/bin/gh auth git-credential

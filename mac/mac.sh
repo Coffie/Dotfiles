@@ -1,9 +1,8 @@
-# USE WITH CAUTION.
-# Some settings here can mess up some system defaults
 #! /usr/bin/env bash
-
+# TODO: new defaults verifed on top
 # Todo: set this somewhere else
 COMPUTER_NAME="house"
+
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
 # get current user for some configurations
@@ -15,15 +14,24 @@ sudo -v
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-###############################################################################
-# General UI/UX                                                               #
-###############################################################################
+defaults write com.apple.dock expose-group-apps -bool true # for aerospace and mission control
 
 # Set computer name (as done via System Preferences → Sharing)
 # sudo scutil --set ComputerName "$COMPUTER_NAME"
 # sudo scutil --set HostName "$COMPUTER_NAME"
 # sudo scutil --set LocalHostName "$COMPUTER_NAME"
 # sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "$COMPUTER_NAME"
+
+# OLD SCRIPT BELOW THIS LINE ###############################################
+# USE WITH CAUTION.
+# Some settings here can mess up some system defaults
+
+
+
+###############################################################################
+# General UI/UX                                                               #
+###############################################################################
+
 
 # Set language and text formats
 defaults write NSGlobalDomain AppleLanguages -array "en-US" "nb-NO"

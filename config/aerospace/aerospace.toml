@@ -118,11 +118,11 @@ alt-0 = "workspace 0"
 alt-e = "workspace E" # Microsoft Edge
 # alt-t = "workspace 􀪏"
 alt-i = "workspace I" # Slack, Teams, Outlook
-alt-m = "workspace M" # Music (Spotify, Apple Music)
+alt-m = "workspace M" # Music (Spotify, Apple Music, Ableton, Rekordbox)
 alt-t = "workspace T" # Terminal (WezTerm)
-alt-v = "workspace V" # Codespace (IntelliJ, Xcode)
+alt-v = "workspace V" # Visuals (Resolume, Modulaser, LaserShowgen)
 alt-w = "workspace W" # Web personal (Firefox, Chrome, Safari)
-alt-x = "workspace X"
+alt-x = "workspace X" # Codespace (IntelliJ, Xcode)
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = "move-node-to-workspace 1"
@@ -181,10 +181,6 @@ alt-shift-k = ["join-with up", "mode main"]
 alt-shift-l = ["join-with right", "mode main"]
 
 [[on-window-detected]]
-if.app-id = "com.github.wez.wezterm"
-run = "move-node-to-workspace T"
-
-[[on-window-detected]]
 if.app-id = "com.microsoft.edgemac"
 run = "move-node-to-workspace E"
 
@@ -201,9 +197,53 @@ if.app-id = "com.microsoft.Outlook"
 run = "move-node-to-workspace I"
 
 [[on-window-detected]]
-if.app-id = "com.jetbrains.intellij"
+if.app-id = "com.spotify.client"
+run = "move-node-to-workspace M"
+
+[[on-window-detected]]
+if.app-id = "com.apple.Music"
+run = "move-node-to-workspace M"
+
+[[on-window-detected]]
+if.app-id = "com.ableton.live"
+run = "move-node-to-workspace M"
+
+[[on-window-detected]]
+if.app-id = "com.pioneerdj.rekordboxdj"
+run = "move-node-to-workspace M"
+
+[[on-window-detected]]
+if.app-id = "com.github.wez.wezterm"
+run = "move-node-to-workspace T"
+
+[[on-window-detected]]
+if.app-id = "nl.volst.modulaser"
 run = "move-node-to-workspace V"
 
 [[on-window-detected]]
-if.app-id = "com.apple.dt.Xcode"
+if.app-id = "lasershowgen"
 run = "move-node-to-workspace V"
+
+[[on-window-detected]]
+if.app-id = "com.resolume.arena"
+run = "move-node-to-workspace V"
+
+[[on-window-detected]]
+if.app-id = "com.jetbrains.intellij"
+run = "move-node-to-workspace X"
+
+[[on-window-detected]]
+if.app-id = "com.apple.dt.Xcode"
+run = "move-node-to-workspace X"
+
+[[on-window-detected]]
+if.app-id = "net.whatsapp.WhatsApp"
+run = "move-node-to-workspace 9"
+
+[[on-window-detected]]
+if.app-id = "com.apple.MobileSMS"
+run = "move-node-to-workspace 9"
+
+[[on-window-detected]]
+if.app-id = "com.apple.FaceTime"
+run = "move-node-to-workspace 9"

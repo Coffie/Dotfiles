@@ -117,7 +117,7 @@ set undolevels=1000
 
 " Looks
 set t_Co=256 " Tell Vim that the terminal supports 256 colors
-colorscheme badwolf
+" colorscheme badwolf
 "
 
 set autoindent " automatically set indent at new line

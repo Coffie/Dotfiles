@@ -1,7 +1,8 @@
-" Set ',' to leader key
-let mapleader = ","
+" Set ' ' to leader key
+let mapleader = " "
 set commentary
 set surround
+set NERDTree
 
 " Yank and paste from system clipboard with leader prefix
 nnoremap <leader>yy "+yy
@@ -16,6 +17,15 @@ vnoremap <leader>P "+P
 nnoremap <leader>dd "+dd
 vnoremap <leader>d "+d
 
+" Fuzzier config for telescope like navigation
+map <Leader>pf <action>(com.mituuz.fuzzier.Fuzzier)
+map <Leader>mf <action>(com.mituuz.fuzzier.FuzzyMover)
+map <Leader>gf <action>(com.mituuz.fuzzier.FuzzierVCS)
+map <Leader>pg <action>(com.mituuz.fuzzier.FuzzyGrep)
+
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 " Uncomment if normal yank and paste should be prefixed with <leader>
 " nnoremap <leader>yy yy
 " vnoremap <leader>y y

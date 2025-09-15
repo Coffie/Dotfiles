@@ -166,4 +166,5 @@ tags
 # IDE files
 # PyCharm
 .idea/
+.tool-versions
 

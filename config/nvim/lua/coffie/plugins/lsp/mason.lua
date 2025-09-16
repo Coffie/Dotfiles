@@ -17,28 +17,28 @@ return {
         },
       },
     })
-    mason_lspconfig.setup({
-      ensure_installed = {
-        "html",
-        "lua_ls",
-        "pyright",
-      },
-    })
+    mason_lspconfig.setup({})
+
     mason_tool_installer.setup({
       ensure_installed = {
-        "golangci-lint",
-        "bash-language-server",
+        -- LSP Servers
+        "html",
         "lua-language-server",
+        "pyright",
+        "gopls",
+        "bash-language-server",
         "vim-language-server",
+        "kotlin-lsp",
+
+        -- Linters / formatters
+        "golangci-lint",
         "prettier",
         "stylua",
         "isort",
         "black",
         "pylint",
-        "gopls",
         "staticcheck",
         "ktlint",
-        "kotlin-lsp",
       },
     })
   end,

@@ -13,7 +13,6 @@
     defaultRemote = origin
 [commit]
     # template = ~/.config/git/committemplate
-    template = ~/.git_dnb_commit_template
 [alias]
     la = "!git config -l | grep alias | cut -c 7-"
 	co = checkout
@@ -54,11 +53,5 @@
 [init]
     defaultBranch = main
 [user]
-    email = "christoffer.nysaether@gmail.com"
+    email = "github@nysaether.no"
     name = "Christoffer Nysæther"
-[includeIf "gitdir:~/projects/gitlab.tech.dnb.no/"]
-    path = ~/.config/git/dnb
-[credential "https://dnb.ghe.com"]
-	helper = !/opt/homebrew/bin/gh auth git-credential
-[credential "https://gist.dnb.ghe.com"]
-	helper = !/opt/homebrew/bin/gh auth git-credential

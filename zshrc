@@ -7,6 +7,9 @@ fi
 
 # Plugin directory
 ZPLUGINDIR=$HOME/.zsh/plugins
+if [[ ! -d $ZPLUGINDIR ]]; then
+    mkdir -p $ZPLUGINDIR
+fi
 # List of plugins to install
 ZPLUGINS=(
     "zsh-users/zsh-autosuggestions"
@@ -48,12 +51,15 @@ fi
 [ -f ~/.p10k.zsh ] && source ~/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+fpath=($HOME/.zfunc $fpath)
 # fpath & compinit
 fpath=($ZPLUGINDIR/zsh-completions/src $fpath)
 if type brew &>/dev/null
 then
   fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 fi
+
+typeset -U fpath
 
 # autocompletion
 autoload -U +X compinit && compinit

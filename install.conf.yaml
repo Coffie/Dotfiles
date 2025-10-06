@@ -33,6 +33,7 @@
 - create:
     - ~/projects
     - ~/.vim/undodir
+    - ~/.zfunc
 
 - shell:
     - [git submodule update --init --recursive, Installing submodules]

@@ -24,7 +24,7 @@ return {
         -- LSP Servers
         "html",
         "lua-language-server",
-        "pyright",
+        "basedpyright",
         "gopls",
         "bash-language-server",
         "vim-language-server",

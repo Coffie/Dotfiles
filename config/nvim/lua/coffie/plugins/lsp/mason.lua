@@ -17,20 +17,18 @@ return {
         },
       },
     })
-    mason_lspconfig.setup({})
+    mason_lspconfig.setup({
+      ensure_installed = {
+        "basedpyright",
+        "lua_ls",
+        "gopls",
+        "bashls",
+        "vimls",
+      },
+    })
 
     mason_tool_installer.setup({
       ensure_installed = {
-        -- LSP Servers
-        "html",
-        "lua-language-server",
-        "basedpyright",
-        "gopls",
-        "bash-language-server",
-        "vim-language-server",
-        "kotlin-lsp",
-
-        -- Linters / formatters
         "golangci-lint",
         "prettier",
         "stylua",
@@ -38,8 +36,11 @@ return {
         "black",
         "pylint",
         "staticcheck",
-        "ktlint",
       },
     })
+
+    for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
+      pcall(vim.lsp.enable, server)
+    end
   end,
 }

@@ -3,101 +3,113 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
-    { "antosha417/nvim-lsp-file-operations", config = true },
     { "folke/neodev.nvim", opts = {} },
-    "williamboman/mason-lspconfig.nvim",
   },
 
   config = function()
-    local lspconfig = require("lspconfig")
-    local mason_lspconfig = require("mason-lspconfig")
-    local cmp_nvim_lsp = require("cmp_nvim_lsp")
-    local keymap = vim.keymap
+    local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-    vim.api.nvim_create_autocmd("LspAttach", {
-      group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-      callback = function(ev)
-        -- Buffer local mappings.
-        -- See `:help vim.lsp.*` for documentation on any of the below functions
-        local opts = { buffer = ev.buf, silent = true }
-
-        -- set keybinds
-        opts.desc = "Show LSP references"
-        keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
-
-        opts.desc = "Go to declaration"
-        keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
-
-        opts.desc = "Show LSP definitions"
-        keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
-
-        opts.desc = "Show LSP implementations"
-        keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
-
-        opts.desc = "Show LSP type definitions"
-        keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
-
-        opts.desc = "See available code actions"
-        keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
-
-        opts.desc = "Smart rename"
-        keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
-
-        opts.desc = "Show buffer diagnostics"
-        keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
-
-        opts.desc = "Show line diagnostics"
-        keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
-
-        opts.desc = "Go to previous diagnostic"
-        keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
-
-        opts.desc = "Go to next diagnostic"
-        keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
-
-        opts.desc = "Show documentation for what is under cursor"
-        keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
-
-        opts.desc = "Restart LSP"
-        keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
-      end,
-    })
-    -- used to enable autocompletion (assign to every lsp server config)
-    local capabilities = cmp_nvim_lsp.default_capabilities()
-
-    -- Change the Diagnostic symbols in the sign column (gutter)
-    local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end
-
-    local servers = {
-      "lua_ls",
-      "pyright",
-      "gopls",
-      "kotlin-lsp",
-    }
-
-    for _, srv in ipairs(servers) do
-      local opts = {
-        capabilities = capabilities,
-      }
-
-      if srv == "lua_ls" then
-        opts.settings = {
-          Lua = {
-            diagnostics = {
-              globals = { "vim" },
-            },
-            completion = {
-              callSnippet = "Replace",
-            },
-          },
-        }
+    local function lsp_keymaps(ev)
+      local buf = ev.buf
+      local map = function(mode, lhs, rhs, desc)
+        vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, silent = true, desc = desc })
       end
 
-      lspconfig[srv].setup(opts)
+      map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", "Go to definition")
+      map("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
+      map("n", "gi", "<cmd>Telescope lsp_implementations<CR>", "Go to implementation")
+      map("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", "Type definition")
+      map("n", "gr", "<cmd>Telescope lsp_references<CR>", "References")
+      map("n", "K", vim.lsp.buf.hover, "Hover documentation")
+      map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "Code actions")
+      map("n", "<leader>rn", vim.lsp.buf.rename, "Rename symbol")
+      map("n", "]d", vim.diagnostic.goto_next, "Next diagnostic")
+      map("n", "[d", vim.diagnostic.goto_prev, "Prev diagnostic")
+      map("n", "<leader>d", vim.diagnostic.open_float, "Line diagnostics")
+      map("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", "File diagnostics")
     end
+
+    vim.api.nvim_create_autocmd("LspAttach", {
+      group = vim.api.nvim_create_augroup("UserLspKeymaps", {}),
+      callback = lsp_keymaps,
+    })
+
+    vim.lsp.config("*", {
+      capabilities = cmp_capabilities,
+      on_attach = on_attach,
+    })
+
+    -- Change the Diagnostic symbols in the sign column (gutter)
+    vim.diagnostic.config({
+      signs = {
+        text = {
+          [vim.diagnostic.severity.ERROR] = " ",
+          [vim.diagnostic.severity.WARN] = " ",
+          [vim.diagnostic.severity.INFO] = " ",
+          [vim.diagnostic.severity.HINT] = "󰠠 ",
+        },
+        numhl = {
+          [vim.diagnostic.severity.ERROR] = "",
+          [vim.diagnostic.severity.WARN] = "",
+          [vim.diagnostic.severity.INFO] = "",
+          [vim.diagnostic.severity.HINT] = "",
+        },
+      },
+    })
+
+    local function get_poetry_env()
+      local handle = io.popen("poetry env info --path 2>/dev/null")
+      if not handle then
+        return nil
+      end
+      local path = handle:read("*a"):gsub("%s+", "")
+      handle:close()
+      if path == "" then
+        return nil
+      end
+      return {
+        dir = path:match("(.+)/[^/]+$"),
+        name = path:match(".+/([^/]+)$"),
+        bin = path .. "/bin/python",
+      }
+    end
+
+    local poetry = get_poetry_env()
+    if poetry then
+      vim.lsp.config("basedpyright", {
+        settings = {
+          python = {
+            venvPath = poetry.dir,
+            venv = poetry.name,
+            pythonPath = poetry.bin,
+          },
+          basedpyright = {
+            analysis = {
+              typeCheckingMode = "basic",
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+            },
+          },
+        },
+      })
+    end
+
+    vim.lsp.config("lua_ls", {
+      settings = {
+        Lua = {
+          completion = { callSnippet = "Replace" },
+          diagnostics = { globals = { "vim" } },
+          workspace = { checkThirdParty = false },
+        },
+      },
+    })
+    vim.lsp.config("gopls", {
+      settings = {
+        gopls = {
+          analyses = { unusedparams = true },
+          staticcheck = true,
+        },
+      },
+    })
   end,
 }

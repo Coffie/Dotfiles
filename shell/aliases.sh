@@ -1,13 +1,25 @@
-if [[ "$(uname)" == "Darwin" ]];
-then
-    source $HOME/.dotfiles/shell/aliases.macos.sh
-else
-    source $HOME/.dotfiles/shell/aliases.linux.sh
+if [ -n "${DOTFILES_SHELL_ALIASES_LOADED:-}" ]; then
+    return
+fi
+export DOTFILES_SHELL_ALIASES_LOADED=1
+
+if ! command -v __dotfiles_source_if_exists >/dev/null 2>&1; then
+    DOTFILES_ROOT="${DOTFILES_ROOT:-$HOME/.dotfiles}"
+    DOTFILES_SHELL_ROOT="${DOTFILES_SHELL_ROOT:-$DOTFILES_ROOT/shell}"
+    if [ -f "$DOTFILES_SHELL_ROOT/lib/utils.sh" ]; then
+        . "$DOTFILES_SHELL_ROOT/lib/utils.sh"
+    fi
 fi
 
-# Use nvim if installed
-if type nvim &>/dev/null
-then
+# Platform-specific alias sets.
+if command -v __dotfiles_is_macos >/dev/null 2>&1 && __dotfiles_is_macos; then
+    __dotfiles_source_if_exists "$DOTFILES_SHELL_ROOT/aliases.macos.sh"
+elif command -v __dotfiles_is_linux >/dev/null 2>&1 && __dotfiles_is_linux; then
+    __dotfiles_source_if_exists "$DOTFILES_SHELL_ROOT/aliases.linux.sh"
+fi
+
+# Prefer Neovim when available.
+if command -v nvim >/dev/null 2>&1; then
     alias vim="nvim"
     alias vimdiff="nvim -d"
 fi
@@ -15,13 +27,17 @@ fi
 # ----------------------------------------------------------------------
 # Directory navigation/information
 # ----------------------------------------------------------------------
+if command -v __dotfiles_is_macos >/dev/null 2>&1 && __dotfiles_is_macos; then
+    alias ls='ls -G'
+else
+    alias ls='ls --color=auto'
+fi
+
 alias l='ls -lah'
 alias la='ls -lAh'
 alias ll='ls -lh'
-alias ls='ls -G'
 alias lsl='ls -lhFA | less'
 alias lz="ps axo pid=,stat= | awk '\$2~/^Z/ { print \$1 }'"
-# alias '-'="cd -"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -60,17 +76,19 @@ alias tkss='tmux kill-session -t'
 # ----------------------------------------------------------------------
 # Etc.
 # ----------------------------------------------------------------------
-alias histg="history | grep" # Search through history
-alias szsh="source $HOME/.zshrc" # Source .zshrc
+alias histg="history | grep"
+alias szsh="source $HOME/.zshrc"
 alias zshc="vim $HOME/.zshrc"
 alias please='sudo'
-alias man='nocorrect man'
 alias md='mkdir -p'
-alias mv='nocorrect mv'
+
+if command -v __dotfiles_is_zsh >/dev/null 2>&1 && __dotfiles_is_zsh; then
+    alias man='nocorrect man'
+    alias mv='nocorrect mv'
+fi
 
 # ----------------------------------------------------------------------
 # Websites
 # ----------------------------------------------------------------------
 alias wth='curl wttr.in'
 alias rr='curl -s -L https://raw.githubusercontent.com/keroserene/rickrollrc/master/roll.sh | bash'
-# alias rr='curl -s -L http://bit.ly/10hA8iC | bash'

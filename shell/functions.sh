@@ -1,3 +1,18 @@
+if [ -n "${DOTFILES_SHELL_FUNCTIONS_LOADED:-}" ]; then
+    return
+fi
+export DOTFILES_SHELL_FUNCTIONS_LOADED=1
+
+if ! command -v __dotfiles_has_command >/dev/null 2>&1; then
+    DOTFILES_ROOT="${DOTFILES_ROOT:-$HOME/.dotfiles}"
+    DOTFILES_SHELL_ROOT="${DOTFILES_SHELL_ROOT:-$DOTFILES_ROOT/shell}"
+    if [ -f "$DOTFILES_SHELL_ROOT/lib/utils.sh" ]; then
+        . "$DOTFILES_SHELL_ROOT/lib/utils.sh"
+    fi
+fi
+
+: "${SSH_ENV:=$HOME/.ssh/environment}"
+
 # extract function
 extract () {
     if [ -f "$1" ] ; then
@@ -96,21 +111,69 @@ convert_heic_to_jpeg() {
     fi
 }
 
+# Generate a new SSH key with a consistent comment.
+sshgen() {
+    local default_label
+    default_label="$(whoami)@$(hostname)-$(date +%Y-%m-%d)"
+    local label="${1:-$default_label}"
+    ssh-keygen -t ed25519 -C "$label"
+}
+
+# -------------------------------------------------------------------
+# FZF helpers
+# -------------------------------------------------------------------
+if __dotfiles_has_command fd; then
+    _fzf_compgen_path() {
+        fd --hidden --follow --exclude ".git" . "$1"
+    }
+
+    _fzf_compgen_dir() {
+        fd --type d --hidden --follow --exclude ".git" . "$1"
+    }
+fi
+
+if __dotfiles_has_command fzf; then
+    _fzf_complete_mosh() {
+        _fzf_complete_ssh "$@"
+    }
+fi
+
 # -------------------------------------------------------------------
 #  Convert magnet to torrent
 # -------------------------------------------------------------------
-function magnet_to_torrent() {
-    [[ "$1" =~ xt=urn:brih:([^\&/]+) ]] || return 1
+magnet_to_torrent() {
+    if [ -z "$1" ]; then
+        echo "Usage: magnet_to_torrent <magnet-uri>" >&2
+        return 1
+    fi
 
-    hashh=${match[1]}
+    local magnet="$1"
+    local hash filename decoder
 
-    if [[ "$1" =~ dn=([^\&/]+) ]];then
-	  filename=${match[1]}
-	else
-	  filename=$hashh
-	fi
+    hash=$(printf '%s\n' "$magnet" | sed -n 's/.*xt=urn:btih:\([^&]*\).*/\1/p')
+    if [ -z "$hash" ]; then
+        echo "magnet_to_torrent: unable to parse BTIH hash" >&2
+        return 1
+    fi
 
-	echo "d10:magnet-uri${#1}:${1}e" > "$filename.torrent"
+    filename=$(printf '%s\n' "$magnet" | sed -n 's/.*dn=\([^&]*\).*/\1/p')
+    if [ -n "$filename" ]; then
+        if __dotfiles_has_command python3; then
+            decoder=python3
+        elif __dotfiles_has_command python; then
+            decoder=python
+        else
+            decoder=
+        fi
+
+        if [ -n "$decoder" ]; then
+            filename=$("$decoder" -c 'import sys, urllib.parse; print(urllib.parse.unquote(sys.argv[1]))' "$filename")
+        fi
+    fi
+
+    filename=${filename:-$hash}
+    printf 'd10:magnet-uri%d:%se' "${#magnet}" "$magnet" > "${filename}.torrent"
+    echo "Created ${filename}.torrent"
 }
 # -------------------------------------------------------------------
 #  Start a SSH-agent daemon, so that all SSH-keys are available.
@@ -147,14 +210,22 @@ function init_ssh_agent {
 # Function for searching running processes
 # -------------------------------------------------------------------
 any() {
-    emulate -L zsh
-    unsetopt KSH_ARRAYS
-    if [[ -z "$1" ]] ; then
-        echo "any - grep for process(es) by keyword" >&2
-        echo "Usage: any " >&2 ; return 1
-    else
-        ps xauwww | grep -i --color=auto "[${1[1]}]${1[2,-1]}"
+    if [ -z "$1" ] ; then
+        echo "any - search processes by keyword" >&2
+        echo "Usage: any <pattern>" >&2
+        return 1
     fi
+    local pattern="$1"
+    ps auxww | awk -v pat="$pattern" '
+        NR == 1 { print; next }
+        {
+            line = tolower($0)
+            needle = tolower(pat)
+            if (index(line, needle)) {
+                print $0
+            }
+        }
+    '
 }
 
 # -------------------------------------------------------------------

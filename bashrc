@@ -1,13 +1,10 @@
-# Source external files 
-source "$HOME/.shell/aliases.sh"
+# Unified shell setup
+if [ -f "$HOME/.shell/init.sh" ]; then
+    source "$HOME/.shell/init.sh"
+fi
 
-source "$HOME/.shell/functions.sh"
-
-source "$HOME/.shell/exports.sh"
-
-source "$HOME/.bash/prompt.bash"
-
-source "$HOME/.bash/settings.bash"
+# Bash-specific configuration
+[ -f "$HOME/.bash/prompt.bash" ] && source "$HOME/.bash/prompt.bash"
+[ -f "$HOME/.bash/settings.bash" ] && source "$HOME/.bash/settings.bash"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-export PATH="$PATH:/Users/cbn/bin"

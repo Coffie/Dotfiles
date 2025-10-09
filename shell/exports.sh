@@ -1,26 +1,85 @@
+if [ -n "${DOTFILES_SHELL_EXPORTS_LOADED:-}" ]; then
+    return
+fi
+export DOTFILES_SHELL_EXPORTS_LOADED=1
 
-# Editor
-# FZF
-# Colors to be determined
-# From josean
-# fg="#CBE0F0"
-# bg="#011628"
-# bg_highlight="#143652"
-# purple="#B388FF"
-# blue="#06BCE4"
-# cyan="#2CF9ED"
-# export FZF_COLORS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
-# End color section
+# Ensure helper utilities are available when this file is sourced standalone.
+if ! command -v __dotfiles_path_prepend >/dev/null 2>&1; then
+    DOTFILES_ROOT="${DOTFILES_ROOT:-$HOME/.dotfiles}"
+    DOTFILES_SHELL_ROOT="${DOTFILES_SHELL_ROOT:-$DOTFILES_ROOT/shell}"
+    if [ -f "$DOTFILES_SHELL_ROOT/lib/utils.sh" ]; then
+        . "$DOTFILES_SHELL_ROOT/lib/utils.sh"
+    fi
+fi
 
+# Common PATH locations.
+__dotfiles_path_prepend "$HOME/bin"
+__dotfiles_path_prepend "$HOME/.local/bin"
+__dotfiles_path_prepend "$DOTFILES_ROOT/bin"
 
-# Set terminal to use 256 colors
-# export TERM="xterm-256color"
+# Core environment defaults.
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export GOPATH="${GOPATH:-$HOME/go}"
+__dotfiles_path_prepend "$GOPATH/bin"
+export LANG="${LANG:-en_US.UTF-8}"
+export SSH_ENV="${SSH_ENV:-$HOME/.ssh/environment}"
 
+# Default editors.
+if __dotfiles_has_command nvim; then
+    export EDITOR=${EDITOR:-nvim}
+    export VISUAL=${VISUAL:-nvim}
+elif __dotfiles_has_command vim; then
+    export EDITOR=${EDITOR:-vim}
+    export VISUAL=${VISUAL:-vim}
+else
+    export EDITOR=${EDITOR:-vi}
+    export VISUAL=${VISUAL:-vi}
+fi
 
+export PAGER=${PAGER:-less}
+export LESS=${LESS:--R}
+export LESS_TERMCAP_mb=${LESS_TERMCAP_mb:-$'\e[1;32m'}
+export LESS_TERMCAP_md=${LESS_TERMCAP_md:-$'\e[1;32m'}
+export LESS_TERMCAP_me=${LESS_TERMCAP_me:-$'\e[0m'}
+export LESS_TERMCAP_se=${LESS_TERMCAP_se:-$'\e[0m'}
+export LESS_TERMCAP_so=${LESS_TERMCAP_so:-$'\e[01;33m'}
+export LESS_TERMCAP_ue=${LESS_TERMCAP_ue:-$'\e[0m'}
+export LESS_TERMCAP_us=${LESS_TERMCAP_us:-$'\e[1;4;31m'}
 
-# Mac specific
-if [[ "$(uname)" == "Darwin" ]]; then
-    source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
-    source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
+# FZF defaults (only if available to avoid overriding other setups).
+if __dotfiles_has_command fzf; then
+    export FZF_DEFAULT_OPTS="${FZF_DEFAULT_OPTS:--d 35% --layout reverse --border top}"
+    if __dotfiles_has_command fd; then
+        export FZF_DEFAULT_COMMAND="${FZF_DEFAULT_COMMAND:-fd --hidden --follow --strip-cwd-prefix --exclude .git}"
+        export FZF_CTRL_T_COMMAND="${FZF_CTRL_T_COMMAND:-$FZF_DEFAULT_COMMAND}"
+        export FZF_ALT_C_COMMAND="${FZF_ALT_C_COMMAND:-fd --type=d --hidden --strip-cwd-prefix --exclude .git}"
+    fi
+    export FZF_COMPLETION_TRIGGER="${FZF_COMPLETION_TRIGGER:-**}"
+    export FZF_COMPLETION_OPTS="${FZF_COMPLETION_OPTS:---border --info=inline}"
+    export FZF_TMUX_OPTS="${FZF_TMUX_OPTS:--d 40%}"
+fi
 
+# macOS Homebrew location fallback (ensure brew is on PATH during early init).
+if __dotfiles_is_macos && ! __dotfiles_has_command brew; then
+    for __dotfiles_brew_candidate in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+        if [ -x "$__dotfiles_brew_candidate" ]; then
+            eval "$("$__dotfiles_brew_candidate" shellenv)"
+            break
+        fi
+    done
+    unset __dotfiles_brew_candidate
+fi
+
+# macOS-specific integrations.
+if __dotfiles_is_macos && __dotfiles_has_command brew; then
+    gcloud_dir="$(brew --prefix 2>/dev/null)/share/google-cloud-sdk"
+    if [ -n "$gcloud_dir" ]; then
+        if __dotfiles_is_zsh; then
+            __dotfiles_source_if_exists "$gcloud_dir/path.zsh.inc"
+            __dotfiles_source_if_exists "$gcloud_dir/completion.zsh.inc"
+        elif __dotfiles_is_bash; then
+            __dotfiles_source_if_exists "$gcloud_dir/path.bash.inc"
+            __dotfiles_source_if_exists "$gcloud_dir/completion.bash.inc"
+        fi
+    fi
 fi

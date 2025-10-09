@@ -5,10 +5,15 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Shared shell initialisation
+if [[ -f "$HOME/.shell/init.sh" ]]; then
+    source "$HOME/.shell/init.sh"
+fi
+
 # Plugin directory
-ZPLUGINDIR=$HOME/.zsh/plugins
-if [[ ! -d $ZPLUGINDIR ]]; then
-    mkdir -p $ZPLUGINDIR
+ZPLUGINDIR="$HOME/.zsh/plugins"
+if [[ ! -d "$ZPLUGINDIR" ]]; then
+    mkdir -p "$ZPLUGINDIR"
 fi
 # List of plugins to install
 ZPLUGINS=(
@@ -18,27 +23,36 @@ ZPLUGINS=(
     "jeffreytse/zsh-vi-mode"
     "romkatv/powerlevel10k"
 )
-for plug in "${ZPLUGINS[@]}"; do
-    if [[ ! -d $ZPLUGINDIR/"${plug#*/}" ]]; then
-        git clone https://github.com/${plug}
-    fi
-done
+if __dotfiles_has_command git; then
+    for plug in "${ZPLUGINS[@]}"; do
+        plugin_dir="$ZPLUGINDIR/${plug#*/}"
+        if [[ ! -d "$plugin_dir/.git" ]]; then
+            git clone --depth 1 "https://github.com/${plug}" "$plugin_dir" >/dev/null 2>&1
+        fi
+    done
+else
+    print -u2 "dotfiles: git not found; skipping automatic zsh plugin installation"
+fi
 
-source $ZPLUGINDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $ZPLUGINDIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-# source $ZPLUGINDIR/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-source $ZPLUGINDIR/powerlevel10k/powerlevel10k.zsh-theme
+source "$ZPLUGINDIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$ZPLUGINDIR/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh"
+# source "$ZPLUGINDIR/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+source "$ZPLUGINDIR/powerlevel10k/powerlevel10k.zsh-theme"
 
 # Function to update plugins
 update_zsh() {
-    cd $HOME/.zsh/plugins
-    ls | xargs -P10 -I{} git -C {} pull
-    cd -
+    emulate -L zsh
+    if ! __dotfiles_has_command git; then
+        print -u2 "dotfiles: git not found; cannot update zsh plugins"
+        return 1
+    fi
+    local plugin
+    for plugin in "$ZPLUGINDIR"/*; do
+        [[ -d "$plugin/.git" ]] || continue
+        git -C "$plugin" pull --ff-only --quiet
+    done
+    print "zsh plugins updated."
 }
-
-# Source external zsh files
-# Shell functions
-source "$HOME/.shell/functions.sh"
 
 # Zsh settings
 source "$HOME/.zsh/settings.zsh"

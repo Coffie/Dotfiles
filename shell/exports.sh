@@ -1,8 +1,3 @@
-if [ -n "${DOTFILES_SHELL_EXPORTS_LOADED:-}" ]; then
-    return
-fi
-export DOTFILES_SHELL_EXPORTS_LOADED=1
-
 # Ensure helper utilities are available when this file is sourced standalone.
 if ! command -v __dotfiles_path_prepend >/dev/null 2>&1; then
     DOTFILES_ROOT="${DOTFILES_ROOT:-$HOME/.dotfiles}"

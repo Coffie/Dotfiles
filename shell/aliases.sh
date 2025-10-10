@@ -1,8 +1,3 @@
-if [ -n "${DOTFILES_SHELL_ALIASES_LOADED:-}" ]; then
-    return
-fi
-export DOTFILES_SHELL_ALIASES_LOADED=1
-
 if ! command -v __dotfiles_source_if_exists >/dev/null 2>&1; then
     DOTFILES_ROOT="${DOTFILES_ROOT:-$HOME/.dotfiles}"
     DOTFILES_SHELL_ROOT="${DOTFILES_SHELL_ROOT:-$DOTFILES_ROOT/shell}"

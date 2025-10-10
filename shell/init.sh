@@ -1,11 +1,6 @@
 # shell/init.sh
 # Unified entry point for interactive shells.
 
-if [ -n "${DOTFILES_SHELL_INIT_LOADED:-}" ]; then
-    return
-fi
-export DOTFILES_SHELL_INIT_LOADED=1
-
 # Ensure repository locations are available before sourcing helpers.
 : "${DOTFILES_ROOT:=$HOME/.dotfiles}"
 : "${DOTFILES_SHELL_ROOT:=$DOTFILES_ROOT/shell}"

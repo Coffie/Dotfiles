@@ -10,6 +10,9 @@ if [[ -f "$HOME/.shell/init.sh" ]]; then
     source "$HOME/.shell/init.sh"
 fi
 
+# Ensure unique PATH entries while preserving order.
+typeset -U path
+
 # Plugin directory
 ZPLUGINDIR="$HOME/.zsh/plugins"
 if [[ ! -d "$ZPLUGINDIR" ]]; then

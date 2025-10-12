@@ -1,2 +1,12 @@
+# Summary (imperative, <= 72 chars)
 
-# Be committed!
+# Context
+# - Why is this change needed?
+# - What decisions or trade-offs are notable?
+
+# Testing
+# - e.g. "Laptop: ./mac/mac.sh admin --dry-run"
+# - e.g. "CI: n/a"
+
+# Notes
+# - Optional references, follow-up TODOs, or manual steps

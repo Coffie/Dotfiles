@@ -1,5 +1,0 @@
-[user]
-    email = "christoffer.b.nysather@dnb.no"
-    name = Christoffer B. Nysather
-[url "ssh://git@gitlab.tech.dnb.no:2222"]
-	insteadOf = https://gitlab.tech.dnb.no

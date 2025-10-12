@@ -1,75 +1,38 @@
-local keymap = vim.keymap
+local map = vim.keymap.set
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = ","
 
--- reload nvim config
-keymap.set("n", "<leader><leader>ss", ":source $MYVIMRC<CR>")
+map("n", "<leader><leader>ss", ":source $MYVIMRC<CR>", { desc = "Reload config" })
+map("n", "<leader>nh", ":nohlsearch<CR>", { desc = "Clear search highlights" })
+map("i", "jk", "<ESC>")
 
--- clear search highlights
-keymap.set("n", "<leader>nh", ":nohlsearch<CR>")
+map("n", "<leader>x", '"_x', { desc = "Delete without yanking" })
+map("n", "<leader>+", "<C-a>", { desc = "Increment number" })
+map("n", "<leader>-", "<C-x>", { desc = "Decrement number" })
 
--- use jk to exit insert mode
-keymap.set("i", "jk", "<ESC>")
+map("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
+map("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
+map("n", "<leader>se", "<C-w>=", { desc = "Equalize split sizes" })
+map("n", "<leader>sx", ":close<CR>", { desc = "Close current split" })
 
--- delete single character without copying into register
-keymap.set("n", "<leader>x", "\"_x")
+map("n", "<leader>to", ":tabnew<CR>", { desc = "Open new tab" })
+map("n", "<leader>tx", ":tabclose<CR>", { desc = "Close current tab" })
+map("n", "<leader>tn", ":tabn<CR>", { desc = "Next tab" })
+map("n", "<leader>tp", ":tabp<CR>", { desc = "Previous tab" })
 
--- increment/decrement numbers
-keymap.set("n", "<leader>+", "<C-a>") -- increment
-keymap.set("n", "<leader>-", "<C-x>") -- decrement
+map("v", "J", ":m '>+1<CR>gv=gv")
+map("v", "K", ":m '<-2<CR>gv=gv")
 
--- window management
-keymap.set("n", "<leader>sv", "<C-w>v") -- split window vertically
-keymap.set("n", "<leader>sh", "<C-w>s") -- split window horizontally
-keymap.set("n", "<leader>se", "<C-w>=") -- make split windows equal width & height
-keymap.set("n", "<leader>sx", ":close<CR>") -- close current split window
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
+map("n", "J", "mzJ`z")
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
 
-keymap.set("n", "<leader>to", ":tabnew<CR>") -- open new tab
-keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close current tab
-keymap.set("n", "<leader>tn", ":tabn<CR>") --  go to next tab
-keymap.set("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
+map("x", "<leader>p", '"_dP', { desc = "Paste without overwriting register" })
+map("n", "<leader>d", '"_d', { desc = "Delete without yanking" })
+map("v", "<leader>d", '"_d', { desc = "Delete without yanking" })
 
--- move visual selection 
-keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-keymap.set("v", "K", ":m '<-2<CR>gv=gv")
-
--- center cursor on screen when using ctrl-d/u
-keymap.set("n", "<C-d>", "<C-d>zz")
-keymap.set("n", "<C-u>", "<C-u>zz")
-
--- keep cursor at start of line when using J
-keymap.set("n", "J", "mzJ`z")
-
--- keep search term in middle of screen
-keymap.set("n", "n", "nzzzv")
-keymap.set("n", "N", "Nzzzv")
-
--- replace visual selection and keep yank register
-keymap.set("x", "<leader>p", "\"_dP")
-
--- delete to void register
-keymap.set("n", "<leader>d", "\"_d")
-keymap.set("v", "<leader>d", "\"_d")
-
--- replace word under cursor with regex
-keymap.set("n", "<leader>c", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
-
--- make current file executable
-keymap.set("n", "<leader>xx", "<cmd>!chmod +x %<CR>", { silent = true })
-
--- todo: need script for this 
--- keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-
--- todo: not needed? auto yanks to clipboard
--- yank to system clipboard
--- keymap.set("n", "<leader>y", "\"+y")
--- keymap.set("v", "<leader>y", "\"+y")
--- keymap.set("n", "<leader>Y", "\"+Y")
-
--- todo: check usability
--- quickfix navigation
--- keymap.set("n", "<leader>j", "<cmd>cnext<CR>zz")
--- keymap.set("n", "<leader>k", "<cmd>cprev<CR>zz")
--- keymap.set("n", "<leader><leader>j", "<cmd>lnext<CR>zz")
--- keymap.set("n", "<leader><leader>k", "<cmd>lprev<CR>zz")
+map("n", "<leader>c", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", { desc = "Search and replace word" })
+map("n", "<leader>xx", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" })

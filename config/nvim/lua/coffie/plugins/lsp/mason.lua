@@ -40,5 +40,9 @@ return {
                 "staticcheck",
             },
         })
+
+        for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
+            pcall(vim.lsp.enable, server)
+        end
     end,
 }

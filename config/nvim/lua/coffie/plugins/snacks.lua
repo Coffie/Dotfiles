@@ -10,7 +10,6 @@ return {
                 files = {
                     follow = true,
                     hidden = true,
-                    finder = "fd",
                 },
                 grep = {
                     hidden = true,

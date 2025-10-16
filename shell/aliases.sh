@@ -1,31 +1,31 @@
 if ! command -v __dotfiles_source_if_exists >/dev/null 2>&1; then
-    DOTFILES_ROOT="${DOTFILES_ROOT:-$HOME/.dotfiles}"
-    DOTFILES_SHELL_ROOT="${DOTFILES_SHELL_ROOT:-$DOTFILES_ROOT/shell}"
-    if [ -f "$DOTFILES_SHELL_ROOT/lib/utils.sh" ]; then
-        . "$DOTFILES_SHELL_ROOT/lib/utils.sh"
-    fi
+  DOTFILES_ROOT="${DOTFILES_ROOT:-$HOME/.dotfiles}"
+  DOTFILES_SHELL_ROOT="${DOTFILES_SHELL_ROOT:-$DOTFILES_ROOT/shell}"
+  if [ -f "$DOTFILES_SHELL_ROOT/lib/utils.sh" ]; then
+    . "$DOTFILES_SHELL_ROOT/lib/utils.sh"
+  fi
 fi
 
 # Platform-specific alias sets.
 if command -v __dotfiles_is_macos >/dev/null 2>&1 && __dotfiles_is_macos; then
-    __dotfiles_source_if_exists "$DOTFILES_SHELL_ROOT/aliases.macos.sh"
+  __dotfiles_source_if_exists "$DOTFILES_SHELL_ROOT/aliases.macos.sh"
 elif command -v __dotfiles_is_linux >/dev/null 2>&1 && __dotfiles_is_linux; then
-    __dotfiles_source_if_exists "$DOTFILES_SHELL_ROOT/aliases.linux.sh"
+  __dotfiles_source_if_exists "$DOTFILES_SHELL_ROOT/aliases.linux.sh"
 fi
 
 # Prefer Neovim when available.
 if command -v nvim >/dev/null 2>&1; then
-    alias vim="nvim"
-    alias vimdiff="nvim -d"
+  alias vim="nvim"
+  alias vimdiff="nvim -d"
 fi
 
 # ----------------------------------------------------------------------
 # Directory navigation/information
 # ----------------------------------------------------------------------
 if command -v __dotfiles_is_macos >/dev/null 2>&1 && __dotfiles_is_macos; then
-    alias ls='ls -G'
+  alias ls='ls -G'
 else
-    alias ls='ls --color=auto'
+  alias ls='ls --color=auto'
 fi
 
 alias l='ls -lah'
@@ -78,8 +78,8 @@ alias please='sudo'
 alias md='mkdir -p'
 
 if command -v __dotfiles_is_zsh >/dev/null 2>&1 && __dotfiles_is_zsh; then
-    alias man='nocorrect man'
-    alias mv='nocorrect mv'
+  alias man='nocorrect man'
+  alias mv='nocorrect mv'
 fi
 
 # ----------------------------------------------------------------------

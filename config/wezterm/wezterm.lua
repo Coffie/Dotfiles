@@ -11,5 +11,11 @@ config.window_decorations = "RESIZE"
 config.hide_tab_bar_if_only_one_tab = true
 config.font = wezterm.font("RobotoMono Nerd Font Mono", { weight = "Bold" })
 config.font_size = 11
+config.line_height = 1
 config.freetype_load_flags = "NO_HINTING"
+config.term = "wezterm"
+config.front_end = "WebGpu"
+config.webgpu_power_preference = "HighPerformance"
+config.animation_fps = 60
+config.max_fps = 60
 return config

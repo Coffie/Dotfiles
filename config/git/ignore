@@ -97,4 +97,6 @@ db.sqlite3
 local_settings.py
 *.ctxt
 AGENTS.md
+CLAUDE.md
 /docs/adr/*
+**/.claude/settings.local.json

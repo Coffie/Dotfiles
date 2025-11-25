@@ -1,6 +1,6 @@
 # Unified shell setup
 if [ -f "$HOME/.shell/init.sh" ]; then
-    source "$HOME/.shell/init.sh"
+  source "$HOME/.shell/init.sh"
 fi
 
 # Bash-specific configuration

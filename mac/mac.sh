@@ -15,7 +15,7 @@
 
 set -euo pipefail
 
-US=$'\x1f'  # separator for array values
+US=$'\x1f' # separator for array values
 
 ACTION="apply"
 HOSTNAME=""
@@ -50,7 +50,8 @@ EOF
 }
 
 log() {
-  local level=$1; shift
+  local level=$1
+  shift
   printf '[%s] %s\n' "$level" "$*"
 }
 
@@ -94,35 +95,36 @@ normalize_value() {
     return
   fi
   case "$type" in
-    bool)
-      case "$value" in
-        1|true|TRUE|yes|YES) echo "true" ;;
-        0|false|FALSE|no|NO) echo "false" ;;
-        *) echo "$value" ;;
-      esac
-      ;;
-    string|int|float)
-      echo "$value"
-      ;;
-    array)
-      printf '%s' "$value" | tr -d '()",' | tr -s '[:space:]' ' ' | xargs
-      ;;
-    *)
-      echo "$value"
-      ;;
+  bool)
+    case "$value" in
+    1 | true | TRUE | yes | YES) echo "true" ;;
+    0 | false | FALSE | no | NO) echo "false" ;;
+    *) echo "$value" ;;
+    esac
+    ;;
+  string | int | float)
+    echo "$value"
+    ;;
+  array)
+    printf '%s' "$value" | tr -d '()",' | tr -s '[:space:]' ' ' | xargs
+    ;;
+  *)
+    echo "$value"
+    ;;
   esac
 }
 
 add_setting() {
   local scope=$1 domain=$2 key=$3 type=$4 desired=$5 description=$6 flags=${7:-}
-  SETTINGS+=( "$scope|$domain|$key|$type|$desired|$description|$flags" )
+  SETTINGS+=("$scope|$domain|$key|$type|$desired|$description|$flags")
 }
 
 add_array_setting() {
-  local scope=$1 domain=$2 key=$3 description=$4; shift 4
+  local scope=$1 domain=$2 key=$3 description=$4
+  shift 4
   local values
   values=$(printf '%s' "$*" | tr ' ' "$US")
-  ARRAY_SETTINGS+=( "$scope|$domain|$key|$description|$values" )
+  ARRAY_SETTINGS+=("$scope|$domain|$key|$description|$values")
 }
 
 read_default() {
@@ -137,11 +139,11 @@ write_default() {
   local cmd=(defaults write "$domain" "$key")
   [[ "$scope" == "current" ]] && cmd=(defaults -currentHost write "$domain" "$key")
   case "$type" in
-    bool)   run "${cmd[@]}" -bool "$desired" ;;
-    string) run "${cmd[@]}" -string "$desired" ;;
-    int)    run "${cmd[@]}" -int "$desired" ;;
-    float)  run "${cmd[@]}" -float "$desired" ;;
-    *)      run "${cmd[@]}" -"$type" "$desired" ;;
+  bool) run "${cmd[@]}" -bool "$desired" ;;
+  string) run "${cmd[@]}" -string "$desired" ;;
+  int) run "${cmd[@]}" -int "$desired" ;;
+  float) run "${cmd[@]}" -float "$desired" ;;
+  *) run "${cmd[@]}" -"$type" "$desired" ;;
   esac
 }
 
@@ -169,34 +171,34 @@ build_defaults_command() {
   fi
   local cmd
   case "$type" in
-    bool)
-      printf -v cmd '%s write %q %q -bool %s' "${prefix[*]}" "$domain" "$key" "$value"
-      ;;
-    int|float)
-      printf -v cmd '%s write %q %q -%s %s' "${prefix[*]}" "$domain" "$key" "$type" "$value"
-      ;;
-    string)
-      printf -v cmd '%s write %q %q -string %q' "${prefix[*]}" "$domain" "$key" "$value"
-      ;;
-    array)
-      local normalized="$value"
-      local cmd_prefix
-      printf -v cmd_prefix '%s write %q %q -array' "${prefix[*]}" "$domain" "$key"
-      local out="$cmd_prefix"
-      if [[ -n "$normalized" ]]; then
-        local item
-        while read -r item; do
-          out+=" $(printf '%q' "$item")"
-        done < <(printf '%s\n' "$normalized" | tr ' ' '\n')
-      fi
-      cmd="$out"
-      ;;
-    delete)
-      printf -v cmd '%s delete %q %q' "${prefix[*]}" "$domain" "$key"
-      ;;
-    *)
-      printf -v cmd '# Unsupported revert for %s:%s' "$domain" "$key"
-      ;;
+  bool)
+    printf -v cmd '%s write %q %q -bool %s' "${prefix[*]}" "$domain" "$key" "$value"
+    ;;
+  int | float)
+    printf -v cmd '%s write %q %q -%s %s' "${prefix[*]}" "$domain" "$key" "$type" "$value"
+    ;;
+  string)
+    printf -v cmd '%s write %q %q -string %q' "${prefix[*]}" "$domain" "$key" "$value"
+    ;;
+  array)
+    local normalized="$value"
+    local cmd_prefix
+    printf -v cmd_prefix '%s write %q %q -array' "${prefix[*]}" "$domain" "$key"
+    local out="$cmd_prefix"
+    if [[ -n "$normalized" ]]; then
+      local item
+      while read -r item; do
+        out+=" $(printf '%q' "$item")"
+      done < <(printf '%s\n' "$normalized" | tr ' ' '\n')
+    fi
+    cmd="$out"
+    ;;
+  delete)
+    printf -v cmd '%s delete %q %q' "${prefix[*]}" "$domain" "$key"
+    ;;
+  *)
+    printf -v cmd '# Unsupported revert for %s:%s' "$domain" "$key"
+    ;;
   esac
   printf '%s' "$cmd"
 }
@@ -212,32 +214,32 @@ record_revert() {
     cmd=$(build_defaults_command "$scope" "$domain" "$key" delete "")
   else
     case "$type" in
-      bool)
-        local normalized
-        normalized=$(normalize_value bool "$raw_value")
-        cmd=$(build_defaults_command "$scope" "$domain" "$key" bool "$normalized")
-        ;;
-      int)
-        cmd=$(build_defaults_command "$scope" "$domain" "$key" int "$raw_value")
-        ;;
-      float)
-        cmd=$(build_defaults_command "$scope" "$domain" "$key" float "$raw_value")
-        ;;
-      string)
-        cmd=$(build_defaults_command "$scope" "$domain" "$key" string "$raw_value")
-        ;;
-      array)
-        local normalized
-        normalized=$(normalize_value array "$raw_value")
-        if [[ -z "$normalized" ]]; then
-          cmd=$(build_defaults_command "$scope" "$domain" "$key" delete "")
-        else
-          cmd=$(build_defaults_command "$scope" "$domain" "$key" array "$normalized")
-        fi
-        ;;
-      *)
-        cmd="# Unsupported revert for $domain:$key"
-        ;;
+    bool)
+      local normalized
+      normalized=$(normalize_value bool "$raw_value")
+      cmd=$(build_defaults_command "$scope" "$domain" "$key" bool "$normalized")
+      ;;
+    int)
+      cmd=$(build_defaults_command "$scope" "$domain" "$key" int "$raw_value")
+      ;;
+    float)
+      cmd=$(build_defaults_command "$scope" "$domain" "$key" float "$raw_value")
+      ;;
+    string)
+      cmd=$(build_defaults_command "$scope" "$domain" "$key" string "$raw_value")
+      ;;
+    array)
+      local normalized
+      normalized=$(normalize_value array "$raw_value")
+      if [[ -z "$normalized" ]]; then
+        cmd=$(build_defaults_command "$scope" "$domain" "$key" delete "")
+      else
+        cmd=$(build_defaults_command "$scope" "$domain" "$key" array "$normalized")
+      fi
+      ;;
+    *)
+      cmd="# Unsupported revert for $domain:$key"
+      ;;
     esac
   fi
   REVERT_COMMANDS+=("$cmd|$description")
@@ -260,27 +262,27 @@ process_setting() {
   fi
 
   case "$mode" in
-    status)
-      printf '%-60s current=%-12s desired=%-8s %s\n' "${domain}:${key}" "$display_current" "$desired_norm" "$description"
-      ;;
-    diff)
-      if [[ "$current_norm" != "$desired_norm" ]]; then
-        printf '%-60s %s -> %s  %s\n' "${domain}:${key}" "$display_current" "$desired_norm" "$description"
-      fi
-      ;;
-    apply)
-      if [[ "$current_norm" == "$desired_norm" ]]; then
-        if $treat_absent; then
-          log SKIP "$description (uses system default matching desired)"
-        else
-          log SKIP "$description (already $desired_norm)"
-        fi
+  status)
+    printf '%-60s current=%-12s desired=%-8s %s\n' "${domain}:${key}" "$display_current" "$desired_norm" "$description"
+    ;;
+  diff)
+    if [[ "$current_norm" != "$desired_norm" ]]; then
+      printf '%-60s %s -> %s  %s\n' "${domain}:${key}" "$display_current" "$desired_norm" "$description"
+    fi
+    ;;
+  apply)
+    if [[ "$current_norm" == "$desired_norm" ]]; then
+      if $treat_absent; then
+        log SKIP "$description (uses system default matching desired)"
       else
-        log APPLY "$description ($display_current -> $desired_norm)"
-        record_revert "$scope" "$domain" "$key" "$type" "$raw_current" "$description"
-        write_default "$scope" "$domain" "$key" "$type" "$desired"
+        log SKIP "$description (already $desired_norm)"
       fi
-      ;;
+    else
+      log APPLY "$description ($display_current -> $desired_norm)"
+      record_revert "$scope" "$domain" "$key" "$type" "$raw_current" "$description"
+      write_default "$scope" "$domain" "$key" "$type" "$desired"
+    fi
+    ;;
   esac
 }
 
@@ -294,23 +296,23 @@ process_array_setting() {
   desired_norm=$(printf '%s\n' "${desired_list[@]}" | xargs)
 
   case "$mode" in
-    status)
-      printf '%-60s current=%s desired=%s %s\n' "${domain}:${key}" "$current_norm" "$desired_norm" "$description"
-      ;;
-    diff)
-      if [[ "$current_norm" != "$desired_norm" ]]; then
-        printf '%-60s %s -> %s  %s\n' "${domain}:${key}" "$current_norm" "$desired_norm" "$description"
-      fi
-      ;;
-    apply)
-      if [[ "$current_norm" == "$desired_norm" ]]; then
-        log SKIP "$description (already ${desired_norm})"
-      else
-        log APPLY "$description (${current_norm:-absent} -> ${desired_norm})"
-        record_revert "$scope" "$domain" "$key" "array" "$raw_current" "$description"
-        write_array "$scope" "$domain" "$key" "$values"
-      fi
-      ;;
+  status)
+    printf '%-60s current=%s desired=%s %s\n' "${domain}:${key}" "$current_norm" "$desired_norm" "$description"
+    ;;
+  diff)
+    if [[ "$current_norm" != "$desired_norm" ]]; then
+      printf '%-60s %s -> %s  %s\n' "${domain}:${key}" "$current_norm" "$desired_norm" "$description"
+    fi
+    ;;
+  apply)
+    if [[ "$current_norm" == "$desired_norm" ]]; then
+      log SKIP "$description (already ${desired_norm})"
+    else
+      log APPLY "$description (${current_norm:-absent} -> ${desired_norm})"
+      record_revert "$scope" "$domain" "$key" "array" "$raw_current" "$description"
+      write_array "$scope" "$domain" "$key" "$values"
+    fi
+    ;;
   esac
 }
 
@@ -729,27 +731,27 @@ main_snapshot() {
 parse_args() {
   while [[ $# -gt 0 ]]; do
     case "$1" in
-      apply|diff|status|snapshot)
-        ACTION="$1"
-        shift
-        ;;
-      --hostname|-n)
-        HOSTNAME="$2"
-        shift 2
-        ;;
-      --dry-run)
-        DRY_RUN=true
-        shift
-        ;;
-      --help|-h)
-        usage
-        exit 0
-        ;;
-      *)
-        echo "Unknown option: $1" >&2
-        usage
-        exit 1
-        ;;
+    apply | diff | status | snapshot)
+      ACTION="$1"
+      shift
+      ;;
+    --hostname | -n)
+      HOSTNAME="$2"
+      shift 2
+      ;;
+    --dry-run)
+      DRY_RUN=true
+      shift
+      ;;
+    --help | -h)
+      usage
+      exit 0
+      ;;
+    *)
+      echo "Unknown option: $1" >&2
+      usage
+      exit 1
+      ;;
     esac
   done
 }
@@ -757,28 +759,28 @@ parse_args() {
 parse_args "$@"
 
 case "$ACTION" in
-  apply|snapshot)
-    ask_for_sudo
-    ;;
+apply | snapshot)
+  ask_for_sudo
+  ;;
 esac
 
 report_hostname
 
 case "$ACTION" in
-  apply)
-    main_apply
-    ;;
-  diff)
-    main_diff
-    ;;
-  status)
-    main_status
-    ;;
-  snapshot)
-    main_snapshot
-    ;;
-  *)
-    usage
-    exit 1
-    ;;
+apply)
+  main_apply
+  ;;
+diff)
+  main_diff
+  ;;
+status)
+  main_status
+  ;;
+snapshot)
+  main_snapshot
+  ;;
+*)
+  usage
+  exit 1
+  ;;
 esac

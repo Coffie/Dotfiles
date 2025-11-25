@@ -86,14 +86,14 @@ test_flac() {
         echo "test_flac: flac command not found" >&2
         return 1
     fi
-    local status=0
+    local exit_code=0
     for f in ./*.flac; do
         [ -e "$f" ] || continue
         if ! flac --test --warnings-as-errors "$f"; then
-            status=1
+            exit_code=1
         fi
     done
-    return "$status"
+    return "$exit_code"
 }
 
 # Convert files in folder using ffmpeg
@@ -111,7 +111,7 @@ convert_audio() {
     local folder_done="${input}-done"
     local folder_out="${output}s"
     mkdir -p "$folder_out" "$folder_done"
-    local status=0
+    local exit_code=0
     for f in ./*."$input"; do
         [ -e "$f" ] || continue
         if [ "$input" = "flac" ] && command -v flac >/dev/null 2>&1; then
@@ -121,10 +121,10 @@ convert_audio() {
         if ffmpeg -i "$f" -write_id3v2 1 -c:v copy "$filename"; then
             mv "$f" "$folder_done/"
         else
-            status=1
+            exit_code=1
         fi
     done
-    return "$status"
+    return "$exit_code"
 }
 
 convert_heic_to_jpeg() {

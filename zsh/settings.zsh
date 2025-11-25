@@ -12,3 +12,7 @@ KEYTIMEOUT=1 # corresponds to 10ms
 
 # Use vim as the editor
 bindkey -e
+
+# Add Alt-key alternatives for commands shadowed by window navigation
+bindkey '^[k' kill-line        # Alt-k as alternative to C-k
+bindkey '^[l' clear-screen     # Alt-l as alternative to C-l

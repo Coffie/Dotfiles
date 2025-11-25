@@ -7,9 +7,7 @@ if ! command -v __dotfiles_path_prepend >/dev/null 2>&1; then
     fi
 fi
 
-# Common PATH locations.
-__dotfiles_path_prepend "$HOME/bin"
-__dotfiles_path_prepend "$HOME/.local/bin"
+# Common PATH locations (base paths, user paths added after Homebrew).
 __dotfiles_path_prepend "$DOTFILES_ROOT/bin"
 
 # Core environment defaults.
@@ -65,6 +63,14 @@ if __dotfiles_is_macos && ! __dotfiles_has_command brew; then
     unset __dotfiles_brew_candidate
 fi
 
+# Ensure Homebrew-provided shells take priority on macOS.
+if __dotfiles_is_macos; then
+    for __dotfiles_brew_path in /usr/local/sbin /usr/local/bin /opt/homebrew/sbin /opt/homebrew/bin; do
+        __dotfiles_path_prepend "$__dotfiles_brew_path"
+    done
+    unset __dotfiles_brew_path
+fi
+
 # macOS-specific integrations.
 if __dotfiles_is_macos && __dotfiles_has_command brew; then
     gcloud_dir="$(brew --prefix 2>/dev/null)/share/google-cloud-sdk"
@@ -77,4 +83,13 @@ if __dotfiles_is_macos && __dotfiles_has_command brew; then
             __dotfiles_source_if_exists "$gcloud_dir/completion.bash.inc"
         fi
     fi
+fi
+
+# User PATH locations (after Homebrew so they take priority).
+__dotfiles_path_prepend "$HOME/bin"
+__dotfiles_path_prepend "$HOME/.local/bin"
+
+# asdf version manager shims.
+if __dotfiles_has_command asdf; then
+    __dotfiles_path_prepend "$HOME/.asdf/shims"
 fi

@@ -35,12 +35,23 @@ __dotfiles_source_if_exists() {
 }
 
 __dotfiles_path_prepend() {
-    local dir="$1"
+    local dir="$1" path_without_dir
     [ -z "$dir" ] && return 0
     [ -d "$dir" ] || return 0
     case ":$PATH:" in
-        *":$dir:"*) ;;
-        *) PATH="$dir${PATH:+":$PATH"}" ;;
+        *":$dir:"*)
+            path_without_dir=":$PATH:"
+            path_without_dir="${path_without_dir//:$dir:/:}"
+            while [ "${path_without_dir#*::}" != "$path_without_dir" ]; do
+                path_without_dir="${path_without_dir//::/:}"
+            done
+            path_without_dir="${path_without_dir#:}"
+            path_without_dir="${path_without_dir%:}"
+            PATH="$dir${path_without_dir:+":$path_without_dir"}"
+            ;;
+        *)
+            PATH="$dir${PATH:+":$PATH"}"
+            ;;
     esac
 }
 

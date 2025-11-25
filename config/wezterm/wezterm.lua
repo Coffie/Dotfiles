@@ -18,4 +18,10 @@ config.front_end = "WebGpu"
 config.webgpu_power_preference = "HighPerformance"
 config.animation_fps = 60
 config.max_fps = 60
+
+-- Disable the default binding for Ctrl+_, allowing it to pass through to zsh/vim (e.g. for undo)
+config.keys = {
+  { key = "_", mods = "CTRL|SHIFT", action = wezterm.action.DisableDefaultAssignment },
+}
+
 return config

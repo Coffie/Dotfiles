@@ -26,6 +26,40 @@ Rerun `./install` anytime you change a tracked config. Use `./install -v` to pre
 - `mac/` – bootstrap helpers (`mac.sh`, `brews.sh`, `brews.txt`) for new machines.
 - `bin/` – user scripts and utilities that are linked into `~/bin`.
 
+## System Requirements & Tooling
+
+For the configuration to work fully (especially Neovim LSPs and Window Management), ensure the following are installed:
+
+### 1. Core Tools (via Homebrew)
+```bash
+# Window Management (macOS)
+brew install --cask nikitabobko/tap/aerospace
+
+# Fuzzy Finder (Required for shell & Neovim)
+brew install fzf
+# Install keybindings/completion
+"$(brew --prefix)"/opt/fzf/install
+
+# Search Tools
+brew install ripgrep fd
+```
+
+### 2. Language Runtimes (Required for LSPs/Linters)
+Neovim plugins (via Mason) often need system-level runtimes to function. Install these via Homebrew:
+```bash
+# Node.js (Required for many LSPs like marksman, bash-ls, markdownlint)
+brew install node
+
+# Go (Required for gopls, goimports, etc.)
+brew install go
+
+# Python (Required for pyright, ruff, black, etc.)
+brew install python3
+
+# Rust (Optional, but useful for some tools like rust-analyzer)
+brew install rust
+```
+
 ## Everyday Tasks
 - `nvim --headless "+Lazy sync" +qa` keeps Neovim plugins aligned with `config/nvim/lazy-lock.json` after editing Lua modules.
 - `tmux/plugins/tpm/bin/update_plugins` refreshes tmux plugins declared in `tmux.conf`.

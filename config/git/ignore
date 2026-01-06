@@ -98,5 +98,10 @@ local_settings.py
 *.ctxt
 AGENTS.md
 CLAUDE.md
+GEMINI.md
 /docs/adr/*
 **/.claude/settings.local.json
+.notes/
+ampeco-data/
+AMPECO_INTEGRATION_OVERVIEW.md
+/docs/claude/

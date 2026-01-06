@@ -76,6 +76,11 @@ then
   fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 fi
 
+if type asdf &>/dev/null
+then
+  fpath=($ASDF_DATA_DIR/completions $fpath)
+fi
+
 typeset -U fpath
 
 # autocompletion

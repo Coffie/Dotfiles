@@ -29,6 +29,10 @@
     ~/.config/:
       glob: true
       path: config/*
+    ~/Library/LaunchAgents/:
+      glob: true
+      path: macos/LaunchAgents/*
+      if: '[ "$(uname)" = "Darwin" ]'
 
 - create:
     - ~/projects

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>local.colima</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/coffie/bin/colima-start-safe</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <false/>
+
+    <key>StandardOutPath</key>
+    <string>/tmp/colima-launchagent.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/tmp/colima-launchagent.err.log</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>HOME</key>
+        <string>/Users/coffie</string>
+        <key>XDG_CONFIG_HOME</key>
+        <string>/Users/coffie/.config</string>
+    </dict>
+</dict>
+</plist>

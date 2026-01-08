@@ -1,0 +1,26 @@
+# Ignore runtime data in colima directory
+# Only track configuration files
+
+# Lima VM data
+_lima/
+_store/
+_templates/
+
+# Runtime files
+*.sock
+ssh_config
+*.pid
+*.log
+
+# VM profiles runtime data (keep profile config directories)
+*/
+!default/
+
+# But ignore runtime data within profile directories
+default/_lima/
+default/_store/
+default/_templates/
+default/*.sock
+default/ssh_config
+default/*.pid
+default/*.log

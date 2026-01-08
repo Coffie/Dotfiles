@@ -1,0 +1,92 @@
+#!/usr/bin/env bash
+# Safe colima startup script that cleans up stale processes
+# Designed to handle unclean shutdowns (power loss, crashes)
+
+set -e
+
+# Force use of XDG config directory
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
+
+COLIMA_BIN="/opt/homebrew/bin/colima"
+LOG_FILE="${XDG_CONFIG_HOME}/colima/startup.log"
+
+# Ensure log directory exists
+mkdir -p "${XDG_CONFIG_HOME}/colima"
+
+log() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $*" | tee -a "$LOG_FILE"
+}
+
+ensure_xdg_config() {
+    # If ~/.colima exists, remove it to force XDG path usage
+    if [ -d "${HOME}/.colima" ]; then
+        log "Found ~/.colima, removing to force XDG_CONFIG_HOME usage..."
+        rm -rf "${HOME}/.colima"
+        log "Removed ~/.colima"
+    fi
+}
+
+cleanup_stale_processes() {
+    log "Checking for stale colima processes..."
+
+    # Check if colima thinks it's running
+    if $COLIMA_BIN status &>/dev/null; then
+        log "Colima reports as running, no cleanup needed"
+        return 0
+    fi
+
+    # Check for zombie processes
+    if pgrep -f "colima daemon" >/dev/null 2>&1 || \
+       pgrep -f "limactl" >/dev/null 2>&1; then
+        log "Found stale processes, cleaning up..."
+
+        # Kill stale processes
+        pkill -9 -f "colima daemon" 2>/dev/null || true
+        pkill -9 -f "limactl usernet" 2>/dev/null || true
+        pkill -9 -f "limactl hostagent" 2>/dev/null || true
+
+        # Give processes time to die
+        sleep 2
+
+        log "Stale processes cleaned up"
+    fi
+}
+
+# Main startup logic
+log "===== Starting colima-start-safe ====="
+log "XDG_CONFIG_HOME=${XDG_CONFIG_HOME}"
+
+# Ensure we're using XDG config directory
+ensure_xdg_config
+
+# Clean up any stale processes first
+cleanup_stale_processes
+
+# Check if already running
+if $COLIMA_BIN status &>/dev/null; then
+    log "Colima is already running"
+    exit 0
+fi
+
+# Start colima
+log "Starting colima..."
+if $COLIMA_BIN start; then
+    log "Colima started successfully"
+    exit 0
+else
+    ERROR_CODE=$?
+    log "ERROR: Colima failed to start (exit code: $ERROR_CODE)"
+    log "Attempting recovery: delete and recreate VM..."
+
+    # Last resort: delete and recreate
+    $COLIMA_BIN delete -f 2>&1 | tee -a "$LOG_FILE" || true
+    sleep 2
+
+    if $COLIMA_BIN start; then
+        log "Colima recovered and started successfully"
+        exit 0
+    else
+        log "FATAL: Failed to start colima even after cleanup"
+        exit 1
+    fi
+fi

@@ -1,0 +1,13 @@
+# Secrets file - never commit
+secrets.yaml
+
+# Mode file - local per machine (symlink to mode-safe.yaml or mode-live.yaml)
+mode.yaml
+
+# Auth tokens
+*_token.json
+
+# Beets state files (created at runtime)
+state.pickle
+*.log
+*.db

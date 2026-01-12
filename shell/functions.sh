@@ -411,3 +411,56 @@ function cdi() {
     builtin cd "$selection" >/dev/null 2>&1 || return 1
   done
 }
+
+# -------------------------------------------------------------------
+# Beets music library helpers
+# Requires BEETS_LIBRARY, BEETS_DB, BEETS_TEST_DIR in .zshrc_local
+# -------------------------------------------------------------------
+beet-safe() {
+  ln -sf mode-safe.yaml ~/.config/beets/mode.yaml
+  echo "Beets: SAFE mode (no file modifications)"
+}
+
+beet-live() {
+  ln -sf mode-live.yaml ~/.config/beets/mode.yaml
+  echo "Beets: LIVE mode (full functionality)"
+}
+
+beet-mode() {
+  local mode
+  mode=$(readlink ~/.config/beets/mode.yaml 2>/dev/null | sed 's/mode-\(.*\)\.yaml/\1/')
+  echo "${mode:-not set}"
+}
+
+beet-test() {
+  if [ -z "$BEETS_TEST_DIR" ]; then
+    echo "beet-test: BEETS_TEST_DIR not set in .zshrc_local" >&2
+    return 1
+  fi
+  BEETS_LIBRARY="$BEETS_TEST_DIR/library" BEETS_DB="$BEETS_TEST_DIR/test.db" beet "$@"
+}
+
+beet-test-setup() {
+  if [ -z "$BEETS_TEST_DIR" ]; then
+    echo "beet-test-setup: BEETS_TEST_DIR not set in .zshrc_local" >&2
+    return 1
+  fi
+  mkdir -p "$BEETS_TEST_DIR/library"/{album,comp,single}
+  echo "Test environment created at: $BEETS_TEST_DIR"
+  echo "Copy some music files to $BEETS_TEST_DIR/library/"
+  echo "Then use: beet-test import \$BEETS_TEST_DIR/library"
+}
+
+beet-test-cleanup() {
+  if [ -z "$BEETS_TEST_DIR" ]; then
+    echo "beet-test-cleanup: BEETS_TEST_DIR not set in .zshrc_local" >&2
+    return 1
+  fi
+  echo "This will delete: $BEETS_TEST_DIR"
+  printf "Are you sure? (y/n) "
+  read -r REPLY
+  if [ "$REPLY" = "y" ] || [ "$REPLY" = "Y" ]; then
+    rm -rf "$BEETS_TEST_DIR"
+    echo "Test environment removed."
+  fi
+}

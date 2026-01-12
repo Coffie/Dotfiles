@@ -1,0 +1,242 @@
+# Beets configuration
+# Secrets are loaded from secrets.yaml (not committed to git)
+# Paths use environment variables for portability across machines
+#
+# Required environment variables (set in .zshrc_local):
+#   BEETS_LIBRARY  - path to music directory (e.g., ~/Dropbox/music)
+#   BEETS_DB       - path to database file (e.g., ~/Dropbox/offline/data/musiclibrary.db)
+
+include:
+  - secrets.yaml
+  - mode.yaml      # Toggle between mode-safe.yaml and mode-live.yaml
+
+# --------------- Main ---------------
+
+directory: $BEETS_LIBRARY
+library: $BEETS_DB
+
+asciify_paths: yes
+artist_credit: yes
+per_disc_numbering: yes
+terminal_encoding: utf-8
+threaded: no
+timeout: 5.0
+
+# --------------- Search & Display ---------------
+
+format_item: "$id | \e[1;33m$year\e[0m / \e[1;34m$album\e[0m: \e[1;35m$artist\e[0m - \e[1;32m$title\e[0m"
+format_album: "#$id: \e[1;33mAlbum \e[34m$album\e[0m by \e[1;35m$albumartist\e[0m | \e[2m$label\e[0m | \e[1m$catalognum\e[0m | $year\e[0m | $country\e[0m"
+
+sort_case_insensitive: yes
+
+# --------------- Import ---------------
+
+import:
+  write: yes
+  copy: no
+  move: yes
+  resume: yes
+  incremental: yes
+  incremental_skip_later: yes
+  quiet_fallback: skip
+  timid: no
+  detail: yes
+  group_albums: yes
+  autotag: yes
+  bell: no
+  log: ~/.local/share/beets/import.log
+  languages: [en]
+  duplicate_action: ask
+  none_rec_action: skip
+  duplicate_keys:
+    album: [album, albumartist, label]
+    item: [artist, title]
+
+# --------------- Paths ---------------
+
+paths:
+  default: album/$albumartist/$album/$artist - $title
+  comp: comp/Various Artists/$album/$artist - $title
+  singleton: single/$artist - $title
+
+path_sep_replace: _
+
+# --------------- Matching ---------------
+
+match:
+  strong_rec_thresh: 0.15
+  medium_rec_thresh: 0.6
+  rec_gap_thresh: 0.25
+  ignore_data_tracks: yes
+  ignore_video_tracks: yes
+  track_length_grace: 0
+  track_length_max: 20
+  preferred:
+    media:
+      - Digital Media
+      - File
+    original_year: no
+  distance_weights:
+    album: 4.0
+    album_id: 0.0
+    albumdisambig: 4.5
+    artist: 4.0
+    catalognum: 3.0
+    country: 1.0
+    data_source: 0.0
+    genre: 1.0
+    label: 3.0
+    media: 1.0
+    mediums: 1.0
+    missing_tracks: 0.0
+    track_artist: 4.0
+    track_index: 0.0
+    track_id: 1.0
+    track_length: 5.0
+    track_title: 4.0
+    tracks: 0.0
+    unmatched_tracks: 5
+    year: 4.0
+
+# --------------- Text Replacements ---------------
+
+replace:
+  # Normalize DJ capitalization
+  '^Dj ': 'DJ '
+  # Normalize Mix/Remix/Edit capitalization in parentheses
+  '(\([^)]+) (?i:mix)\)': '\1 Mix)'
+  '(\([^)]+) (?i:remix)\)': '\1 Remix)'
+  '(\([^)]+) (?i:edit)\)': '\1 Edit)'
+  # Remove "(Original Mix)" suffix - it's redundant
+  '(?i) ?\(original( mix)?\)': ''
+  # Trim whitespace
+  '^ +| +$': ''
+  # Normalize curly apostrophe
+  "\u2019": "'"
+  # Remove BPM tags
+  '(?i) ?\([0-9]+ ?bpm\)': ''
+  # Remove bonus track markers
+  '(?i) ?\(bonus track\)': ''
+
+# --------------- Plugins ---------------
+
+plugins:
+  # Metadata sources (priority order set via source_weight)
+  - bandcamp
+  - discogs
+  - beatport4
+  - deezer
+  - spotify
+  # Audio analysis
+  - chroma
+  - keyfinder
+  - replaygain
+  # Art
+  - fetchart
+  - embedart
+  # Organization & utilities
+  - duplicates
+  - edit
+  - info
+  - inline
+  - lyrics
+  - missing
+  - scrub
+  - types
+
+# --------------- Metadata Sources ---------------
+# Priority: bandcamp > discogs > beatport > musicbrainz > spotify/deezer
+
+bandcamp:
+  source_weight: 0.0  # Highest priority
+  include_digital_only_tracks: yes
+  search_max: 5
+  art: yes
+
+discogs:
+  source_weight: 0.1
+  index_tracks: yes
+  separator: ', '
+  append_style_genre: no
+
+beatport4:
+  source_weight: 0.2
+  art: yes
+  art_overwrite: no
+
+musicbrainz:
+  # Built-in, lowest of the "good" sources
+  source_weight: 0.3
+  host: musicbrainz.org
+  https: no
+  ratelimit: 1
+  ratelimit_interval: 1
+
+deezer:
+  source_weight: 0.5  # Fallback
+
+spotify:
+  source_weight: 0.5  # Fallback
+  mode: list
+  tiebreak: popularity
+  show_failures: no
+
+# --------------- Audio Analysis ---------------
+
+chroma:
+  auto: yes
+
+keyfinder:
+  auto: yes
+  bin: keyfinder-cli
+
+replaygain:
+  backend: ffmpeg
+  auto: yes
+  force: no
+  threads: 4
+  targetlevel: 89
+
+# --------------- Art ---------------
+
+fetchart:
+  auto: yes
+  sources:
+    - filesystem
+    - coverart
+    - bandcamp
+    - itunes
+    - amazon
+    - albumart
+  minwidth: 300
+  maxwidth: 1200
+
+embedart:
+  auto: yes
+  ifempty: yes
+  remove_art_file: no
+
+# --------------- Other Plugins ---------------
+
+scrub:
+  auto: yes
+
+lyrics:
+  auto: no
+  sources: [lrclib, tekstowo, google]
+  synced: yes
+
+duplicates:
+  keys: [artist, title]
+
+types:
+  rating: float
+  play_count: int
+  skip_count: int
+  bpm: int
+
+# --------------- UI ---------------
+
+ui:
+  color: yes
+  length_diff_thresh: 10.0

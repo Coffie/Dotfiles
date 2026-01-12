@@ -1,0 +1,28 @@
+# Safe mode - no modifications to files or library structure
+# Symlink or copy this to mode.yaml to activate
+
+import:
+  write: no       # Don't write tags to files
+  move: no        # Don't move/rename files
+  copy: no        # Don't copy files
+  timid: yes      # Extra confirmation prompts
+  pretend: no     # Set to 'yes' to do a complete dry-run
+
+# Disable auto-analysis that modifies files
+chroma:
+  auto: no
+
+keyfinder:
+  auto: no
+
+replaygain:
+  auto: no
+
+fetchart:
+  auto: no
+
+embedart:
+  auto: no
+
+scrub:
+  auto: no

@@ -1,0 +1,27 @@
+# Live mode - full functionality enabled
+# Symlink or copy this to mode.yaml to activate
+
+import:
+  write: yes      # Write tags to files
+  move: yes       # Move/rename files to match path templates
+  copy: no
+  timid: no
+
+# Enable auto-analysis
+chroma:
+  auto: yes
+
+keyfinder:
+  auto: yes
+
+replaygain:
+  auto: yes
+
+fetchart:
+  auto: yes
+
+embedart:
+  auto: yes
+
+scrub:
+  auto: yes

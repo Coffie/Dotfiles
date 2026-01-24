@@ -53,13 +53,48 @@ import:
     item: [artist, title]
 
 # --------------- Paths ---------------
+# Genre-based flat structure: genre_folder/Artist - Title.aiff
+# Subgenres preserved in ID3 tags, only top-level genre used for folder
 
 paths:
-  default: album/$albumartist/$album/$artist - $title
-  comp: comp/Various Artists/$album/$artist - $title
-  singleton: single/$artist - $title
+  default: $genre_folder/$artist - $title
+  comp: $genre_folder/$artist - $title
+  singleton: $genre_folder/$artist - $title
 
 path_sep_replace: _
+
+# --------------- Custom Fields ---------------
+
+item_fields:
+  genre_folder: |
+    g = genre.lower() if genre else ''
+    mapping = {
+        # Electronic
+        'techno': 'techno', 'melodic-techno': 'techno', 'peak-time-techno': 'techno',
+        'hard-techno': 'techno', 'minimal-techno': 'techno', 'dub-techno': 'techno',
+        'acid-techno': 'techno', 'industrial-techno': 'techno',
+        'house': 'house', 'tech-house': 'house', 'deep-house': 'house',
+        'melodic-house': 'house', 'acid-house': 'house', 'progressive-house': 'house',
+        'breaks': 'breaks', 'breakbeat': 'breaks', 'uk-breaks': 'breaks',
+        'electro': 'electro', 'electroclash': 'electro',
+        'trance': 'trance', 'progressive-trance': 'trance', 'psytrance': 'trance',
+        'disco': 'disco', 'nu-disco': 'disco', 'italo-disco': 'disco',
+        'downtempo': 'downtempo', 'ambient': 'downtempo', 'chillout': 'downtempo',
+        'drum-and-bass': 'dnb', 'dnb': 'dnb', 'jungle': 'dnb',
+        'uk-garage': 'garage', 'garage': 'garage', '2-step': 'garage',
+        # Non-Electronic
+        'pop': 'pop', 'synth-pop': 'pop', 'dance-pop': 'pop',
+        'rock': 'rock', 'alternative': 'rock', 'punk': 'rock',
+        'indie': 'indie', 'indie-rock': 'indie', 'indie-pop': 'indie',
+        'soul': 'soul', 'motown': 'soul', 'neo-soul': 'soul',
+        'funk': 'funk', 'boogie': 'funk',
+        'rnb': 'rnb', 'r&b': 'rnb', 'contemporary-rnb': 'rnb',
+        'hip-hop': 'hiphop', 'hiphop': 'hiphop', 'rap': 'hiphop',
+        'latin': 'latin', 'reggaeton': 'latin', 'salsa': 'latin',
+        '80s': '80s', '1980s': '80s',
+        '90s': '90s', '1990s': '90s',
+    }
+    return mapping.get(g, '_untagged' if not g else 'other')
 
 # --------------- Matching ---------------
 

@@ -464,3 +464,36 @@ beet-test-cleanup() {
     echo "Test environment removed."
   fi
 }
+
+# Postgres connection function
+pgconn() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: pgconn <connection-name>"
+    echo "Available: $(ls "$HOME/.config/pgconns/")"
+    return 1
+  fi
+
+  local conn_file="$HOME/.config/pgconns/$1"
+  if [[ ! -f "$conn_file" ]]; then
+    echo "Unknown connection: $1"
+    echo "Available: $(ls "$HOME/.config/pgconns/")"
+    return 1
+  fi
+
+  # Clear any previous connection state
+  unset PGPASSWORD PGPASSWORD_CMD
+
+  source "$conn_file"
+
+  if [[ -n "$PGPASSWORD_CMD" ]]; then
+    PGPASSWORD="$(eval "$PGPASSWORD_CMD")" || {
+      echo "Password command failed"
+      return 1
+    }
+    export PGPASSWORD
+    unset PGPASSWORD_CMD
+  fi
+
+  echo "Connected env set for $1"
+  psql
+}

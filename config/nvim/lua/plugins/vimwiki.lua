@@ -4,7 +4,7 @@ return {
     init = function()
       vim.g.vimwiki_list = {
         {
-          path = (os.getenv("DROPBOX_PREFIX") or os.getenv("HOME")) .. "/wiki",
+          path = (os.getenv("DROPBOX_PREFIX") or os.getenv("HOME")) .. "/documents/wiki",
           syntax = "markdown",
           ext = "md",
           diary_rel_path = "diary",

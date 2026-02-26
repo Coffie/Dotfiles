@@ -466,9 +466,12 @@ beet-test-cleanup() {
 }
 
 # Postgres connection function
+#   pgconn <name>         - set env and open psql
+#   pgconn <name> env     - set env only (for pgAdmin, etc.)
+#   pgconn <name> token   - print the password/token to stdout
 pgconn() {
   if [[ -z "$1" ]]; then
-    echo "Usage: pgconn <connection-name>"
+    echo "Usage: pgconn <name> [env|token]"
     echo "Available: $(ls "$HOME/.config/pgconns/")"
     return 1
   fi
@@ -479,6 +482,8 @@ pgconn() {
     echo "Available: $(ls "$HOME/.config/pgconns/")"
     return 1
   fi
+
+  local action="${2:-psql}"
 
   # Clear any previous connection state
   unset PGPASSWORD PGPASSWORD_CMD
@@ -494,6 +499,29 @@ pgconn() {
     unset PGPASSWORD_CMD
   fi
 
-  echo "Connected env set for $1"
-  psql
+  case "$action" in
+    token)
+      if [[ -z "$PGPASSWORD" ]]; then
+        echo "No password/token available for this connection"
+        return 1
+      fi
+      printf '%s' "$PGPASSWORD"
+      ;;
+    env)
+      echo "Connected env set for $1"
+      echo "  PGHOST=$PGHOST"
+      echo "  PGPORT=$PGPORT"
+      echo "  PGDATABASE=$PGDATABASE"
+      echo "  PGUSER=$PGUSER"
+      ;;
+    psql)
+      echo "Connected env set for $1"
+      psql
+      ;;
+    *)
+      echo "Unknown action: $action"
+      echo "Usage: pgconn <name> [env|token]"
+      return 1
+      ;;
+  esac
 }

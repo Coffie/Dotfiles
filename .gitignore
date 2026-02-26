@@ -24,6 +24,9 @@ tmux/resurrect
 # Ignore sensitive exports
 *.ignore.*
 
+# Ignore pgconns (contain infrastructure details)
+config/pgconns/*
+
 # Ignore mutt local files
 mutt/.mutt/aliases/.alias_include
 mutt/.mutt/local/.muttrc.local

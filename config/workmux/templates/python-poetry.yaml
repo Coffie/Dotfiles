@@ -1,0 +1,11 @@
+files:
+  symlink:
+    - '<global>'
+
+panes:
+  - command: <agent>
+    focus: true
+  - split: vertical
+    percentage: 30
+  - command: "watchexec -e py -r -- poetry run pytest --tb=short -q"
+    split: horizontal

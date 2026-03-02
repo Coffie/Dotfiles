@@ -1,0 +1,13 @@
+files:
+  symlink:
+    - '<global>'
+
+panes:
+  - command: <agent>
+    focus: true
+  - split: vertical
+    percentage: 30
+  - command: "watchexec -e go -r -- gotestsum --format testdox ./..."
+    split: horizontal
+  - command: "air"
+    split: horizontal

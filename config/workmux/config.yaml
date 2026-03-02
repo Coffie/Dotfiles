@@ -2,7 +2,14 @@ nerdfont: true
 merge_strategy: rebase
 agent: claude
 
+files:
+  symlink:
+    - CLAUDE.md
+    - .env
+    - .claude
+
 panes:
   - command: <agent>
     focus: true
   - split: vertical
+    percentage: 30

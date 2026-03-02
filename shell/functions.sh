@@ -525,3 +525,41 @@ pgconn() {
       ;;
   esac
 }
+
+# Apply a workmux pane template to the current repo
+wmt() {
+  local template_dir="$HOME/.config/workmux/templates"
+  local target=".workmux.yaml"
+
+  if [ ! -d "$template_dir" ]; then
+    echo "wmt: templates directory not found at $template_dir" >&2
+    return 1
+  fi
+
+  local name="$1"
+  if [ -z "$name" ]; then
+    if ! __dotfiles_has_command fzf; then
+      echo "Usage: wmt <template>" >&2
+      echo "Available: $(ls "$template_dir" | sed 's/\.yaml$//' | tr '\n' ' ')" >&2
+      return 1
+    fi
+    name=$(ls "$template_dir" | sed 's/\.yaml$//' | fzf --prompt="template> ")
+    [ -n "$name" ] || return 0
+  fi
+
+  local src="$template_dir/${name}.yaml"
+  if [ ! -f "$src" ]; then
+    echo "wmt: unknown template '$name'" >&2
+    echo "Available: $(ls "$template_dir" | sed 's/\.yaml$//' | tr '\n' ' ')" >&2
+    return 1
+  fi
+
+  if [ -f "$target" ]; then
+    printf "Overwrite existing %s? (y/n) " "$target"
+    read -r REPLY
+    [ "$REPLY" = "y" ] || [ "$REPLY" = "Y" ] || return 0
+  fi
+
+  cp "$src" "$target"
+  echo "Applied template '$name' to $target"
+}

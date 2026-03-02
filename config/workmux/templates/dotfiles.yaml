@@ -1,0 +1,5 @@
+panes:
+  - command: <agent>
+    focus: true
+    percentage: 70
+  - split: vertical

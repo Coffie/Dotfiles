@@ -24,10 +24,18 @@ arch: aarch64
 # Default: docker
 runtime: docker
 
+# AI model runner (docker, ramalama).
+# Both require krunkit VM type for GPU access.
+# docker: Uses Docker Model Runner.
+# ramalama: Uses Ramalama.
+#
+# Default: docker
+modelRunner: docker
+
 # Set custom hostname for the virtual machine.
 # Default: colima
 #          colima-profile_name for other profiles
-hostname: colima
+hostname: ""
 
 # Kubernetes configuration for the virtual machine.
 kubernetes:
@@ -38,7 +46,7 @@ kubernetes:
   # Kubernetes version to use.
   # This needs to exactly match a k3s version https://github.com/k3s-io/k3s/releases
   # Default: latest stable release
-  version: v1.33.4+k3s1
+  version: v1.35.0+k3s1
   
   # Additional args to pass to k3s https://docs.k3s.io/cli/server
   # Default: traefik is disabled
@@ -87,7 +95,7 @@ network:
   # dns: [8.8.8.8, 1.1.1.1]
   #
   # Default: []
-  dns: []
+  dns: null
   
   # DNS hostnames to resolve to custom targets using the internal resolver.
   # This setting has no effect if a custom DNS resolver list is supplied above.
@@ -114,7 +122,7 @@ network:
   # gatewayAddress: 192.168.10.2
   #
   # Default: 192.168.5.2
-  gatewayAddress: null
+  gatewayAddress: 192.168.5.2
 
 # ===================================================================== #
 # ADVANCED CONFIGURATION
@@ -223,7 +231,7 @@ cpuType: ""
 #     script: echo "everything is ready"
 #
 # Default: []
-provision: []
+provision: null
 
 # Modify ~/.ssh/config automatically to include a SSH config for the virtual machine.
 # SSH config will still be generated in $COLIMA_HOME/ssh_config regardless.

@@ -8,6 +8,8 @@ set -e
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}"
 
 COLIMA_BIN="/opt/homebrew/bin/colima"
+COLIMA_CPUS=4
+COLIMA_MEMORY=8
 LOG_FILE="${XDG_CONFIG_HOME}/colima/startup.log"
 
 # Ensure log directory exists
@@ -70,7 +72,7 @@ fi
 
 # Start colima
 log "Starting colima..."
-if $COLIMA_BIN start; then
+if $COLIMA_BIN start --cpu "$COLIMA_CPUS" --memory "$COLIMA_MEMORY"; then
     log "Colima started successfully"
     exit 0
 else
@@ -82,7 +84,7 @@ else
     $COLIMA_BIN delete -f 2>&1 | tee -a "$LOG_FILE" || true
     sleep 2
 
-    if $COLIMA_BIN start; then
+    if $COLIMA_BIN start --cpu "$COLIMA_CPUS" --memory "$COLIMA_MEMORY"; then
         log "Colima recovered and started successfully"
         exit 0
     else

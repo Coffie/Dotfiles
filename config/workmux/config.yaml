@@ -6,7 +6,7 @@ files:
   symlink:
     - CLAUDE.md
     - .env
-    - .claude
+    - .claude/
 
 panes:
   - command: <agent>

@@ -30,3 +30,8 @@ config/pgconns/*
 # Ignore mutt local files
 mutt/.mutt/aliases/.alias_include
 mutt/.mutt/local/.muttrc.local
+
+# Ignore agent files
+CLAUDE.md
+AGENTS.md
+GEMINI.md

@@ -18,3 +18,6 @@ __dotfiles_source_if_exists "$DOTFILES_SHELL_ROOT/functions.sh"
 
 # Host- or user-specific overrides (optional, ignored if absent).
 __dotfiles_source_if_exists "$DOTFILES_SHELL_ROOT/local.sh"
+
+# Third-party shell integrations.
+__dotfiles_source_if_exists "$HOME/.safe-chain/scripts/init-posix.sh"

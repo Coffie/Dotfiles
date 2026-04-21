@@ -317,13 +317,13 @@ any() {
 # fzf functions
 # -------------------------------------------------------------------
 # ASDF functions
-# Install one or more versions of specified language
+# Install one or more versions of specified tool via mise.
 # e.g. `vmi rust` # => fzf multimode, tab to mark, enter to install
-# if no plugin is supplied (e.g. `vmi<CR>`), fzf will list them for you
+# if no tool is supplied (e.g. `vmi<CR>`), fzf will list them for you
 # Mnemonic [V]ersion [M]anager [I]nstall
 vmi() {
-  if ! command -v asdf >/dev/null 2>&1; then
-    echo "vmi: asdf not installed" >&2
+  if ! command -v mise >/dev/null 2>&1; then
+    echo "vmi: mise not installed" >&2
     return 1
   fi
   if ! __dotfiles_has_command fzf; then
@@ -331,30 +331,30 @@ vmi() {
     return 1
   fi
 
-  local lang="${1:-}"
+  local tool="${1:-}"
 
-  if [[ -z $lang ]]; then
-    lang=$(asdf plugin-list | fzf --prompt="plugin> ")
+  if [[ -z $tool ]]; then
+    tool=$(mise registry | awk '{print $1}' | fzf --prompt="tool> ")
   fi
 
-  if [[ -n $lang ]]; then
+  if [[ -n $tool ]]; then
     local versions
-    versions=$(asdf list-all "$lang" | fzf --tac --no-sort --multi --prompt="${lang}> ")
+    versions=$(mise ls-remote "$tool" | fzf --tac --no-sort --multi --prompt="${tool}> ")
     if [[ -n $versions ]]; then
       while read -r version; do
-        asdf install "$lang" "$version"
+        mise install "${tool}@${version}"
       done <<<"$versions"
     fi
   fi
 }
 
-# Remove one or more versions of specified language
-# e.g. `vmi rust` # => fzf multimode, tab to mark, enter to remove
-# if no plugin is supplied (e.g. `vmi<CR>`), fzf will list them for you
+# Remove one or more installed versions via mise.
+# e.g. `vmc rust` # => fzf multimode, tab to mark, enter to remove
+# if no tool is supplied (e.g. `vmc<CR>`), fzf will list them for you
 # Mnemonic [V]ersion [M]anager [C]lean
 vmc() {
-  if ! command -v asdf >/dev/null 2>&1; then
-    echo "vmc: asdf not installed" >&2
+  if ! command -v mise >/dev/null 2>&1; then
+    echo "vmc: mise not installed" >&2
     return 1
   fi
   if ! __dotfiles_has_command fzf; then
@@ -362,20 +362,13 @@ vmc() {
     return 1
   fi
 
-  local lang="${1:-}"
-
-  if [[ -z $lang ]]; then
-    lang=$(asdf plugin-list | fzf --prompt="plugin> ")
-  fi
-
-  if [[ -n $lang ]]; then
-    local versions
-    versions=$(asdf list "$lang" | fzf -m --prompt="${lang}> ")
-    if [[ -n $versions ]]; then
-      while read -r version; do
-        asdf uninstall "$lang" "$version"
-      done <<<"$versions"
-    fi
+  local selections
+  selections=$(mise ls --installed | awk '{print $1" "$2}' | fzf -m --prompt="tool@version> ")
+  if [[ -n $selections ]]; then
+    while read -r tool version; do
+      [[ -z $tool || -z $version ]] && continue
+      mise uninstall "${tool}@${version}"
+    done <<<"$selections"
   fi
 }
 

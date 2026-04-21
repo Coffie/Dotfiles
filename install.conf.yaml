@@ -6,7 +6,6 @@
 - clean: ["~", "~/.config"]
 
 - link:
-    ~/.asdfrc: asdfrc
     ~/.bash_profile: bash_profile
     ~/.bashrc: bashrc
     ~/.bash: bash

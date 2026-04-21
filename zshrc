@@ -76,9 +76,9 @@ then
   fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 fi
 
-if type asdf &>/dev/null
+if type mise &>/dev/null
 then
-  fpath=($ASDF_DATA_DIR/completions $fpath)
+  eval "$(mise activate zsh)"
 fi
 
 typeset -U fpath

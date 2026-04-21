@@ -8,3 +8,7 @@ fi
 [ -f "$HOME/.bash/settings.bash" ] && source "$HOME/.bash/settings.bash"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+if type mise &>/dev/null; then
+  eval "$(mise activate bash)"
+fi

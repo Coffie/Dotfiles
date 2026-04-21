@@ -89,7 +89,8 @@ fi
 __dotfiles_path_prepend "$HOME/bin"
 __dotfiles_path_prepend "$HOME/.local/bin"
 
-# asdf version manager shims.
-if __dotfiles_has_command asdf; then
-    __dotfiles_path_prepend "$HOME/.asdf/shims"
+# mise shims — put them on PATH for non-interactive shells, scripts, Homebrew, LaunchAgents, etc.
+# Interactive shells additionally run `mise activate` in .zshrc/.bashrc for `[env]` support and speed.
+if [ -d "$HOME/.local/share/mise/shims" ]; then
+    __dotfiles_path_prepend "$HOME/.local/share/mise/shims"
 fi

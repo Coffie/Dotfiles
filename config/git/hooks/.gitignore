@@ -1,0 +1,5 @@
+# Hooks installed via symlink by other tools (e.g. claudium) are kept out of
+# this repo. Track only hooks managed directly by .dotfiles itself.
+*
+!.gitkeep
+!.gitignore

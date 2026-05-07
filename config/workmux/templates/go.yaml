@@ -1,4 +1,6 @@
 files:
+  copy:
+    - '<global>'
   symlink:
     - '<global>'
 

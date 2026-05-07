@@ -1,3 +1,9 @@
+files:
+  copy:
+    - '<global>'
+  symlink:
+    - '<global>'
+
 panes:
   - command: <agent>
     focus: true

@@ -1,19 +1,16 @@
 nerdfont: true
 base_branch: main
 merge_strategy: rebase
-worktree_dir: <project>/.worktrees/
+worktree_dir: .worktrees
 agent: claude
 
+post_create:
+  - mise install
+
 files:
+  copy:
+    - .claude/
   symlink:
     - CLAUDE.md
     - .env
-    - .claude/
     - .tool-versions
-    - docs/claude/
-
-panes:
-  - command: <agent>
-    focus: true
-  - split: vertical
-    percentage: 30

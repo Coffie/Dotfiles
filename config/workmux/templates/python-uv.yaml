@@ -1,7 +1,12 @@
 files:
+  copy:
+    - '<global>'
   symlink:
     - '<global>'
-    - .venv/
+
+post_create:
+  - '<global>'
+  - uv sync --all-groups --all-extras
 
 panes:
   - command: <agent>

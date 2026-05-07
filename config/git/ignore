@@ -101,5 +101,6 @@ docs/claude
 .claude
 .workmux.yaml
 .worktrees
+.mise.toml
 
 **/.claude/settings.local.json

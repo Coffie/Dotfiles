@@ -100,5 +100,6 @@ local_settings.py
 docs/claude
 .claude
 .workmux.yaml
+.worktrees
 
 **/.claude/settings.local.json

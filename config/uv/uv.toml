@@ -1,0 +1,7 @@
+# uv user config — applied regardless of shell, env vars, or invocation context.
+# Symlinked to ~/.config/uv/uv.toml via dotbot's config/* glob.
+
+# Never auto-download Python; never use uv's managed Python installs.
+# Forces uv to use Python from PATH only — i.e., mise-managed.
+python-downloads = "never"
+python-preference = "only-system"

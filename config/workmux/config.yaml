@@ -1,5 +1,7 @@
 nerdfont: true
+base_branch: main
 merge_strategy: rebase
+worktree_dir: <project>/.worktrees/
 agent: claude
 
 files:

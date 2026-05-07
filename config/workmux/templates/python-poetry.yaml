@@ -1,7 +1,7 @@
 files:
   symlink:
     - '<global>'
-    - .venv
+    - .venv/
 
 panes:
   - command: <agent>
